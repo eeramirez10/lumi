@@ -1,0 +1,49 @@
+<app-header></app-header>
+<app-menua></app-menua>
+
+<div class="container mb-5">
+
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <h1>REPORTES DE EQUIPOS</h1>
+    </div>
+  </div>
+
+  <div class="row my-4">
+    <div class="col-md-4 px-5" *ngFor="let eq of equipos; let i = index">
+      <a style="text-decoration: none;" [routerLink]="['/Requipos_Admin/Detalle_equipos',eq.idEquipos]">
+        <div class="cards shadow row p-3 mt-4 alto overflow-auto">
+          <div class="col-md-12">
+            <h4 class="text-center">Equipo {{eq.idEquipos}}</h4>
+          </div>
+          <div class="col-md-12 my-2"  style="border-bottom: 1px solid black;">
+            <div class="row my-3">
+              <div class="col-md-3">
+                  <img src="http://192.168.1.61/lum/imagenes/{{eq.Imagen}}" class="img"/>
+              </div>
+              <div class="col-md-9" >
+                  <h5 class="elipsis">{{eq.Nombre}}</h5>
+                  <h6 *ngIf="eq.Rol === '1'" style="font-weight: 400; font-style:italic;color: gray;">ASESOR DE VENTAS</h6>
+                  <h6 *ngIf="eq.Rol === '2'" style="font-weight: 400; font-style:italic;color: gray;">COORDINADOR</h6>
+                  <h6 *ngIf="eq.Rol === '3'" style="font-weight: 400; font-style:italic;color: gray;">ADMINISTRADOR</h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 my-2" *ngFor="let integ of integrantes[i]">
+            <div class="row ">
+              <div class="col-md-3">
+                  <img src="http://192.168.1.61/lum/imagenes/{{integ.Imagen}}" class="img2"/>
+              </div>
+              <div class="col-md-9" >
+                  <h6 class="elipsis">{{integ.Nombre}}</h6>
+                  <h6 *ngIf="integ.Rol === '1'" style="font-weight: 400; font-style:italic;color: gray;">ASESOR DE VENTAS</h6>
+                  <h6 *ngIf="integ.Rol === '4'" style="font-weight: 400; font-style:italic;color: gray;">ADMINISTRADOR</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

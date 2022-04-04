@@ -1,0 +1,126 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<app-header></app-header>
+<app-menu></app-menu>
+<div class="container-fluid">
+    <h1 class="mt-5" style="margin-left: 8.33333%;font-weight: 700;">CAMBIAR CONTRASEÑA</h1>
+    <div class="row d-flex align-items-center justify-content-center mt-5">
+      <div class="col-md-10 card d-flex align-items-center justify-content-center shadow mt-2 py-5 px-5">
+          <div id="login-box" class="col-md-12">
+
+              <form #regForm="ngForm" [formGroup]="loginForm1" (ngSubmit)="onSubmit1()">
+
+                <div class="form-group">
+                    <div class="row mt-3">
+                    <div class="col-md-4">
+                        <label for="password">Contraseña actual</label>
+                    </div>
+                      <div class="col-md-8">
+                      <div class="input-group" id="show_hide_password">
+                        <div class="row" style="width: 100%;">
+                          <div class="col-lg-11 pr-0">
+                            <input id="contraseña" [type]="password_type2" formControlName="password2" (ngModelChange)="dataChanged2($event)" class="form-control shadow" [ngClass]="{ 'is-invalid': submitted1 && ff.password2.errors }"/>
+
+                            <div *ngIf="submitted1 && ff.password2.errors" class="invalid-feedback">
+                                <div *ngIf="ff.password2.errors.required">La contraseña es requerida</div>
+                            </div>
+
+                          </div>
+                          <div class="col-lg-1 pl-2 d-flex align-items-center">
+                            <div class="input-group-addon d-flex align-items-center" *ngIf="visible2 === false && vercontrasena2 === true">
+                              <a (click)="vercontra2()"><i id="ojo" class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                          </div>
+                          <div class="input-group-addon d-flex align-items-center" *ngIf="visible2 === true && vercontrasena2 === true">
+                              <a (click)="vercontra2()"><i id="ojo"  class="fa fa-eye" aria-hidden="true"></i></a>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                <div class="row mt-5">
+                <div class="col-md-4">
+                    <label for="password">Nueva contraseña</label>
+                </div>
+                  <div class="col-md-8">
+                  <div class="input-group" id="show_hide_password">
+                    <div class="row" style="width: 100%;">
+                      <div class="col-lg-11 pr-0">
+                        <input id="contraseña" [type]="password_type" formControlName="password" (ngModelChange)="dataChanged($event)" class="form-control shadow" [ngClass]="{ 'is-invalid': submitted1 && ff.password.errors }"/>
+                        <div *ngIf="submitted1 && ff.password.errors" class="invalid-feedback">
+                            <div *ngIf="ff.password.errors.required">La contraseña es requerida</div>
+                            <div *ngIf="ff.password.errors.minlength">La contraseña debe ser minimo de 8 carácteres</div>
+                            <div *ngIf="ff.password.errors.maxlength">La contraseña debe ser máximo de 16 carácteres</div>
+                        </div>
+                      </div>
+                      <div class="col-lg-1 pl-2 d-flex align-items-center">
+                        <div class="input-group-addon d-flex align-items-center" *ngIf="visible === false && vercontrasena === true">
+                          <a (click)="vercontra()"><i id="ojo" class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                      </div>
+                      <div class="input-group-addon d-flex align-items-center" *ngIf="visible === true && vercontrasena === true">
+                          <a (click)="vercontra()"><i id="ojo"  class="fa fa-eye" aria-hidden="true"></i></a>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+              <div class="form-group">
+                <div class="row mt-5">
+                    <div class="col-md-4">
+                        <label for="password">Confirmar contraseña</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="input-group" id="show_hide_password">
+                            <div class="row" style="width: 100%;">
+                              <div class="col-lg-11 pr-0">
+                              <input id="contraseña" [type]="password_type1" formControlName="password1" (ngModelChange)="dataChanged1($event)" class="form-control shadow" [ngClass]="{ 'is-invalid': submitted1 && ff.password1.errors }"/>
+                              <div *ngIf="submitted1 && ff.password1.errors" class="invalid-feedback">
+                                  <div *ngIf="ff.password1.errors.required">La contraseña es requerida</div>
+                                  <div *ngIf="ff.password1.errors.minlength">La contraseña debe ser minimo de 8 carácteres</div>
+                                  <div *ngIf="ff.password1.errors.maxlength">La contraseña debe ser máximo de 16 carácteres</div>
+                              </div>
+                              </div>
+                              <div class="col-lg-1 pl-2 d-flex align-items-center">
+                              <div class="input-group-addon d-flex align-items-center" *ngIf="visible1 === false && vercontrasena1 === true">
+                                  <a (click)="vercontra1()"><i id="ojo" class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                              </div>
+                              <div class="input-group-addon d-flex align-items-center" *ngIf="visible1 === true && vercontrasena1 === true">
+                                  <a (click)="vercontra1()"><i id="ojo"  class="fa fa-eye" aria-hidden="true"></i></a>
+                              </div>
+                              </div>
+                              </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="error" class="alert alert-danger alert-dismissible fade show mt-2 mb-2">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="borrar()">
+                <span aria-hidden="true">&times;</span>
+              </button> {{error}}
+            </div>
+            <div *ngIf="error2" class="alert alert-success alert-dismissible fade show mt-2 mb-2">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="borrar2()">
+                  <span aria-hidden="true">&times;</span>
+                </button> {{error2}}
+              </div>
+
+                <div class="form-group text-center my-5">
+                    <button type="submit" name="submit1" class="btn btn-azul btn-md">GUARDAR</button>
+                </div>
+
+            </form>
+
+
+          </div>
+
+      </div>
+
+
+    </div>
+  </div>

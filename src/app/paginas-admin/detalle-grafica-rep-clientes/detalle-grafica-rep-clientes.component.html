@@ -1,0 +1,65 @@
+<app-header></app-header>
+<app-menua></app-menua>
+
+<div class="container mb-5 pb-5">
+  <div class="row mb-3 mt-5">
+    <h1 class="ml-3" style="color: gray; opacity: 0.7;">
+      REPORTE GENERAL DE VISITAS
+    </h1>
+  </div>
+  <div class="row mb-3 mt-5" *ngFor="let emp of empresa">
+    <div class="col-md-8">
+      <h1 class="ml-3">{{ emp.Nombre_Empresa }}</h1>
+    </div>
+    <div class="col-md-2 text-right">
+      <!-- <button class="btn btn-azul" [routerLink]="['/Requipos_Admin/Grafica_equipo',
+      us.Equipos_idEquipos]"><img class="mb-1 mr-2" src="../../../assets/img/pie-chart-sharp.svg" class="imagen">Graficas</button> -->
+    </div>
+  </div>
+
+  <div class="row my-5">
+    <div class="col-lg-4">
+      <div class="card shadow border-0 alto overflow-auto mb-4 p-2">
+              <h2 class="py-3 text-center font-weight-bold">VISITAS TOTALES <span style="color: black;">{{contadordevisita}}</span></h2>
+              <div class="row"
+                style="border-bottom: 1px solid black;max-width:100%;">
+              </div>
+                <canvas style="height: 100%;" id="canvas" (click)="infografica($event)">{{chart}}</canvas>
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      <div class="card shadow border-0 alto px-5">
+        <div class="row mt-3">
+            <h2 class="mx-auto" style="color: black;">
+            {{messel}}{{contadordevisita1}} VISITAS
+            </h2>
+        </div>
+        <div class="container overflow-auto mb-4 mt-3">
+            <div class="row">
+                <div class="col-md-4 text-center"><h3>FECHA</h3></div>
+                <div class="col-md-4 text-center"><h3>VISITA</h3></div>
+                <div class="col-md-4 text-center"><h3>MOTIVO</h3></div>
+            </div>
+            <ng-container *ngFor="let visita of visitas">
+              <a style="text-decoration: none;width: 100%;" [routerLink]="['/Rclientes_Admin/Reporte_Detallado',visita.FechaI,idempresa]">
+                <div class="row py-3" style="border-top: 1px solid black;">
+                    <div class="col-md-4 text-center">
+                      <h6 style="color: black;">{{visita.FechaI}}</h6>
+                    </div>
+                    <div class="col-md-4 text-center">
+                      <h6 style="color: black;">{{visita.Nombre}}</h6>
+                    </div>
+                    <div class="col-md-4 text-center">
+                      <h6 style="color: black;">{{visita.Motivo}}</h6>
+                    </div>
+                </div>
+              </a>
+            </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

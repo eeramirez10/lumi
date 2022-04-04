@@ -1,0 +1,101 @@
+<router-outlet></router-outlet>
+<app-header></app-header>
+<app-menuc></app-menuc>
+<div class="container">
+    <div class="my-5">
+        <h1 style="margin-left:8.33333%;font-weight:650;">EDITAR TAREA</h1>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-10 card shadow p-5 mb-5">
+            <div class="row">
+                <div class="col-md-4">
+                    <span>Para Ti</span>
+                </div>
+                <div class="col-md-8 text-right">
+                    <span>Creada: Jueves 10 Octubre de 2019, 10:32 am</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <h3 style="font-weight: 700;">JUAN HERNÁNDEZ ROMERO</h3>
+                </div>
+                <div class="col-md-5 text-right">
+                    <span>Asignada por: Luis Zurita Lima</span><br><span style="font-style:italic;">COORDINADOR 1</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span>Cliente</span>
+                    <h5>BMW Puebla</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span>Sucursal</span>
+                    <h5>Sucursal 1</h5>
+                </div>
+            </div>
+            <div class="row borderr">
+                <div class="col-md-12">
+                    <span>Tarea</span>
+                    <h5>·Solicitarle al cliente copias de las facturas emitidas el mes pasado por la
+                        compra de las lamparas SL 900.</h5>
+                </div>
+            </div>
+            <div class="row borderr">
+                <div class="col-md-5 my-3">
+                    <h2>Archivos Multimedia</h2>
+                </div>
+                <div class="col-md-7 my-3">
+                    <label class="shadow circle" style="cursor: pointer;"></label>
+                    <label class="shadow circle2" style="cursor: pointer;"></label>
+                    <label class="shadow circle3" style="cursor: pointer;"></label>
+                    <label class="shadow circle4" style="cursor: pointer;"></label>
+                    <label class="shadow circle5" style="cursor: pointer;"></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 my-3">
+                    <h2>Comentarios</h2>
+                </div>
+                <div class="col-md-12">
+                    <textarea style="resize:none;" rows="6" style="width: 100%;" placeholder="Escribe aquí tu comentario"></textarea>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-md-6 d-flex align-items-center justify-content-center">
+                    <input class="check mr-2" type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                    <label for="vehicle1" class="m-0">FINALIZADA</label>
+                </div>
+                <div class="col-md-6 d-flex align-items-center justify-content-center">
+                    <input class="check mr-2" type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                    <label for="vehicle1" class="m-0">NO FINALIZADA</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <button type="submit" class="btn btn-azul"><img class="imagen" src="../../../assets/img/send-outline.svg" alt="">ENVIAR</button>
+                </div>
+                <div class="col-md-6 text-center">
+                    <button type="submit" class="btn btn-rojo" data-toggle="modal" data-target="#exampleModalCenter">X CANCELAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content p-3 bradius">
+        <div class="modal-body">
+          <h3>Escribe el motivo de cancelación</h3>
+          <textarea style="resize:none;" rows="6" style="width: 100%;"></textarea>
+        </div>
+        <div class="row  mb-3 d-flex justify-content-center">
+          <button type="button" class="btn btn-azul">CONFIRMAR</button>
+        </div>
+      </div>
+    </div>
+  </div>

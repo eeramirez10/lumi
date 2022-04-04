@@ -1,0 +1,195 @@
+h1,h2,h3,h4,h5,h6{
+  color: #07138f;
+}
+.cards{
+    border-radius: 25px;
+}
+.img{
+ border-radius:50%;
+   width:60px!important;
+   height:60px!important;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-right: auto;
+	margin-left: auto;
+}
+.img2{
+ border-radius:50%;
+   width:40px!important;
+   height:40px!important;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-right: auto;
+	margin-left: auto;
+}
+.alto{
+   height: 400px;
+}
+@media screen and (width: 1280px) {
+}
+@media screen and (min-width: 1366px) {
+}
+@media screen and (min-width: 1440px) {
+}
+@media screen and (min-width: 1600px) {
+}
+@media screen and (min-width: 1680px) {
+}
+@media screen and (min-width: 1920px) {
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+max-width: 1750px;}
+h1{ font-size: 75px; }
+h2{ font-size: 40px; }
+h3{ font-size: 35px; }
+h5{ font-size: 32px; }
+h6{ font-size: 25px; }
+label{ font-size: 35px;}
+.mb-3, .my-3 { margin-bottom: 3rem!important;}
+.mt-3, .my-3 { margin-top: 3rem!important; }
+.card{ border-radius: 45px;}
+.circle{ top:62%; left:62%; width: 75px; height: 75px;}
+input{ height: 65px; font-size: 35px;}
+.btn-azul {   border-radius: 50px;   font-size: 26px; }
+.mb-5, .my-5 {   margin-bottom: 4.5rem!important; }
+.mt-5, .my-5 {   margin-top: 4.5rem!important; }
+.img{ width: 120px!important; height: 120px!important;}
+.alto{   height: 550px;}
+.img2{width:90px!important;  height:90px!important;}
+}
+@media screen and (min-width: 2160px) {
+h1{ font-size: 75px; }
+h2{ font-size: 40px; }
+h3{ font-size: 35px; }
+h4{ font-size: 35px; }
+h5{ font-size: 32px; }
+h6{ font-size: 25px; }
+.img{ width: 110px!important; height: 110px!important;}
+}
+@media screen and (min-width: 2560px) {
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+max-width: 2340px;}
+h1{ font-size: 73px; }
+h2{ font-size: 50px; }
+h4{ font-size: 45px; }
+h5{ font-size: 42px; }
+h6{ font-size: 36px; }
+label{ font-size: 35px;}
+.mb-3, .my-3 { margin-bottom: 3rem!important;}
+.mt-3, .my-3 { margin-top: 3rem!important; }
+.card{ border-radius: 45px;}
+.circle{ top:62%; left:62%; width: 75px; height: 75px;}
+input{ height: 65px; font-size: 35px;}
+.btn-azul {   border-radius: 50px;   font-size: 33px; }
+.mb-5, .my-5 {   margin-bottom: 4.5rem!important; }
+.mt-5, .my-5 {   margin-top: 4.5rem!important; }
+.img{ width: 140px!important; height: 140px!important;}
+.alto{   height: 700px;}
+.img2{width:90px!important;  height:90px!important;}
+.imagen{  width: 50px;height:50px;}
+.mt-4, .my-4 {
+    margin-top: 3rem!important;
+}
+.cards{
+    border-radius:45px;
+}
+}
+@media screen and (min-width: 2560px) and (max-height: 1080px){
+}
+@media screen and (min-width: 2736px) {
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+max-width: 2440px;}
+h1{ font-size: 85px; }
+h2{ font-size: 75px; }
+h3{ font-size: 45px; }
+h4{ font-size: 43px; }
+h5{ font-size: 45px; }
+h6{ font-size: 33px; }
+label{ font-size: 45px;}
+.pb-3, .py-3 { padding-bottom: 2rem!important;}
+.pt-3, .py-3 { padding-top: 2rem!important; }
+.pb-2, .py-2 { padding-bottom: 1rem!important;}
+.pt-2, .py-2 { padding-top: 1rem!important; }
+.card{ border-radius: 45px;}
+.circle{ top:62%; left:62%; width: 120px; height: 120px;}
+input{ height: 65px; font-size: 35px;}
+.btn-azul {   border-radius: 50px;   font-size: 35px; }
+.mb-5, .my-5 {   margin-bottom: 4.5rem!important; }
+.mt-5, .my-5 {   margin-top: 4.5rem!important; }
+.img{ width: 150px!important; height: 150px!important;}
+.alto{   height: 800px;}
+.img2{width:120px!important;  height:120px!important;}
+.mt-4, .my-4 {
+    margin-top: 3rem!important;
+}
+.cards{
+    border-radius:45px;
+}
+}
+@media screen and (min-width: 3440px) {
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+max-width: 3140px;}
+h1{ font-size: 100px; }
+h2{ font-size: 75px; }
+h6{ font-size: 37px; }
+h4{ font-size: 60px; }
+label{ font-size: 60px;}
+.pb-3, .py-3 { padding-bottom: 2.5rem!important;}
+.pt-3, .py-3 { padding-top: 2.5rem!important; }
+.pb-2, .py-2 { padding-bottom: 2rem!important;}
+.pt-2, .py-2 { padding-top: 2rem!important; }
+.card{ border-radius: 45px;}
+.circle{ top:62%; left:62%; width: 135px; height: 135px;}
+input{ height: 85px; font-size: 50px;}
+.btn-azul {   border-radius: 50px;   font-size: 43px; }
+.mb-5, .my-5 {   margin-bottom: 6.5rem!important; }
+.mt-5, .my-5 {   margin-top: 6.5rem!important; }
+.img{ width: 200px!important; height: 200px!important;}
+.alto{   height: 1020px;}
+.img2{width:160px!important;  height:160px!important;}
+span {   font-size: 50px !important;}
+.mb-4, .my-4 {   margin-bottom: 3.5rem!important;}
+.pl-4, .px-4 {
+    padding-left: 3.5rem!important;
+}
+.mt-4, .my-4 {
+    margin-top: 3.5rem!important;
+}
+.cards{
+    border-radius:45px;
+}
+}
+@media screen and (min-width: 3840px) {
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+max-width: 3640px;}
+h1{ font-size: 105px; }
+h2{ font-size: 75px; }
+h3{ font-size: 45px; }
+h4{ font-size: 70px; }
+h6{ font-size: 45px; }
+label{ font-size: 60px;}
+.pb-3, .py-3 { padding-bottom: 3.5rem!important;}
+.pt-3, .py-3 { padding-top: 3.5rem!important; }
+.pb-2, .py-2 { padding-bottom: 3rem!important;}
+.pt-2, .py-2 { padding-top: 3rem!important; }
+.card{ border-radius: 45px;}
+.circle{ top:62%; left:62%; width: 135px; height: 135px;}
+input{ height: 85px; font-size: 50px;}
+.btn-azul {   border-radius: 50px;   font-size: 43px; }
+.mb-2, .my-5 {   margin-bottom: 4.5rem!important; }
+.mt-2, .my-5 {   margin-top: 4.5rem!important; }
+.img{ width: 220px!important; height: 220px!important;}
+.alto{   height: 1020px;}
+.img2{width:160px!important;  height:160px!important;}
+span {   font-size: 50px !important;}
+.pl-4, .px-4 {
+    padding-left: 5.5rem!important;
+}
+.mt-4, .my-4 {
+    margin-top: 5.5rem!important;
+}
+.cards{
+    border-radius: 70px;
+}
+}
+@media screen and (min-width: 3840px) and (max-height: 1080px){
+}

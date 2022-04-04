@@ -1,0 +1,444 @@
+<app-header></app-header>
+<app-menuc></app-menuc>
+
+<div class="row" style="max-width: 100%!important;margin-bottom:40px;">
+    <div class="col-md-8 px-5 py-3">
+        <h1 class="tareas">PROSPECTOS DE EMPRESAS</h1>
+    </div>
+    <div class="col-md-4 d-flex align-items-center">
+        <input class="form-control input" name="filterTarea" placeholder="Buscar por Nombre" style="font-style: italic;border: 1.5px solid black;border-radius: 15px;" [(ngModel)]="filterTarea">
+    </div>
+</div>
+<!-- <nav id="tabs" class="px-5">
+  <div class="nav nav-tabs nav-fill mb-5" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active"
+      id="nav-profile-tab"
+      data-toggle="tab"
+      href="#nav-profile"
+      role="tab"
+      aria-controls="nav-profile"
+      aria-selected="false"
+      >EMPRESAS</a>
+  </div>
+</nav> -->
+
+<div class="tab-content px-5 mb100" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+    <div class="row pb-3" style="max-width: 100%;"  style="border-bottom: 1px solid black;">
+        <div class="col-lg-11">
+            <div class="row">
+                <div class="col-lg-2 px-3 d-flex justify-content-center align-items-center">
+                    <h6>NOMBRE</h6>
+                </div>
+                <div class="col-lg-2 px-3 d-flex justify-content-center align-items-center">
+                    <h6>DIRECCIÓN</h6>
+                </div>
+                <div class="col-lg-2 px-3 d-flex justify-content-center align-items-center">
+                    <h6>TELÉFONO</h6>
+                </div>
+                <div class="col-lg-2 px-3 d-flex justify-content-center align-items-center">
+                    <h6>CONTACTO</h6>
+                </div>
+                <div class="col-lg-2 px-3 d-flex justify-content-center align-items-center">
+                    <h6>PROPUESTA POR</h6>
+                </div>
+                <div class="col-lg-2 px-3 d-flex justify-content-center align-items-center">
+                    <h6>SUCURSALES</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1">
+
+        </div>
+    </div>
+
+<ng-container *ngIf="( aceptados | filter2:filterTarea) as result">
+    <div class="row py-3" *ngFor="let ace of result | paginate: { id: 'pagination2',itemsPerPage: 4, currentPage: p};" style="max-width: 100%;"  style="border-bottom: 1px solid black;">
+        <div class="col-lg-11">
+            <div class="row">
+                <div class="col-lg-2 px-3 d-flex justify-content-center align-items-center">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <img src="http://192.168.1.61/lum/imagenes/{{ace.Foto}}" class="img"/><br>
+                            <span class="tareaa">{{ace.Nombre_Empresa}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 px-3 d-flex justify-content-center align-items-center">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <span class="tareaa">{{ace.Direccion_Empresa}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 px-3 d-flex justify-content-center align-items-center">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <span class="tareaa">{{ace.Telefono}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 px-3 d-flex justify-content-center align-items-center"style="overflow: hidden;width: 100%;word-wrap: break-word;">
+                    <div class="row" style="word-break: break-word;">
+                        <div class="col-lg-12">
+                            <span class="tareaa">{{ace.NomContacto}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 px-3 d-flex justify-content-center align-items-center">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <span class="tareaa">{{ace.Nombre}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 px-3 d-flex justify-content-center align-items-center">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <ng-container *ngFor="let suc of sucursales2">
+                                <span class="tareaa" *ngIf="ace.idEmpresas===suc.idEmpresas">
+                                    {{suc.nombreSO }},
+                                </span>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-1 px-3 d-flex justify-content-center align-items-center">
+            <label class="circle" [routerLink]="['/Empresas_coordinador/detalle-empresa',ace.idEmpresas]" (click)="obtenerselect(ace.idEmpresas);obtenersucursales(ace.idEmpresas);" for="editpros" style="cursor: pointer;"></label>
+                <button class="btn btn-azul"  id="editpros" data-toggle="modal" data-target="#exampleModal2" hidden></button>
+        </div>
+
+    </div>
+</ng-container>
+
+    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+        <pagination-controls id="pagination2" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+        </pagination-controls>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL VER PROSPECTO -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content" style="border-radius: 25px;">
+        <button hidden #closeModal type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-body p-5 text-center" *ngFor="let select of selectemp">
+            <form>
+            <div class="row form-group">
+                <div class="col-lg-12 text-center">
+                    <img src="http://192.168.1.61/lum/imagenes/{{select.Foto}}" class="img"/>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Cliente/Empresa</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" value="{{select.Nombre_Empresa}}" type="text" disabled style="width:100%">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Asignada por</h5>
+                </div>
+                <div class="col-md-9 my-3" *ngFor="let asi of asigno">
+                    <input class="inputS" value="{{asi.Nombre}}" type="text" disabled style="width:100%">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Dirección</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" value="{{select.Direccion_Empresa}}" type="text" disabled style="width:100%">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Contacto</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" value="{{select.NomContacto}}" type="text" disabled style="width:100%">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Telefono</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" value="{{select.Telefono}}" type="text" disabled style="width:100%">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Correo</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" value="{{select.Correo}}" type="text" disabled style="width:100%">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Comentario</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" value="{{select.Comentario}}" type="text" disabled style="width:100%">
+                </div>
+            </div>
+            <div class="row form-group mt-4">
+                <div class="col-md-6 d-flex justify-content-center p-0">
+                    <button type="button" (click)="aceptar(select.idEmpresas)" class="btn btn-azul d-flex align-items-center"><img src="../../../assets/img/checkmark-sharp.svg" class="imagen">ACEPTAR</button>
+                </div>
+                <div class="col-md-6 text-center p-0">
+                    <button type="button" (click)="rechazar(select.idEmpresas)" class="btn btn-rojo">X RECHAZAR</button>
+                </div>
+            </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- MODAL EDITAR PROSPECTO -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content" style="border-radius: 25px;">
+        <button hidden #closeModal1 type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-body p-5 text-center" *ngFor="let select of selectemp">
+            <form>
+            <div class="row form-group">
+                <div class="col-lg-12 text-center">
+                    <div *ngIf="previewUrl">
+                        <img  [src]="previewUrl" class="img"/>
+                    </div>
+                    <img *ngIf="!previewUrl" src="http://192.168.1.61/lum/imagenes/{{select.Foto}}" class="img"/>
+                    <label for="foto" class="circle2"></label>
+                    <input style="display: none;" type="file" id="foto"
+                    (change)="onFileChanged($event,$event.target.files, $event,select.idEmpresas)" multiple
+                    accept="image/*">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Cliente/Empresa</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input #nombre class="inputS" value="{{select.Nombre_Empresa}}" type="text" style="width:100%">
+                </div>
+            </div>
+             <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Asignada para</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" value="{{select.Nombre}}" type="text" disabled style="width:100%">
+                </div>
+            </div>
+             <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Dirección</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input #dir class="inputS" value="{{select.Direccion_Empresa}}" type="text" style="width:100%">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Contacto</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input #contacto class="inputS" value="{{select.NomContacto}}" type="text" style="width:100%">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>RFC</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input #RFC class="inputS" value="{{select.RFC}}" type="text" style="width:100%">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Telefono</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input #telefono class="inputS" value="{{select.Telefono}}" type="text" maxlength="10" style="width:100%" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Correo</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input #correo class="inputS" value="{{select.Correo}}" type="text" style="width:100%">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Comentario</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input #comentario class="inputS" value="{{select.Comentario}}" type="text" style="width:100%">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>sucursal/Obra</h5>
+                </div>
+                <div class="col-md-9 my-3 text-left">
+                    <div *ngFor="let suc of sucursales" class="col-md-12" style="overflow:hidden;">
+                        <span >{{suc.nombreSO}}<img class="ml-5" (click)="eliminarsuc(suc.idSO,select.idEmpresas);obtenersucursales(select.idEmpresas);"  src="../../../assets/img/close-sharp.svg" class="imagen"/></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group mt-4">
+                <div class="col-md-4 d-flex justify-content-center p-0"  *ngFor="let ima of imagenes">
+                    <a href="http://192.168.1.61/lum/Archivos/{{ima.Nombre}}" target="_blank"><img src="http://192.168.1.61/lum/Archivos/{{ima.Nombre}}" width="90%" height="100%"/></a>
+                </div>
+            </div>
+            <div class="row pb-3" style="border: 2px solid #07138f;">
+                <div class="col-md-12 text-center">
+                    <h2>Agregar sucursal/obra</h2>
+                </div>
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h5 class="text-left">Sucursal</h5>
+                        </div>
+                        <div class="col-md-9">
+                            <input #Nombresuc class="inputS" id="inputname" type="text" style="width:100%" required>
+                        </div>
+                        <div class="col-md-3">
+                            <h5 class="text-left">Direccion</h5>
+                        </div>
+                        <div class="col-md-9">
+                            <input #addresstext class="inputS" id="inputdir" type="text" style="width:100%" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label (click)="agregarsuc(select.idEmpresas)" class="circle3"></label>
+                </div>
+            </div>
+            <div class="row form-group mt-4">
+                <div class="col-md-6 text-center p-0">
+                    <button type="button" (click)="guardar(select.idEmpresas)" class="btn btn-azul"><img src="../../assets/img/paper-plane.svg" width="30" height="30">Guardar</button>
+                </div>
+                <div class="col-md-6 text-center p-0">
+                    <button type="button" class="btn btn-rojo" data-dismiss="modal" aria-label="Close">X CANCELAR</button>
+                </div>
+            </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- MODAL NUEVO PROSPECTO -->
+ <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content" style="border-radius: 25px;">
+        <button hidden #closeModal1 type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-body p-5 text-center">
+            <form #regForm="ngForm" [formGroup]="prospectForm" (ngSubmit)="onSubmit()">
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Cliente/Empresa</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input formControlName="nombre" class="inputS" type="text" style="width:100%" placeholder="Ingrese el nombre" [ngClass]="{ 'is-invalid': submitted1 && ff.nombre.errors }" >
+                    <div *ngIf="submitted1 && ff.nombre.errors" class="invalid-feedback">
+                        <div *ngIf="ff.nombre.errors.required">Debe ingresar un nombre</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Dirección</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" formControlName="direccion" [(ngModel)]="autocompleteInput" #addresstext type="text" style="width:100%" placeholder="Ingrese la dirección" [ngClass]="{ 'is-invalid': submitted1 && ff.direccion.errors }">
+                    <div *ngIf="submitted1 && ff.direccion.errors" class="invalid-feedback">
+                        <div *ngIf="ff.direccion.errors.required">Debe agregar una direccion</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>RFC</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" formControlName="rfc" type="text" style="width:100%" placeholder="Ingrese el RFC" [ngClass]="{ 'is-invalid': submitted1 && ff.rfc.errors }">
+                    <div *ngIf="submitted1 && ff.rfc.errors" class="invalid-feedback">
+                        <div *ngIf="ff.rfc.errors.required">Debe agregar un rfc</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Contacto</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" formControlName="contacto" type="text" style="width:100%" placeholder="Ingrese nombre del contacto" [ngClass]="{ 'is-invalid': submitted1 && ff.contacto.errors }">
+                    <div *ngIf="submitted1 && ff.contacto.errors" class="invalid-feedback">
+                        <div *ngIf="ff.contacto.errors.required">Debe agregar un contacto</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Teléfono</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" formControlName="telefono" type="text" maxlength="10" style="width:100%" placeholder="Ingrese el número telefónico" [ngClass]="{ 'is-invalid': submitted1 && ff.telefono.errors }" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+
+                    <div *ngIf="submitted1 && ff.telefono.errors" class="invalid-feedback">
+                        <div *ngIf="ff.telefono.errors.required">debe agregar un numero</div>
+                    <div *ngIf="ff.telefono.errors.minlength">El número debe ser de 10 dígitos</div>
+                        <div *ngIf="ff.telefono.errors.maxlength">El número debe ser de 10 dígitos, no más</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group mt-4">
+                <div *ngIf="error" class="mx-auto alert alert-danger alert-dismissible fade show mt-2 mb-2">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="borrar()">
+                        <span aria-hidden="true">&times;</span>
+                    </button> {{error}}
+                </div>
+
+                <div *ngIf="error2" class="mx-auto alert alert-success alert-dismissible fade show mt-2 mb-2">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="borrar2()">
+                        <span aria-hidden="true">&times;</span>
+                    </button> {{error2}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-azul" style="font-weight: bold;"><img class="imagen" src="../../assets/img/paper-plane.svg" id="iconomenu">ENVIAR EMPRESA</button>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center">
+                    <button type="button" [disabled]="(this.ff.nombre.value && this.ff.direccion.value)? false : true" (click)="guardarprospecto2()" class="btn btn-azul" style="font-weight: bold;"><img class="imagen" src="../../assets/img/paper-plane.svg" id="iconomenu">ENVIAR PROSPECTO</button>
+                </div>
+            </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>

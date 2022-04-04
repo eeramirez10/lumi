@@ -1,0 +1,331 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<div class="container-fluid" *ngFor="let datos of tarea">
+    <div class="my-5">
+        <h1 style="margin-left:4.33333%;font-weight:650;">EDITAR TAREA</h1>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-11 card shadow p-5 mb-5" style="height: 100%;">
+            <div class="row">
+                <div class="col-md-4 p-0">
+                    <span style="text-transform: none;">Para:</span>
+                </div>
+                <div class="col-md-8 p-0 text-right">
+                    <span>Creada:</span>&nbsp;<span>{{datos.FechaSol | date:'EEEE'}}</span>&nbsp;<span>{{datos.FechaSol | date:'dd'}}</span>&nbsp;<span style="text-transform:none">de</span>&nbsp;<span>{{datos.FechaSol | date:'MMMM'}}</span>&nbsp;<span style="text-transform:none">de</span>&nbsp;<span>{{datos.FechaSol | date:'y'}}</span><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7 p-0">
+                    <h3 style="font-weight: 700;">{{datos.Nombre}}</h3>
+                </div>
+                <div class="col-md-5 text-right p-0" *ngFor="let datos2 of rem">
+                    <span style="text-transform: none;">Asignada por: {{datos2.Nombre}}</span>
+                    <!-- <br><span style="font-style:italic;text-transform: none;">COORDINADOR 1</span> -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 p-0">
+                    <span style="text-transform: none;">Cliente</span>
+                    <h5>{{datos.Nombre_Empresa}}</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 p-0">
+                    <span style="text-transform: none;">Sucursal</span>
+                    <h5>{{datos.SucuObra}}</h5>
+                </div>
+            </div>
+            <div class="row borderr">
+                <ng-container  *ngIf="datos.idResponsable != this.idUsuario">
+                    <div class="col-md-12 p-0" *ngFor="let emp of rem">
+                        <span style="text-transform: none;">Tarea</span><br>
+                        <input *ngIf="emp.idUsers != this.idUsuario" style="width: 100%;" [(ngModel)]="Tarea" value="{{Tarea}}">
+                        <input *ngIf="emp.idUsers == this.idUsuario" style="width: 100%;" disabled value="{{Tarea}}">
+                    </div>
+                </ng-container>
+
+                <div class="col-md-12 p-0" *ngIf="datos.idResponsable == this.idUsuario">
+                    <span style="text-transform: none;">Tarea</span><br>
+                    <input style="width: 100%;" [(ngModel)]="Tarea" value="{{Tarea}}">
+                </div>
+            </div>
+            <div class="row borderr">
+                <div class="col-md-5 my-3 p-0">
+                    <h2>Archivos Multimedia</h2>
+                </div>
+                <div class="col-md-7 my-3 p-0">
+                    <!-- <label class="shadow circle" style="cursor: pointer;"></label>
+                    <label class="shadow circle2" style="cursor: pointer;"></label>
+                    <label class="shadow circle3" style="cursor: pointer;"></label>
+                    <label class="shadow circle4" style="cursor: pointer;"></label>
+                    <label class="shadow circle5" style="cursor: pointer;"></label> -->
+                    <!-- <div class="fab">
+                        <span class="fab-action-button shadow">
+                            <i class="fab-action-button__icon"></i>
+                        </span>
+                        <ul class="fab-buttons">
+                            <li class="fab-buttons__item">
+                                <a href="#" class="fab-buttons__link shadow">
+                                    <i class="icon-material icon-material_fb"></i>
+                                </a>
+                            </li>
+                            <li class="fab-buttons__item">
+                                <a href="#" class="fab-buttons__link shadow">
+                                    <i class="icon-material icon-material_tw"></i>
+                                </a>
+                            </li>
+                            <li class="fab-buttons__item">
+                                <a href="#" class="fab-buttons__link shadow">
+                                    <i class="icon-material icon-material_li"></i>
+                                </a>
+                            </li>
+                            <li class="fab-buttons__item">
+                                <a href="#" class="fab-buttons__link shadow">
+                                    <i class="icon-material icon-material_gp"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div> -->
+                </div>
+                <div class="col-md-12 mb-4 archivos">
+                    <div class="col-md-8 ">
+                        <div class="row">
+                            <ng-container *ngIf="datos.idResponsable != this.idUsuario">
+                                <div class="col-md-2"  *ngFor="let emp of rem">
+                                    <label *ngIf="emp.idUsers != this.idUsuario" for="archivo" class="circle"></label>
+
+                                    <input style="height: 0px;width: 0px;" type="file" id="archivo"
+                                    (change)="onFileChanged($event)"  class="hidden" multiple="true"
+                                    accept="audio/*,video/*,.zip,.rar,.7zip,.xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf">
+                                </div>
+                            </ng-container>
+
+                            <div class="col-md-2"  *ngIf="datos.idResponsable == this.idUsuario">
+                                <label for="archivo" class="circle"></label>
+                                <input style="height: 0px;width: 0px;" type="file" id="archivo"
+                                (change)="onFileChanged($event)"  class="hidden" multiple="true"
+                                accept="audio/*,video/*,.zip,.rar,.7zip,.xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf">
+                            </div>
+                            <div  class="col-md-10">
+                                <div *ngFor="let archi of arch" class="row">
+                                    <div class="col-md-12 d-flex align-items-center">
+
+                                        <img *ngIf="archi.formato === 'png' || archi.formato === 'jpg'
+                                        || archi.formato === 'jpeg' || archi.formato === 'gif'
+                                        || archi.formato === 'bmp' || archi.formato === 'ico'"
+                                        src="../../../assets/img/images-outline.svg" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="archi.formato === 'doc' || archi.formato === 'dot'
+                                        || archi.formato === 'docx'"
+                                        src="../../../assets/img/word.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="archi.formato === 'xls' || archi.formato === 'xlsx'
+                                        || archi.formato === 'csv' || archi.formato === 'xlk'
+                                        || archi.formato === 'xlm' || archi.formato === 'ctt'"
+                                        src="../../../assets/img/excel.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="archi.formato === 'pps' || archi.formato === 'ppt'
+                                        || archi.formato === 'pptx'"
+                                        src="../../../assets/img/power.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="archi.formato === 'pdf'"
+                                        src="../../../assets/img/pdf.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="archi.formato === 'zip' || archi.formato === '7z'
+                                        || archi.formato === 'rar'"
+                                        src="../../../assets/img/zip.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="archi.formato === 'mp3' || archi.formato === 'mid'
+                                        || archi.formato === 'wav' || archi.formato === 'aac'"
+                                        src="../../../assets/img/musica.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="archi.formato === 'avi' || archi.formato === 'mkv'
+                                        || archi.formato === 'flv' || archi.formato === 'mov'
+                                        || archi.formato === 'wmv' || archi.formato === 'mp4'"
+                                        src="../../../assets/img/video.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="archi.formato !== 'png' && archi.formato !== 'jpg'
+                                        && archi.formato !== 'jpeg' && archi.formato !== 'gif'
+                                        && archi.formato !== 'bmp' && archi.formato !== 'ico' &&
+                                        archi.formato !== 'doc' && archi.formato !== 'dot'
+                                        && archi.formato !== 'docx' && archi.formato !== 'xls' && archi.formato !== 'xlsx'
+                                        && archi.formato !== 'csv' && archi.formato !== 'xlk'
+                                        && archi.formato !== 'xlm' && archi.formato !== 'ctt' &&
+                                        archi.formato !== 'pps' && archi.formato !== 'ppt'
+                                        && archi.formato !== 'pptx' && archi.formato !== 'pdf' &&
+                                        archi.formato !== 'zip' && archi.formato !== '7z'
+                                        && archi.formato !== 'rar' && archi.formato !== 'mp3' && archi.formato !== 'mid'
+                                        && archi.formato !== 'wav' && archi.formato !== 'aac' &&
+                                        archi.formato !== 'avi' && archi.formato !== 'mkv'
+                                        && archi.formato !== 'flv' && archi.formato !== 'mov'
+                                        && archi.formato !== 'wmv' && archi.formato !== 'mp4'"
+                                        src="../../../assets/img/archivo.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <a href="http://192.168.1.61/lum/Archivos/{{archi.Nombre}}" target="_blank"><label style="cursor: pointer;margin-bottom: 3px;" >{{(archi.Nombre).substring(18, 100)}}</label></a>
+                                        <ng-container *ngIf="datos.idResponsable != this.idUsuario">
+                                            <ng-container *ngFor="let emp of rem">
+                                            <img *ngIf="emp.idUsers != this.idUsuario" (click)="eliminaArchivos(archi.idArchivos)" src="../../../assets/img/close-sharp.svg" class="pl-1 imgS" width="10px" height="10px">
+                                            </ng-container>
+                                        </ng-container>
+                                        <img *ngIf="datos.idResponsable == this.idUsuario" (click)="eliminaArchivos(archi.idArchivos)" src="../../../assets/img/close-sharp.svg" class="pl-1 imgS" width="10px" height="10px">
+                                    </div>
+                                </div>
+                                <div *ngFor="let archivonom of nombredearchivos; let i = index" class="row">
+                                    <div class="col-md-12 d-flex align-items-center">
+                                        <img *ngIf="tipodearchivo[i] === 'png' || tipodearchivo[i] === 'jpg'
+                                        || tipodearchivo[i] === 'jpeg' || tipodearchivo[i] === 'gif'
+                                        || tipodearchivo[i] === 'bmp' || tipodearchivo[i] === 'ico'"
+                                        src="../../../assets/img/images-outline.svg" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="tipodearchivo[i] === 'doc' || tipodearchivo[i] === 'dot'
+                                        || tipodearchivo[i] === 'docx'"
+                                        src="../../../assets/img/word.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="tipodearchivo[i] === 'xls' || tipodearchivo[i] === 'xlsx'
+                                        || tipodearchivo[i] === 'csv' || tipodearchivo[i] === 'xlk'
+                                        || tipodearchivo[i] === 'xlm' || tipodearchivo[i] === 'ctt'"
+                                        src="../../../assets/img/excel.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="tipodearchivo[i] === 'pps' || tipodearchivo[i] === 'ppt'
+                                        || tipodearchivo[i] === 'pptx'"
+                                        src="../../../assets/img/power.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="tipodearchivo[i] === 'pdf'"
+                                        src="../../../assets/img/pdf.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="tipodearchivo[i] === 'zip' || tipodearchivo[i] === '7z'
+                                        || tipodearchivo[i] === 'rar'"
+                                        src="../../../assets/img/zip.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="tipodearchivo[i] === 'mp3' || tipodearchivo[i] === 'mid'
+                                        || tipodearchivo[i] === 'wav' || tipodearchivo[i] === 'aac'"
+                                        src="../../../assets/img/musica.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="tipodearchivo[i] === 'avi' || tipodearchivo[i] === 'mkv'
+                                        || tipodearchivo[i] === 'flv' || tipodearchivo[i] === 'mov'
+                                        || tipodearchivo[i] === 'wmv' || tipodearchivo[i] === 'mp4'"
+                                        src="../../../assets/img/video.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="tipodearchivo[i] !== 'png' && tipodearchivo[i] !== 'jpg'
+                                        && tipodearchivo[i] !== 'jpeg' && tipodearchivo[i] !== 'gif'
+                                        && tipodearchivo[i] !== 'bmp' && tipodearchivo[i] !== 'ico' &&
+                                        tipodearchivo[i] !== 'doc' && tipodearchivo[i] !== 'dot'
+                                        && tipodearchivo[i] !== 'docx' && tipodearchivo[i] !== 'xls' && tipodearchivo[i] !== 'xlsx'
+                                        && tipodearchivo[i] !== 'csv' && tipodearchivo[i] !== 'xlk'
+                                        && tipodearchivo[i] !== 'xlm' && tipodearchivo[i] !== 'ctt' &&
+                                        tipodearchivo[i] !== 'pps' && tipodearchivo[i] !== 'ppt'
+                                        && tipodearchivo[i] !== 'pptx' && tipodearchivo[i] !== 'pdf' &&
+                                        tipodearchivo[i] !== 'zip' && tipodearchivo[i] !== '7z'
+                                        && tipodearchivo[i] !== 'rar' && tipodearchivo[i] !== 'mp3' && tipodearchivo[i] !== 'mid'
+                                        && tipodearchivo[i] !== 'wav' && tipodearchivo[i] !== 'aac' &&
+                                        tipodearchivo[i] !== 'avi' && tipodearchivo[i] !== 'mkv'
+                                        && tipodearchivo[i] !== 'flv' && tipodearchivo[i] !== 'mov'
+                                        && tipodearchivo[i] !== 'wmv' && tipodearchivo[i] !== 'mp4'"
+                                        src="../../../assets/img/archivo.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <label style="margin-bottom: 3px;">{{archivonom.substring(0, 16)}}</label>
+                                        <ng-container *ngIf="datos.idResponsable != this.idUsuario">
+                                            <ng-container *ngFor="let emp of rem">
+                                            <img *ngIf="emp.idUsers != this.idUsuario" (click)="quitararchivo(i)" src="../../../assets/img/close-sharp.svg" class="pl-1 imgS" width="10px" height="10px">
+                                            </ng-container>
+                                        </ng-container>
+                                        <img *ngIf="datos.idResponsable == this.idUsuario" (click)="quitararchivo(i)" src="../../../assets/img/close-sharp.svg" class="pl-1 imgS" width="10px" height="10px">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="max-height: 25%;">
+                <div class="col-md-12 my-3 p-0">
+                    <h2>Comentarios</h2>
+                    <div class="overflow-auto" style="max-height:280px">
+                        <div *ngFor="let com of com">
+                            <br>
+                            <span style="text-transform: uppercase;">{{com.Nombre}}-</span>
+                            <br>
+                            <span style="text-transform: none;">{{com.Comentario}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 p-0">
+                    <textarea style="resize:none;" rows="6" style="width: 100%;" [(ngModel)]="Comentario" placeholder="Escribe aquí tu comentario" (keypress)="enviarpreguntaenter($event)"></textarea>
+                </div>
+            </div>
+              <ng-container *ngIf="datos.idResponsable != this.idUsuario">
+                <div class="row my-4 p-0" *ngFor="let emp of rem">
+                    <div *ngIf="emp.idUsers != this.idUsuario" class="col-md-6 d-flex align-items-center justify-content-center">
+                        <input class="check mr-2" type="radio" value="2" name="status" [(ngModel)]="status">
+                        <label for="vehicle1" class="m-0">FINALIZADA</label>
+                    </div>
+                    <div *ngIf="emp.idUsers != this.idUsuario" class="col-md-6 p-0 d-flex align-items-center justify-content-center">
+                        <input class="check mr-2" type="radio" value="3" name="status" [(ngModel)]="status">
+                        <label for="vehicle1" class="m-0">NO FINALIZADA</label>
+                    </div>
+                </div>
+             </ng-container>
+            <!-- <div class="row my-4 p-0" *ngIf="datos.idResponsable == this.idUsuario">
+                <div class="col-md-6 d-flex align-items-center justify-content-center">
+                    <input class="check mr-2" type="radio" value="2" name="status" [(ngModel)]="status">
+                    <label for="vehicle1" class="m-0">FINALIZADA</label>
+                </div>
+            </div> -->
+            <ng-container *ngIf="datos.idResponsable != this.idUsuario">
+                <div class="row" *ngFor="let emp of rem">
+                    <div class="col-md-6 text-center p-0">
+                        <button type="submit" (click)="InsertaPregunta()" class="btn btn-azul"><img class="imagen" src="../../assets/img/paper-plane.svg" alt="">ENVIAR</button>
+                    </div>
+                    <div *ngIf="emp.idUsers != this.idUsuario" class="col-md-6 text-center p-0">
+                        <button type="submit" class="btn btn-rojo" data-toggle="modal" data-target="#exampleModalCenter">X CANCELAR</button>
+                    </div>
+                </div>
+            </ng-container>
+            <div class="row" *ngIf="datos.idResponsable == this.idUsuario">
+                <div class="col-md-4 text-center p-0">
+                    <button type="submit" (click)="InsertaPregunta()" class="btn btn-azul"><img class="imagen" src="../../assets/img/paper-plane.svg" alt="">ENVIAR</button>
+                </div>
+                <div class="col-md-4 text-center p-0">
+                    <button type="submit" (click)="InsertaPregunta2()" class="btn btn-azul"><img class="imagen" src="../../assets/img/check.svg" alt="">FINALIZAR</button>
+                </div>
+                <div class="col-md-4 text-center p-0">
+                    <button type="submit" class="btn btn-rojo" data-toggle="modal" data-target="#exampleModalCenter">X CANCELAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal CANCELACION-->
+<div #myModal class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content p-3 bradius">
+        <div class="modal-body">
+          <h3>Escribe el motivo de cancelación</h3>
+          <textarea style="resize:none;font-style: italic;" rows="6" [(ngModel)]="cancel" style="width: 100%;"></textarea>
+        </div>
+        <div class="row  mb-3 d-flex justify-content-center">
+          <button [disabled]="cancel === ''" (click)="CancelaPregunta()" data-dismiss="modal"  type="button" class="btn btn-azul">CONFIRMAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal ENVIADO -->
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content p-3 bradius">
+            <div class="modal-body text-center">
+                <h2 class="text-center">TAREA MODIFICADA EXITOSAMENTE</h2>
+            </div>
+            <div class="row  mb-3 d-flex justify-content-center">
+                <button (click)="ngOnInit()" data-dismiss="modal" type="button" class="btn btn-azul">ENTENDIDO</button>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

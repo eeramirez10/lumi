@@ -1,0 +1,167 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-11 my-5">
+            <h1>PROSPECTAR EMPRESA</h1>
+        </div>
+         <div class="col-md-6 text-center mb-3">
+            <span style="font-weight: 900;font-style:italic;">*ENVIAR EMPRESA (Todos los datos)</span>
+        </div>
+         <div class="col-md-6 text-center mb-3">
+            <span style="font-weight: 900;font-style:italic;">*ENVIAR PROSPECTO (solo Nombre y Dirección)</span>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 card shadow p-5 mb-5">
+            <form #regForm="ngForm" [formGroup]="prospectForm" (ngSubmit)="onSubmit()">
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Cliente/Empresa/Obra</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input formControlName="nombre" #nombremp class="inputS" type="text" style="width:100%" placeholder="Ingrese el nombre" [ngClass]="{ 'is-invalid': submitted1 && ff.nombre.errors }" >
+                    <div *ngIf="submitted1 && ff.nombre.errors" class="invalid-feedback">
+                        <div *ngIf="ff.nombre.errors.required">Debe ingresar un nombre</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Dirección</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" formControlName="direccion" [(ngModel)]="autocompleteInput" #addresstext type="text" style="width:100%" placeholder="Ingrese la dirección" [ngClass]="{ 'is-invalid': submitted1 && ff.direccion.errors }">
+                    <div *ngIf="submitted1 && ff.direccion.errors" class="invalid-feedback">
+                        <div *ngIf="ff.direccion.errors.required">Debe agregar una direccion</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>RFC</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" formControlName="rfc" maxlength="13" type="text" style="width:100%" placeholder="Ingrese el RFC" [ngClass]="{ 'is-invalid': submitted1 && ff.rfc.errors }">
+                    <div *ngIf="submitted1 && ff.rfc.errors" class="invalid-feedback">
+                        <div *ngIf="ff.rfc.errors.required">Debe agregar un rfc</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Contacto</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" formControlName="contacto" type="text" style="width:100%" placeholder="Ingrese nombre del contacto" [ngClass]="{ 'is-invalid': submitted1 && ff.contacto.errors }">
+                    <div *ngIf="submitted1 && ff.contacto.errors" class="invalid-feedback">
+                        <div *ngIf="ff.contacto.errors.required">Debe agregar un contacto</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Correo</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" formControlName="correo" type="email" style="width:100%" placeholder="Ingrese un correo electronico" [ngClass]="{ 'is-invalid': submitted1 && ff.correo.errors }">
+                    <div *ngIf="submitted1 && ff.correo.errors" class="invalid-feedback">
+                        <div *ngIf="ff.correo.errors.required">Debe agregar un correo</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Teléfono</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" formControlName="telefono" type="text" maxlength="10" style="width:100%" placeholder="Ingrese el número telefónico" [ngClass]="{ 'is-invalid': submitted1 && ff.telefono.errors }" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+
+                    <div *ngIf="submitted1 && ff.telefono.errors" class="invalid-feedback">
+                        <div *ngIf="ff.telefono.errors.required">debe agregar un numero</div>
+                    <div *ngIf="ff.telefono.errors.minlength">El número debe ser de 10 dígitos</div>
+                        <div *ngIf="ff.telefono.errors.maxlength">El número debe ser de 10 dígitos, no más</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group mt-4">
+                <div *ngIf="error" class="mx-auto alert alert-danger alert-dismissible fade show mt-2 mb-2">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="borrar()">
+                        <span aria-hidden="true">&times;</span>
+                    </button> {{error}}
+                </div>
+
+                <div *ngIf="error2" class="mx-auto alert alert-success alert-dismissible fade show mt-2 mb-2">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="borrar2()">
+                        <span aria-hidden="true">&times;</span>
+                    </button> {{error2}}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 text-right">
+                    <h1>Adjuntar imagenes</h1>
+                </div>
+                <div class="col-md-4 d-flex align-items-center">
+                    <label for="archivo" class="circle2 shadow"></label>
+                    <input style="height: 0px;width: 0px;" type="file" id="archivo"
+                    (change)="onFileChanged($event)"  class="hidden" multiple="true"
+                    accept="image/*">
+                </div>
+                <div  class="col-md-12">
+                    <div class="row">
+
+                        <div class="contenedor col-md-3 d-flex align-items-center" *ngFor="let preview of previewUrl; let i = index">
+                             <img  [src]="preview" class="mr-2 imgs">
+                           <img (click)="quitararchivo(i)" src="../../../assets/img/close-sharp.svg" class="pl-1 imgfloat" width="30px" height="30px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-6 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-azul" style="font-weight: bold;"><img class="imagen" src="../../assets/img/paper-plane.svg" id="iconomenu">ENVIAR EMPRESA</button>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center">
+                    <button type="button" [disabled]="(this.ff.nombre.value && this.ff.direccion.value)? false : true" (click)="validarbasededatos2()" class="btn btn-azul" style="font-weight: bold;"><img class="imagen" src="../../assets/img/paper-plane.svg" id="iconomenu">ENVIAR PROSPECTO</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal ENVIADO -->
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true" [ngStyle]="{'display': mdlSampleIsOpen ? 'block' : 'none', 'opacity': 1}">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content p-3 bradius">
+            <div class="modal-body text-center">
+               <h1 class="text-center">EMPRESA GUARDADA EXITOSAMENTE</h1>
+            </div>
+            <div class="row  mb-3 d-flex justify-content-center">
+                <button (click)="openModal(false)" data-dismiss="modal" type="button" class="btn btn-azul">ENTENDIDO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal ENVIADO -->
+<div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true" [ngStyle]="{'display': mdlSampleIsOpen2 ? 'block' : 'none', 'opacity': 1}">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content p-3 bradius">
+            <div class="modal-body text-center">
+               <h1 class="text-center">TU PROSPECTO SE ENVIO EXITOSAMENTE</h1>
+            </div>
+            <div class="row  mb-3 d-flex justify-content-center">
+                <button (click)="openModal2(false)" data-dismiss="modal" type="button" class="btn btn-azul">ENTENDIDO</button>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

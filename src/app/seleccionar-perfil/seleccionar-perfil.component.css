@@ -1,0 +1,42 @@
+h1,h2,h3{
+    color: #07138f;
+    font-weight: 400;
+    font-size: 5em;
+    
+    }
+    #login-column{
+        border: none;
+        border-radius: 25px;
+        padding: 20px;
+    }
+    .btn{
+        background: #07138f;
+        border-color: #07138f;
+    }
+    .iniciar{
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    .btn-info{
+        border-radius: 25px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        font-size: 20px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left:35px;
+        padding-right:35px;
+    }
+    #username{
+    border-radius: 8px;
+    border: none;
+    height: 32px;
+    }
+    #password{
+    border-radius: 8px;
+    border: none;
+    height: 32px;
+    }
+    label{
+        font-size: 50px;
+    }

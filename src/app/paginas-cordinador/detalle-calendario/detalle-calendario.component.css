@@ -1,0 +1,706 @@
+ /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        width: 200px;
+        height: 200px;
+      }
+      /* Optional: Makes the sample page fill the window. */
+
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+table td:first-child {
+	width: 70px;
+}
+
+table td:nth-child(2) {
+    width: 250px;
+}
+
+table td:nth-child(3) {
+    max-width: 300px!important;
+    width: 300px!important;
+   text-overflow: ellipsis!important;
+    overflow: hidden!important;
+white-space: nowrap!important;
+}
+
+#imagen{
+    object-fit: contain!important;
+    margin: auto;
+    width: 120px;
+    height: 100px;
+    border: 1px solid #999999;
+}
+iframe{
+    height: 600px;
+}
+.circle{
+    position: absolute;
+    top:0%;
+    left:70%;
+   display: inline-block;
+   border-radius: 50%;
+   width: 55px;
+   height: 55px;
+   cursor: pointer;
+   background: url("../../../assets/img/pencil2.svg") no-repeat #07138f;
+   background-size: 62%!important;
+   background-position: center;
+ }
+ .circle2{
+     position: absolute;
+    top:50%;
+    /* left:15%; */
+   display: inline-block;
+   border-radius: 50%;
+   width: 42px;
+   height: 42px;
+   cursor: pointer;
+   background: url("../../../assets/img/attach-outline.svg") no-repeat #f2f2f2;
+   background-size: 62%!important;
+   background-position: center;
+   z-index: 99999;
+ }
+ h1,h2,h3,h4,h5,h6{
+    color: #07138f;
+    font-weight: 650;
+}
+.table thead th,.table td, .table th{
+    border-bottom: 0px;
+    border-top: 0px;
+    padding: 0px;
+}
+.spann{
+    font-size: 22px;
+}
+.spannn{
+    font-size: 17px;
+}
+h1,h2,h3,h4,h5,h6{
+    color: #07138f;
+}
+.archivos{
+    overflow-y: scroll;
+    height: 150px;
+}
+.form-group h5{
+    font-weight: normal;
+}
+.input{
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 25px;
+}
+.bordeS{
+    border: 1px solid transparent;
+    padding: 15px;
+    border-radius: 25px;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(163,163,163,1);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(163,163,163,1);
+    box-shadow: 0px 0px 15px 0px rgba(163,163,163,1);
+}
+.divS .btn{
+    -webkit-box-shadow: 0px 10px 20px -13px rgba(7,18,143,1);
+    -moz-box-shadow: 0px 10px 20px -13px rgba(7,18,143,1);
+    box-shadow: 0px 10px 20px -13px rgba(7,18,143,1);
+	color: white;
+	width:auto;
+    border-radius: 2rem;
+	padding-top: 0.2%;
+	padding-bottom: 0.2%;
+	padding-left: 2%;
+	padding-right: 2%;
+    border: none;
+	cursor: pointer;
+	background-color: #07138f!important;
+}
+.input2{
+    border: 1px solid black;
+    border-radius: 25px;
+}
+.btn-azul{
+    background-color: #07138f;
+    border-radius: 20px;
+    color: white;
+    padding: 0px 20px;
+}
+.btn-rojo{
+    background-color: #ff0000;
+    border-radius: 20px;
+    color: white;
+    padding: 0px 20px;
+}
+.clip{
+    width: 30px;
+    height: 30px;
+}
+.btnclip{
+    background-color:#f2f2f2;
+    border-radius: 50%;
+}
+.card{
+    border-radius: 25px;
+}
+@media screen and (width: 1280px) {
+    .archivos{
+        overflow-y: scroll;
+        height: 100px;
+    }
+    .form-group{
+        margin-bottom:2em;
+    }
+    .modal-content
+{
+    border-radius:40px !important;
+}
+    .modal-content h5
+{
+    font-size:28px;
+}
+.modal-content .btn{
+    font-size: 25px;
+}
+    .modal-dialog-centered{
+        max-width: 800px;
+        }
+        h1{
+            font-size:40px;
+        }
+        h5{
+            font-size:20px;
+        }
+        .modal-dialog{
+            max-width:750px;
+        }
+        select{
+            font-size:25px;
+        }
+        label{
+            font-size:25px;
+        }
+        textarea{
+            font-size: 25px;
+        }
+        h6{
+            font-size: 25px;
+        }
+        .clip{
+            width: 40px;
+            height: 40px;
+        }
+        .imgS{
+            width: 30px;
+            height: 30px;
+        }
+        .btn{
+            font-size: 15px;
+        }
+        .calendario2
+        {
+            display: none;
+        }
+        .calendario{
+            margin-bottom: 80px;
+        }
+}
+@media screen and (min-width: 1366px) {
+    .modal-dialog-centered{
+        max-width: 900px;
+        }
+        h1{
+            font-size:50px;
+        }
+        h5{
+            font-size:25px;
+        }
+        .modal-dialog{
+            max-width:600px;
+        }
+        select{
+            font-size:20px;
+        }
+        label{
+            font-size:20px;
+        }
+        textarea{
+            font-size: 20px;
+        }
+        h6{
+            font-size: 20px;
+        }
+        .clip{
+            width: 40px;
+            height: 40px;
+        }
+        .imgS{
+            width: 30px;
+            height: 30px;
+        }
+        .btn{
+            font-size: 20px;
+        }
+        .calendario2
+        {
+            display: none;
+        }
+        .calendario{
+            margin-bottom: 80px;
+        }
+}
+@media screen and (min-width: 1440px) {
+
+}
+@media screen and (min-width: 1600px) {
+}
+@media screen and (min-width: 1680px) {
+
+}
+@media screen and (min-width: 1920px) {
+.modal-dialog-centered{
+max-width: 900px;
+}
+h1{
+font-size:60px;
+}
+h5{
+font-size:25px;
+}
+.modal-dialog{
+max-width:600px;
+}
+select{
+font-size:20px;
+}
+input{
+font-size:20px;
+}
+label{
+font-size:20px;
+}
+textarea{
+font-size: 20px;
+}
+h6{
+font-size: 20px;
+}
+.clip{
+width: 75px;
+height: 75px;
+}
+.imgS{
+width: 30px;
+height: 30px;
+}
+.btn{
+font-size: 20px;
+}
+.calendario
+{
+display: none;
+}
+.calendario2{
+display: block;
+margin-bottom: 125px;
+}
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+max-width: 1540px;
+}
+h2{ font-size: 50px; }
+h3{ font-size: 45px; }
+h5{ font-size: 36px; }
+label{ font-size: 35px;}
+.check{ height: 65px;  width: 65px;}
+.mb-3, .my-3 { margin-bottom: 3rem!important;}
+.mt-3, .my-3 { margin-top: 3rem!important; }
+.card{ border-radius: 75px;}
+.circle{  width: 70px;  height: 70px;}
+.mb-5, .my-5 {   margin-bottom: 4rem!important; }
+.mt-5, .my-5 {   margin-top: 4rem!important; }
+#imagen{  width: 175px; height: 120px; }
+iframe{ height: 900px; }
+span{  font-size: 27px !important;   }
+
+}
+@media screen and (min-width: 2160px) {
+.modal-dialog-centered{
+max-width: 1000px;
+}
+h1{
+font-size:75px;
+}
+h5{
+font-size:35px;
+}
+.modal-dialog{
+max-width:900px;
+}
+select{
+font-size:30px;
+}
+input{
+font-size: 30px;
+}
+label{
+font-size:30px;
+}
+textarea{
+font-size: 30px;
+}
+h6{
+font-size: 35px;
+}
+.clip{
+width: 100px;
+height: 100px;
+}
+.imgS{
+width: 30px;
+height: 30px;
+}
+.btn{
+font-size: 30px;
+}
+.calendario
+{
+display: none;
+}
+.calendario2{
+display: block;
+}
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+max-width: 1840px;
+}
+}
+@media screen and (min-width: 2560px) {
+    .archivos{
+        overflow-y: scroll;
+        height: 183px;
+    }
+.modal-dialog-centered{
+max-width: 850px;
+}
+.modal-content
+{
+    border-radius:50px !important;
+}
+.modal-content h5
+{
+    font-size:40px;
+}
+h1{
+    font-size:60px;
+}
+h5{
+    font-size:30px;
+}
+.modal-dialog{
+    max-width:1000px;
+}
+select{
+    font-size:40px;
+}
+input{
+    font-size: 40px;
+}
+textarea{
+    font-size: 40px;
+}
+label{
+    font-size:40px;
+}
+h6{
+    font-size: 40px;
+}
+.form-group{
+    margin-bottom:2em;
+}
+.clip{
+    width: 150px;
+    height: 150px;
+}
+.imgS{
+    width: 50px;
+    height: 50px;
+}
+.btn{
+    font-size: 35px;
+}
+.calendario
+{
+    display: none;
+}
+.calendario2
+{
+    display: block;
+    margin-bottom: 125px;
+}
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 2140px;
+    }
+    h1{ font-size: 75px; }
+    h2{ font-size: 50px; }
+    h3{ font-size: 45px; }
+    h5{ font-size: 36px; }
+    label{ font-size: 35px;}
+    .check{ height: 65px;  width: 65px;}
+    .mb-3, .my-3 { margin-bottom: 3rem!important;}
+    .mt-3, .my-3 { margin-top: 3rem!important; }
+    .card{ border-radius: 75px;}
+    .circle{  width: 90px;  height: 90px;}
+    textarea{ height: 265px; font-size: 35px; border-radius: 45px; font-style: italic;}
+    .btn-azul {   border-radius: 30px;   font-size: 50px; }
+    .btn-rojo {   border-radius: 30px;   font-size: 50px; }
+    .mb-4, .my-4 {   margin-bottom: 3.5rem!important; }
+    .mt-4, .my-4 {   margin-top: 3.5rem!important; }
+    #imagen{  width: 200px; height: 125px; }
+    iframe{ height: 900px; }
+}
+@media screen and (min-width: 2560px) and (max-height: 1080px){
+
+}
+@media screen and (min-width: 2736px) {
+.form-group{
+margin-bottom:2.5em;
+}
+.modal-content
+{
+border-radius:55px !important;
+}
+.modal-content h5
+{
+font-size:45px;
+}
+.modal-content .btn{
+font-size: 40px;
+}
+.modal-dialog-centered{
+max-width: 1000px;
+}
+h1{
+font-size:80px;
+}
+h5{
+font-size:35px;
+}
+.modal-dialog{
+max-width:1200px;
+}
+select{
+font-size:40px;
+}
+input{
+font-size: 40px;
+}
+textarea{
+font-size: 40px;
+}
+label{
+font-size:40px;
+}
+h6{
+font-size: 40px;
+}
+.clip{
+width: 150px;
+height: 150px;
+}
+.imgS{
+width: 30px;
+height: 30px;
+}
+.btn{
+font-size: 30px;
+}
+.calendario
+{
+display: none;
+}
+.calendario2
+{
+display: block;
+margin-bottom: 150px;
+}
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 2340px;
+    }
+    h3{ font-size: 55px; }
+    label{ font-size: 35px;}
+    .check{ height: 65px;  width: 65px;}
+    .mb-3, .my-3 { margin-bottom: 3rem!important;}
+    .mt-3, .my-3 { margin-top: 3rem!important; }
+    .card{ border-radius: 75px;}
+    .circle{  width: 90px;  height: 90px;}
+    textarea{ height: 265px; font-size: 35px; border-radius: 45px; font-style: italic;}
+    .btn-azul {   border-radius: 30px;   font-size: 50px; }
+    .btn-rojo {   border-radius: 30px;   font-size: 50px; }
+    .mb-4, .my-4 {   margin-bottom: 3.5rem!important; }
+    .mt-4, .my-4 {   margin-top: 3.5rem!important; }
+    #imagen{  width: 200px; height: 125px; }
+    iframe{ height: 1200px; }
+    span{font-size: 35px !important;}
+}
+@media screen and (min-width: 3440px) {
+form{
+padding: 70px;
+}
+.form-group{
+margin-bottom:3.5em;
+}
+.modal-content
+{
+border-radius:65px !important;
+}
+.modal-content h5
+{
+font-size:60px;
+}
+h1{
+font-size:110px;
+}
+h5{
+font-size:60px;
+}
+.modal-dialog{
+max-width:1500px;
+}
+select{
+font-size:50px;
+}
+label{
+font-size:50px;
+}
+textarea{
+font-size: 50px;
+}
+h6{
+font-size: 50px;
+}
+.clip{
+width: 180px;
+height: 180px;
+}
+.imgS{
+width: 70px;
+height: 70px;
+}
+.btn{
+font-size: 55px;
+}
+.calendario
+{
+display: none;
+}
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+max-width: 2840px;
+}
+h2{ font-size: 50px; }
+h3{ font-size: 80px; }
+h5{ font-size: 36px; }
+label{ font-size: 35px;}
+.check{ height: 65px;  width: 65px;}
+.mb-3, .my-3 { margin-bottom: 3rem!important;}
+.mt-3, .my-3 { margin-top: 3rem!important; }
+.card{ border-radius: 75px;}
+.circle{  width: 120px;  height: 120px;}
+textarea{ height: 265px; font-size: 35px; border-radius: 45px; font-style: italic;}
+.btn-azul {   border-radius: 30px;   font-size: 50px; }
+.btn-rojo {   border-radius: 30px;   font-size: 50px; }
+.mb-5, .my-5 {   margin-bottom: 6rem!important; }
+.mt-5, .my-5 {   margin-top: 6rem!important; }
+#imagen{  width: 350px; height: 200px; }
+iframe{ height: 1500px; }
+span{  font-size: 50px !important;   }
+}
+@media screen and (min-width: 3840px) {
+.archivos{
+overflow-y: scroll;
+height: 300px;
+}
+form{
+padding: 90px;
+}
+.form-group{
+margin-bottom:3.5em;
+}
+.modal-content
+{
+border-radius:65px !important;
+}
+.modal-content h5
+{
+font-size:70px;
+}
+h1{
+font-size:110px;
+}
+h5{
+font-size:60px;
+}
+.modal-dialog{
+max-width:1800px;
+}
+select{
+font-size:70px;
+}
+label{
+font-size:70px;
+}
+textarea{
+font-size: 70px;
+}
+h6{
+font-size: 70px;
+}
+.clip{
+width: 180px;
+height: 180px;
+}
+.imgS{
+width: 70px;
+height: 70px;
+}
+.modal-content .btn{
+font-size: 65px;
+}
+.calendario
+{
+display: none;
+}
+.calendario2{
+margin-bottom: 200px;
+}
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+max-width: 3140px;
+}
+h1{ font-size: 75px; }
+h2{ font-size: 50px; }
+h3{ font-size: 80px; }
+h5{ font-size: 36px; }
+label{ font-size: 35px;}
+.check{ height: 65px;  width: 65px;}
+.mb-3, .my-3 { margin-bottom: 3rem!important;}
+.mt-3, .my-3 { margin-top: 3rem!important; }
+.card{ border-radius: 90px;}
+.circle{  width: 150px;  height: 150px;}
+textarea{ height: 265px; font-size: 35px; border-radius: 45px; font-style: italic;}
+.btn-azul {   border-radius: 30px;   font-size: 50px; }
+.btn-rojo {   border-radius: 30px;   font-size: 50px; }
+.mb-5, .my-5 {   margin-bottom: 6rem!important; }
+.mt-5, .my-5 {   margin-top: 6rem!important; }
+#imagen{  width: 350px; height: 200px; }
+iframe{ height: 1500px; }
+}
+@media screen and (min-width: 3840px) and (max-height: 1080px){
+
+}

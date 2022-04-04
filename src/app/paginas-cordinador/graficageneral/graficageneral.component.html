@@ -1,0 +1,219 @@
+<app-header></app-header>
+<app-menuc></app-menuc>
+<div class="container-fluid pb-5">
+  <div class="container px-5" *ngFor="let info of liderinfo">
+    <div class="row mb-3 mt-5 px-5">
+      <h1 class="ml-3" style="color: gray; opacity: 0.7;">
+        GRÁFICAS DE REPORTE COLABORADORES
+      </h1>
+    </div>
+    <div class="row px-5">
+      <div class="col-md-12">
+        <h1 class="ml-3">{{info.Nombre}}</h1>
+      </div>
+    </div>
+    <div class="row px-5">
+        <div class="col-md-6">
+          <h5 class="ml-3">COORDINADOR / {{info.idEquipos}}</h5>
+        </div>
+    </div>
+    <div class="row mb-5 px-5">
+        <div class="col-md-4">
+           <h3 class="ml-3">{{info.Usuario}}</h3>
+        </div>
+        <div class="col-md-3 text-right">
+          <select  class="input custom-select" style='width:90% !important' [(ngModel)]="usuariobuscador" (ngModelChange)="filtrarporusuario()">
+            <option disabled value="">Asesor</option>
+            <option *ngFor="let usu of usuariosE" value="{{usu.idUsers}}">{{usu.Nombre}}</option>
+            <option value="">Sin filtro</option>
+          </select>
+        </div>
+        <div class="col-md-2 text-right">
+            <select class="input custom-select" style='width:90% !important' [(ngModel)]="actividad" (ngModelChange)="valorselectact($event)" >
+                <option disabled value="">Actividad</option>
+                <option value="0">Ambos</option>
+                <option value="cita">Citas</option>
+                <option value="tarea">Tareas</option>
+            </select>
+        </div>
+        <div class="col-md-3 text-right">
+          <select class="input custom-select" style='width:90% !important' [(ngModel)]="messel" (ngModelChange)="valorselectmes()">
+              <option disabled value="">Filtrar por mes</option>
+              <option value="0">Todo los meses</option>
+              <option value="01" *ngIf="ver === true">Enero</option>
+              <option value="02" *ngIf="ver1 === true">Febrero</option>
+              <option value="03" *ngIf="ver2 === true">Marzo</option>
+              <option value="04" *ngIf="ver3 === true">Abril</option>
+              <option value="05" *ngIf="ver4 === true">Mayo</option>
+              <option value="06" *ngIf="ver5 === true">Junio</option>
+              <option value="07" *ngIf="ver6 === true">Julio</option>
+              <option value="08" *ngIf="ver7 === true">Agosto</option>
+              <option value="09" *ngIf="ver8 === true">Septiembre</option>
+              <option value="10" *ngIf="ver9 === true">Octubre</option>
+              <option value="11" *ngIf="ver10 === true">Noviembre</option>
+              <option value="12" *ngIf="ver11 === true">Diciembre</option>
+            </select>
+         </div>
+    </div>
+    <div class="row px-5" style="text-align: center;">
+      <div class="col-md-12">
+        <h2 class="ml-3">STATUS DE ACTIVIDADES MENSUALES</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-4" *ngIf="messel === '01' || messel === '02' || messel === '03' || messel === '04' || messel === '05'
+          || messel === '06' || messel === '07' || messel === '08' || messel === '09' || messel === '10' || messel === '11'
+          || messel === '12'">
+      </div>
+      <div class="col-4" [hidden]="!chart" *ngIf="messel === '' || messel === '0'">
+        <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+            <canvas style="max-height:650px;" id="canvas">{{chart}}</canvas>
+        </div>
+        <h3 style="text-align: center;padding-top: 1rem;">ENERO</h3>
+      </div>
+      <div class="col-4" [hidden]="!chart" *ngIf="messel === '01'">
+        <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+            <canvas style="max-height:650px;" id="canvas">{{chart}}</canvas>
+        </div>
+        <h3 style="text-align: center;padding-top: 1rem;">ENERO</h3>
+      </div>
+      <div class="col-4" [hidden]="!chart1" *ngIf="messel === '' || messel === '0'">
+        <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+            <canvas id="canvas1">{{chart1}}</canvas>
+        </div>
+        <h3 style="text-align: center;padding-top: 1rem;">FEBRERO</h3>
+      </div>
+      <div class="col-4" [hidden]="!chart1" *ngIf="messel === '02'">
+        <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+            <canvas id="canvas1">{{chart1}}</canvas>
+        </div>
+        <h3 style="text-align: center;padding-top: 1rem;">FEBRERO</h3>
+      </div>
+      <div class="col-4" [hidden]="!chart2" *ngIf="messel === '' || messel === '0'">
+        <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+            <canvas id="canvas2">{{chart2}}</canvas>
+        </div>
+        <h3 style="text-align: center;padding-top: 1rem;">MARZO</h3>
+      </div>
+      <div class="col-4" [hidden]="!chart2" *ngIf="messel === '03'">
+        <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+            <canvas id="canvas2">{{chart2}}</canvas>
+        </div>
+        <h3 style="text-align: center;padding-top: 1rem;">MARZO</h3>
+      </div>
+        <div class="col-4" [hidden]="!chart3" *ngIf="messel === '' || messel === '0'">
+          <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+              <canvas style="max-height:650px;" id="canvas3">{{chart3}}</canvas>
+          </div>
+          <h3 style="text-align: center;padding-top: 1rem;">ABRIL</h3>
+        </div>
+        <div class="col-4" [hidden]="!chart3" *ngIf="messel === '04'">
+          <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+              <canvas style="max-height:650px;" id="canvas3">{{chart3}}</canvas>
+          </div>
+          <h3 style="text-align: center;padding-top: 1rem;">ABRIL</h3>
+        </div>
+        <div class="col-4" [hidden]="!chart4" *ngIf="messel === '' || messel === '0'">
+          <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+              <canvas id="canvas4">{{chart4}}</canvas>
+          </div>
+          <h3 style="text-align: center;padding-top: 1rem;">MAYO</h3>
+        </div>
+        <div class="col-4" [hidden]="!chart4" *ngIf="messel === '05'">
+          <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+              <canvas id="canvas4">{{chart4}}</canvas>
+          </div>
+          <h3 style="text-align: center;padding-top: 1rem;">MAYO</h3>
+        </div>
+        <div class="col-4" [hidden]="!chart5" *ngIf="messel === '' || messel === '0'">
+          <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+              <canvas id="canvas5">{{chart5}}</canvas>
+          </div>
+          <h3 style="text-align: center;padding-top: 1rem;">JUNIO</h3>
+        </div>
+        <div class="col-4" [hidden]="!chart5" *ngIf="messel === '06'">
+          <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+              <canvas id="canvas5">{{chart5}}</canvas>
+          </div>
+          <h3 style="text-align: center;padding-top: 1rem;">JUNIO</h3>
+        </div>
+        <div class="col-4" [hidden]="!chart6" *ngIf="messel === '' || messel === '0'">
+          <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+              <canvas style="max-height:650px;" id="canvas6">{{chart6}}</canvas>
+          </div>
+          <h3 style="text-align: center;padding-top: 1rem;">JULIO</h3>
+        </div>
+        <div class="col-4" [hidden]="!chart6" *ngIf="messel === '07'">
+          <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+              <canvas style="max-height:650px;" id="canvas6">{{chart6}}</canvas>
+          </div>
+          <h3 style="text-align: center;padding-top: 1rem;">JULIO</h3>
+        </div>
+        <div class="col-4" [hidden]="!chart7" *ngIf="messel === '' || messel === '0'">
+          <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+              <canvas id="canvas7">{{chart7}}</canvas>
+          </div>
+          <h3 style="text-align: center;padding-top: 1rem;">AGOSTO</h3>
+        </div>
+        <div class="col-4" [hidden]="!chart7" *ngIf="messel === '08'">
+          <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+              <canvas id="canvas7">{{chart7}}</canvas>
+          </div>
+          <h3 style="text-align: center;padding-top: 1rem;">AGOSTO</h3>
+        </div>
+        <div class="col-4" [hidden]="!chart8" *ngIf="messel === '' || messel === '0'">
+          <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+              <canvas id="canvas8">{{chart8}}</canvas>
+          </div>
+          <h3 style="text-align: center;padding-top: 1rem;">SEPTIEMBRE</h3>
+        </div>
+        <div class="col-4" [hidden]="!chart8" *ngIf="messel === '09'">
+          <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+              <canvas id="canvas8">{{chart8}}</canvas>
+          </div>
+          <h3 style="text-align: center;padding-top: 1rem;">SEPTIEMBRE</h3>
+        </div>
+        <div class="col-4" [hidden]="!chart9" *ngIf="messel === '' || messel === '0'">
+          <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+              <canvas style="max-height:650px;" id="canvas9">{{chart9}}</canvas>
+          </div>
+          <h3 style="text-align: center;padding-top: 1rem;">OCTUBRE</h3>
+        </div>
+        <div class="col-4" [hidden]="!chart9" *ngIf="messel === '10'">
+          <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+              <canvas style="max-height:650px;" id="canvas9">{{chart9}}</canvas>
+          </div>
+          <h3 style="text-align: center;padding-top: 1rem;">OCTUBRE</h3>
+        </div>
+        <div class="col-4" [hidden]="!chart10" *ngIf="messel === '' || messel === '0'">
+          <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+              <canvas id="canvas10">{{chart10}}</canvas>
+          </div>
+          <h3 style="text-align: center;padding-top: 1rem;">NOVIEMBRE</h3>
+        </div>
+        <div class="col-4" [hidden]="!chart10" *ngIf="messel === '11'">
+          <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+              <canvas id="canvas10">{{chart10}}</canvas>
+          </div>
+          <h3 style="text-align: center;padding-top: 1rem;">NOVIEMBRE</h3>
+        </div>
+        <div class="col-4" [hidden]="!chart11" *ngIf="messel === '' || messel === '0'">
+          <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+              <canvas id="canvas11">{{chart11}}</canvas>
+          </div>
+          <h3 style="text-align: center;padding-top: 1rem;">DICIEMBRE</h3>
+        </div>
+        <div class="col-4" [hidden]="!chart11" *ngIf="messel === '12'">
+          <div class="container-fluid px-0" style="padding-top: 3rem!important;">
+              <canvas id="canvas11">{{chart11}}</canvas>
+          </div>
+          <h3 style="text-align: center;padding-top: 1rem;">DICIEMBRE</h3>
+        </div>
+    </div>
+</div>
+
+</div>
+

@@ -1,0 +1,68 @@
+<app-header></app-header>
+<app-menua></app-menua>
+
+<div class="container pb-5">
+
+    <div class="row mb-3 mt-5">
+      <h1 class="ml-3" style="color: gray; opacity: 0.7;">
+        GRÁFICAS DE REPORTE DE EMPRESAS
+      </h1>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4">
+                <label style="color: gray; opacity: 0.7;font-weight: bold;font-size: 20px;">Filtrar por mes</label>
+            </div>
+    
+            <div class="col-md-8">
+                <select class="input custom-select" style='width:90% !important' [(ngModel)]="buscadorpormes" (ngModelChange)="filtrarpormes()">
+                    <option disabled value="">Elige el mes</option>
+                    <option value="">Sin filtro</option>
+                    <option value="01">Enero</option>
+                    <option value="02">Febrero</option>
+                    <option value="03">Marzo</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Mayo</option>
+                    <option value="06">Junio</option>
+                    <option value="07">Julio</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                  </select>
+    
+            </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-4">
+                <label style="color: gray; opacity: 0.7;font-weight: bold;font-size: 20px;">Filtrar por rango de fecha</label>
+            </div>
+            <div class="col-md-3">
+                <input class="input form-control" type="date"  id="fecha" #fecha [(ngModel)]="fechafiltro"  (ngModelChange)="filtroporrango()"/>
+            </div>
+            <div class="col-md-3">
+                <input class="input form-control" type="date"  id="fecha1" #fecha1 [(ngModel)]="fechafiltro1"  (ngModelChange)="filtroporrango()"/>
+            </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row my-3">
+        <div class="col-md-12 text-center">
+            <h1 class="ml-3" style="color: gray; opacity: 0.7;">
+                VISITAS TOTALES <span style="color: #07138f;font-weight: bold;">{{contadordevisita}}</span>
+            </h1>
+        </div>
+
+        <div class="col-md-12 my-3 text-center">
+            <canvas  id="canvas" (click)="infografica($event)">{{chart}}</canvas>
+        </div>
+    </div>
+
+</div>
+<app-footer></app-footer>

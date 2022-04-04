@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<div class="container-fluid" style="background: url(../assets/img/fondo_lumi.png) no-repeat;background-position: bottom;
+background-size: cover;">
+    <div class="row" id="alto" style="height: 100vh;">
+      <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <img src="../../assets/img/lumi_logo1.png" alt="" id="logo">
+      </div>
+      <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <div id="login-column" class="col-md-9 shadow1" style="background-color: white;">
+          <div id="login-box" class="col-md-12">
+              <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                  <h1 class="text-center iniciar">INICIAR SESIÓN</h1>
+                  <div class="form-group">
+                      <label for="user">USUARIO</label><br>
+                      <div class="row largo1">
+                        <div class="col-lg-11 pr-0">
+                      <input type="email" id="usuario" formControlName="username" class="form-control shadow" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                      <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">El correo electronico es requerido</div>
+                      </div>
+                      <div class="invalid-feedback" *ngIf="(f.username.dirty || f.username.touched) && f.username.invalid && f.username.errors.pattern">
+                        Ingrese un correo valido.
+                      </div>
+                      </div>
+                      <div class="col-lg-1 pl-2 d-flex align-items-center">
+                      </div>
+                      </div>
+                      
+                  </div>
+                        <div class="form-group">
+                            <label for="password">CONTRASEÑA  </label>
+                            <div class="input-group" id="show_hide_password">
+                              <div class="row" style="width: 110%;">
+                                <div class="col-lg-11 pr-0">
+                                <input id="contraseña" [type]="password_type" formControlName="password" (ngModelChange)="dataChanged($event)" class="form-control shadow" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                  <div *ngIf="f.password.errors.required">La contraseña es requerida</div>
+                              </div>
+                                </div>
+                                <div class="col-lg-1 pl-2 d-flex align-items-center">
+                                <div class="input-group-addon d-flex align-items-center" *ngIf="visible === false && vercontrasena === true">
+                                    <a (click)="vercontra()"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="input-group-addon d-flex align-items-center" *ngIf="visible === true && vercontrasena === true">
+                                    <a (click)="vercontra()"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="error" class="alert alert-danger mt-2 mb-2">{{error}}</div>
+                  <div class="form-group text-center mb-0">
+                      <input type="submit" name="submit" class="btn btn-info btn-md" value="ENTRAR" style="margin-bottom: 17px!important;">
+                  </div>
+                  <div class="form-group text-center mbotom">
+                    <label id="olvidaste" style="color: #bbbbbb;" [routerLink]="['/Cambiar_Contraseña']" >¿Olvidaste tu contraseña?</label>
+                </div>
+              </form>
+          </div>
+      </div>
+      </div>
+    </div>
+  </div>

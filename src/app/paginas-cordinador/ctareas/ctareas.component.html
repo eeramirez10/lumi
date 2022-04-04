@@ -1,0 +1,197 @@
+<app-header></app-header>
+<app-menuc></app-menuc>
+<div class="row" style="margin: 25px 35px 0px 35px">
+  <div class="col-lg-10">
+    <h1 class="tareas">TAREAS</h1>
+  </div>
+  <div class="col-lg-2">
+      <button [routerLink]="['/Tareas_Cordinador/Nueva_TareaC']" class="btn btn-azul ml-auto">+ Nueva Tarea</button>
+  </div>
+</div>
+<div class="row" style="margin: 25px 35px 0px 35px">
+  <div class="col-lg-11">
+    <div class="row">
+        <div class="col-lg-3">
+            <select [(ngModel)]="filtrofecha" name="select1" class="input custom-select" id="inputGroupSelect01" style='width:90%!important'>
+            <option value="0">Filtrar por Fecha</option>
+            <option value="1">Hoy</option>
+            <option value="2">Hace una semana</option>
+            <option value="3">Hace un mes</option>
+            <option value="4">Hace 60 dias</option>
+            </select>
+        </div>
+        <div class="col-lg-3">
+            <select [(ngModel)]="filtropersona" (change)="resetEquipo()" class="input custom-select" id="inputGroupSelect02" name="select2" style='width:90%!important'>
+            <option value="0">Filtrar por Persona</option>
+            <option *ngFor="let us of equipo" value="{{us.idUsers}}">{{us.Nombre}}</option>
+            </select>
+        </div>
+        <div class="col-lg-3">
+            <select [(ngModel)]="filtroempresa" class="input custom-select" id="inputGroupSelect03" name="select3" style='width:90%!important'>
+            <option value="0">Filtrar por Empresa</option>
+            <option *ngFor="let emp of empresa" value="{{emp.idEmpresas}}">{{emp.Nombre_Empresa}}</option>
+            </select>
+        </div>
+        <div class="col-lg-3">
+            <select [(ngModel)]="filtroequipo" (change)="resetPersona()" class="input custom-select" id="inputGroupSelect04" name="select4" style='width:90%!important'>
+            <option value="0">Filtrar por Equipo</option>
+            <option value="1">Asignadas a otro equipo</option>
+            </select>
+        </div>
+    </div>
+  </div>
+  <div class="col-lg-1 d-flex align-items-center justify-content-center">
+    <label class="circle3" (click)="filtrar()"></label>
+  </div>
+</div>
+
+<nav id="tabs" class="px-5">
+    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">PENDIENTES</a>
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">FINALIZADAS</a>
+        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">CANCELADAS</a>
+    </div>
+</nav>
+
+<div class="tab-content pl-5 pr-4 mb100" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <div class="row py-4" style="max-width: 100%;">
+            <ng-container>
+                <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of tarea | paginate: { id: 'paginationp1',itemsPerPage: 6, currentPage: p};">
+                    <div class="card shadow p-4">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <span style="color:black!important;">
+                                Para:
+                                </span>
+                            </div>
+                            <div class="col-lg-7 fechaa">
+                                <span style="color:black!important;">
+                                    Asignada por:&nbsp;&nbsp;{{emp.envio.substring(0, 18)}}
+                                </span>
+                            </div>
+                            <div class="col-md-1">
+                                <a [routerLink]="['/Tareas_Cordinador/Editar_TareaC',emp.idTareas]" style="cursor: pointer;">
+                                    <label *ngIf="emp.Users_idUsers == this.idUsuario" class="circle"></label>
+                                    <label *ngIf="emp.Users_idUsers != this.idUsuario" class="circle2"></label>
+                                    <!-- <span *ngIf="emp.comentarios!=='0'" style="color:red!important;font-weight:900;position:absolute;font-size:24px;right:5px;top:-25px">{{emp.comentarios}}</span> -->
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5">
+                            <span style="color:#07138f!important;">
+                                {{emp.responsable.substring(0, 18)}}..
+                            </span>
+                            </div>
+                            <div class="col-lg-7 fechaa">
+                            <span>Creada:</span>&nbsp;<span>{{emp.FechaSol | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaSol | date:'dd'}}</span>&nbsp;<span style="text-transform:none">de</span>&nbsp;<span>{{emp.FechaSol | date:'MMMM'}}</span>&nbsp;<span style="text-transform:none">de</span>&nbsp;<span>{{emp.FechaSol | date:'y'}}</span><br>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}
+
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                <pagination-controls id="paginationp1" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                </pagination-controls>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="row py-4" style="max-width: 100%!important;">
+            <ng-container>
+                <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of tarea2 | paginate: { id: 'paginationf1',itemsPerPage: 6, currentPage: p};">
+                    <div class="card shadow p-4" [routerLink]="['/Tareas_Cordinador/detalleTareaCFCO',emp.idTareas]" style="cursor: pointer;">
+                            <div class="row">
+                            <div class="col-lg-4">
+                                <span style="color:black!important;">
+                                Para:
+                                </span>
+                            </div>
+                            <div class="col-lg-8 fechaa">
+                                <span style="color:black!important;">
+                                    Asignada por:&nbsp;&nbsp;{{emp.envio.substring(0, 18)}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                            <span style="color:#07138f!important;">{{emp.responsable.substring(0, 15)}}..</span>
+                            </div>
+                            <div class="col-lg-8 fechaa">
+                            <span>Finalizada:</span>&nbsp;<span>{{emp.FechaFin | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaFin | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaFin | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaFin | date:'y'}}</span><br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea
+                                    }}
+                                </h6>
+
+                                </div>
+                        </div>
+                    </div>
+                </div>
+        <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+            <pagination-controls id="paginationf1" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+            </pagination-controls>
+        </div>
+            </ng-container>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <div class="row py-4" style="max-width: 100%!important;">
+
+                    <ng-container>
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of tarea3 | paginate: { id: 'paginationc1',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4" [routerLink]="['/Tareas_Cordinador/detalleTareaCFCO',emp.idTareas]" style="cursor: pointer;">
+                             <div class="row">
+                                    <div class="col-lg-4">
+                                        <span style="color:black!important;">
+                                        Para:
+                                        </span>
+                                    </div>
+                                    <div class="col-lg-8 fechaa">
+                                        <span style="color:black!important;">
+                                            Asignada por:&nbsp;&nbsp;{{emp.envio.substring(0, 18)}}
+                                        </span>
+                                    </div>
+                                </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                <span style="color:#07138f!important;">{{emp.responsable.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-8 fechaa">
+                                <span>Cancelada:</span>&nbsp;<span>{{emp.FechaSol | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaSol | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'y'}}</span><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                        <pagination-controls  id="paginationc1" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                        </pagination-controls>
+                    </div>
+                    </ng-container>
+                </div>
+    </div>
+
+</div>
+<app-footer></app-footer>

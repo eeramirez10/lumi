@@ -1,0 +1,100 @@
+<app-header></app-header>
+<app-menuc></app-menuc>
+<!-- <div class="container mb-5 pb-5">
+  <div class="mb-3 mt-5">
+    <h1 class="ml-3">REPORTES DE EQUIPO</h1>
+  </div>
+
+  <div class="row my-5" style="height: 80vh;">
+    <div class="col-lg-4 mb-4" *ngFor="let us of tareas">
+    <a style="text-decoration: none;" [routerLink]="['/detalle_reporte/detalle_grafica/',us.Users_idUsers,us.idEmpresas,tipo]">
+      <div class="card shadow border-0 alto " style="border-radius: 25px;">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card-body">
+                <div class="row">
+                  <img src="http://192.168.1.61/lum/imagenes/{{us.Imagen}}"
+                    class="img mb-4"/>
+                </div>
+
+                <h5 class="py-3 text-center font-weight-bold" style="color: #07138f;">
+                    {{us.Nombre}}
+                </h5>
+
+                <div class="row">
+                  <label class="mx-auto" for="username" style="color: #000;">
+                    {{us.Usuario}}
+                  </label>
+                </div>
+                <div class="row">
+                  <label class="mx-auto" for="password" style="color: #000;">
+                    {{us.Nombre_Empresa}}
+                  </label>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    </div>
+  </div>
+</div> -->
+
+<div class="container-fluid pb-5">
+  <div class="row py-5">
+    <div class="col-md-6 d-flex align-items-center text-center">
+      <h1 class="ml-3">REPORTES DE EQUIPO</h1>
+    </div>
+    <div class="col-md-6 d-flex align-items-center text-center">
+        <a [routerLink]="['/detalle_reporte/detalle_grafica_equipo/',idUs,idEmp,tipo]" class="btn btn-azul py-2">Reporte general de equipo</a>
+    </div>
+  </div>
+
+    <div class="mb-6">
+      <div class="col-4">
+        <form class="pt-3 form" >
+            <input class="form-control" placeholder="Ingrese un nombre" name="filtroguardias" [(ngModel)]="filtroguardias" style="border: 1px solid black;border-radius: 100px;text-transform: capitalize;">
+        </form>
+      </div>
+    </div>
+
+
+  <div class="row my-5">
+    <div class="col-lg-4 mb-4"*ngFor="let us of tareas  | nombreRE:filtroguardias | paginate: { id: 'pagination1',itemsPerPage: 9, currentPage: p};">
+      <a style="text-decoration: none;" [routerLink]="['/detalle_reporte/detalle_grafica/',us.idUsers,us.idEmpresas,tipo]">
+      <div class="card shadow border-0">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card-body">
+              <div class="row">
+                 <div class="col-lg-4 img-card float-left m-0 pl-2 pr-0">
+                  <div class="col-lg-2" style="height:fit-content;">
+                    <img src="http://192.168.1.61/lum/imagenes/{{us.Imagen}}" class="img2" alt="" style="margin-top:20px">
+                  </div>
+                </div>
+                <div class="col-lg-8" style="overflow: hidden;">
+                  <h5 class="py-3  font-weight-bold alton">
+                       {{us.Nombre}}
+                    </h5>
+                    <label for="username" style="color: #07138f;font-weight: normal;margin-top: -10px;">
+                    {{us.Usuario}}
+                  </label>
+                </div>
+              </div>
+                <div class="row" style="overflow: hidden;">
+                  <label class="mx-auto" for="password" style="color: #000;">
+                    {{us.Nombre_Empresa}}
+                  </label>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    </div>
+  </div>
+  <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+    <pagination-controls id="pagination1" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+    </pagination-controls>
+</div>
+</div>

@@ -1,0 +1,100 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<div class="container-fluid" style="background: url(../assets/img/fondo_lumi.png) no-repeat;background-position: bottom;
+background-size: cover;">
+    <div class="row" id="alto" style="height: 100vh;">
+      <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <img src="../../assets/img/lumi_logo.png" alt="" id="logo">
+      </div>
+      <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <div id="login-column" class="col-md-9 shadow1" style="background-color: white;">
+          <div id="login-box" class="col-md-12">
+
+              <form *ngIf="vista === 1" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                  <div class="form-group">
+                      <label for="user" id="buscarcorreo">INGRESA TU CORREO ELECTRÓNICO</label><br>
+                      <input type="email" id="usuario" formControlName="username" class="form-control shadow" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                      <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">El correo electronico es requerido</div>
+                    </div>
+                    <div class="invalid-feedback" *ngIf="(f.username.dirty || f.username.touched) && f.username.invalid && f.username.errors.pattern">
+                        Ingrese un correo valido.
+                      </div>
+                  </div>
+                        <div *ngIf="error" class="alert alert-danger alert-dismissible fade show mt-2 mb-2">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="borrar()">
+                            <span aria-hidden="true">&times;</span>
+                          </button> {{error}}
+                        </div>
+                  <div class="form-group text-center">
+                      <input type="submit" name="submit" class="btn btn-info btn-md" value="BUSCAR">
+                  </div>
+              </form>
+
+              <form *ngIf="vista === 2" [formGroup]="loginForm1" (ngSubmit)="onSubmit1()">
+                <h1 class="text-center restablecer">RESTABLECE <br>TU CONTRASEÑA</h1>
+                <div class="form-group text-center">
+                  <span class="text-center" style="font-weight:700;text-transform: none;">Las contraseñas fuertes incluyen números, letras y signos de puntuación.</span><br>
+                  <label for="password">CONTRASEÑA NUEVA  </label>
+                  <div class="input-group" id="show_hide_password">
+                    <div class="row" style="width: 110%;">
+                      <div class="col-lg-11 pr-0">
+                        <input id="contraseña" [type]="password_type" formControlName="password" (ngModelChange)="dataChanged($event)" class="form-control shadow" [ngClass]="{ 'is-invalid': submitted1 && ff.password.errors }"/>
+                      </div>
+                      <div class="col-lg-1 pl-2 d-flex align-items-center">
+                        <div class="input-group-addon d-flex align-items-center" *ngIf="visible === false && vercontrasena === true">
+                          <a (click)="vercontra()"><i id="ojo" class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                      </div>
+                      <div class="input-group-addon d-flex align-items-center" *ngIf="visible === true && vercontrasena === true">
+                          <a (click)="vercontra()"><i id="ojo"  class="fa fa-eye" aria-hidden="true"></i></a>
+                      </div>
+                      </div>
+                    </div>
+                      <div *ngIf="submitted && ff.password.errors" class="invalid-feedback">
+                          <div *ngIf="ff.password.errors.required">La contraseña es requerida</div>
+                          <div *ngIf="ff.password.errors.minlength">La contraseña debe ser minimo de 6 carácteres</div>
+                          <div *ngIf="ff.password.errors.maxlength">La contraseña debe ser máximo de 16 carácteres</div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                <label for="password">CONFIRMAR CONTRASEÑA  </label>
+                <div class="input-group" id="show_hide_password">
+                  <div class="row" style="width: 110%;">
+                    <div class="col-lg-11 pr-0">
+                    <input id="contraseña" [type]="password_type1" formControlName="password1" (ngModelChange)="dataChanged1($event)" class="form-control shadow" [ngClass]="{ 'is-invalid': submitted1 && ff.password1.errors }"/>
+                    </div>
+                    <div class="col-lg-1 pl-2 d-flex align-items-center">
+                    <div class="input-group-addon d-flex align-items-center" *ngIf="visible1 === false && vercontrasena1 === true">
+                        <a (click)="vercontra1()"><i id="ojo" class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="input-group-addon d-flex align-items-center" *ngIf="visible1 === true && vercontrasena1 === true">
+                        <a (click)="vercontra1()"><i id="ojo"  class="fa fa-eye" aria-hidden="true"></i></a>
+                    </div>
+                    </div>
+                    <div *ngIf="submitted && ff.password1.errors" class="invalid-feedback">
+                        <div *ngIf="ff.password1.errors.required">La contraseña es requerida</div>
+                        <div *ngIf="ff.password1.errors.minlength">La contraseña debe ser minimo de 6 carácteres</div>
+                        <div *ngIf="ff.password1.errors.maxlength">La contraseña debe ser máximo de 16 carácteres</div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="error" class="alert alert-danger alert-dismissible fade show mt-2 mb-2">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="borrar()">
+                <span aria-hidden="true">&times;</span>
+              </button> {{error}}
+            </div>
+                <div class="form-group text-center">
+                    <input type="submit" name="submit1" class="btn btn-info btn-md" value="GUARDAR">
+                </div>
+
+            </form>
+
+
+          </div>
+      </div>
+      </div>
+    </div>
+  </div>

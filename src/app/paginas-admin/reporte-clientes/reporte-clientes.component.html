@@ -1,0 +1,57 @@
+<app-header></app-header>
+<app-menua></app-menua>
+
+<div class="container">
+
+    <div class="row mt-5">
+        <div class="col-md-10">
+            <h1>REPORTES CLIENTES/EMPRESA</h1>
+        </div>
+        <div class="col-md-2 text-right d-flex align-items-center">
+            <button class="btn btn-azul" [routerLink]="['/Rclientes_Admin/ReporteEmpresas']">
+                <img class="mb-1 mr-2" src="../../../assets/img/pie-chart-sharp.svg" class="imagen">
+                Graficas
+            </button>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <input class="input mt-2 p-2" type="text" name="filterTarea" placeholder="Buscar Empresa" style="font-style: italic;text-transform: capitalize;" [(ngModel)]="filterTarea">
+        </div>
+        <div class="col-md-6">
+            <pagination-controls id="paginationp1" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+            </pagination-controls>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <ng-container *ngIf="( prospectos | filter2:filterTarea) as result">
+            <div class="col-md-6 px-5 mt-4" *ngFor="let emp of result | paginate: { id: 'paginationp1',itemsPerPage: 6, currentPage: p};">
+                <a style="text-decoration: none;" [routerLink]="['/Rclientes_Admin/Detalle_Grafica',emp.idEmpresas]">
+                <div class="shadow cards row p-3" style="text-overflow:ellipsis">
+                    <div class="col-lg-3 d-flex align-items-center justify-content-center">
+                        <img src="http://192.168.1.61/lumr.dyndns.org/lum/imagenes/{{emp.Foto}}" class="img"/>
+                    </div>
+                    <div class="col-lg-9" id="names" style="height: 150px;overflow: hidden;">
+                        <h4 class="elipsis">{{emp.Nombre_Empresa}}</h4>
+                        <p style="color: black;">{{emp.Direccion_Empresa.substring(0, 70)}}...</p>
+                        <p style="color: black;">tel:{{emp.Telefono}}</p>
+                    </div>
+                    <div class="col-md-12">
+                        <h6 style="color: black;">CONTACTO</h6>
+                    </div>
+                    <div class="col-md-12">
+                        <p style="color: black;" class="elipsis">Nombre: {{emp.NomContacto}}</p>
+                    </div>
+                    <!-- <div class="col-md-7">
+                        <p style="color: black;" class="elipsis">|&nbsp;&nbsp;&nbsp;E-mail:</p>
+                    </div> -->
+                </div>
+                </a>
+            </div>
+            <h1 class="text-center mx-auto" style="color: red;" *ngIf="result.length === 0">no se encontraron resultados</h1>
+        </ng-container>
+    </div>
+</div>
+<app-footer></app-footer>

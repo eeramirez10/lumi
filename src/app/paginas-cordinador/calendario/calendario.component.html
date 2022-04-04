@@ -1,0 +1,400 @@
+<app-header></app-header>
+<app-menuc></app-menuc>
+<div class="containerS">
+    <div class="row">
+        <div  class="col-5">
+          <div class="col-2">
+            <h4>Colaborador</h4>
+          </div>
+          <div class="col-10">
+            <select  class="input form-control" [(ngModel)]="usuariobuscador"  (ngModelChange)="filtrarporusuario()">
+              <option disabled value="">Filtrar por nombre</option>
+              <option value="">Todos</option>
+              <option *ngFor="let usu of usuariosE" value="{{usu.idUsers}}">{{usu.Nombre}}</option>
+          </select>
+          </div>
+        </div>
+        <div  class="col-5">
+          <div class="col-2">
+            <h4>Eventos</h4>
+          </div>
+          <div class="col-10">
+            <select  class="input form-control" [(ngModel)]="filtrarcot"  (ngModelChange)="filtrarporusuario()">
+              <option disabled value="">Filtrar por eventos </option>
+              <option value="cita">Cita</option>
+              <option value="tarea">Tarea</option>
+              <option value="">Ambos</option>
+          </select>
+          </div>
+        </div>
+        <div class="col-2">
+          <div id="botones">
+            <a>
+            <button (click)="inicializarcariables()" style="padding-left: 18px;
+            padding-right: 18px;
+            font-weight: bold;
+            margin-top: 3%;
+            padding-top: 5px;
+            padding-bottom: 5px;" data-toggle="modal" data-target="#exampleModal2" class="btn">+&nbsp;NUEVA CITA</button>
+            </a>
+        </div>
+        </div>
+    </div>
+    <div class="row mt-3 pl-5">
+        <div class="col-md-3 d-flex align-items-center">
+            <label class="circle2 mr-2" style="background-color: #FFE08B;"></label>
+            <span style="font-weight: 700;">
+                CITAS
+            </span>
+        </div>
+        <div class="col-md-3 d-flex align-items-center">
+            <label class="circle2 mr-2" style="background-color: #F5C60E;"></label>
+            <span style="font-weight: 700;">
+                CITAS ASIGNADAS POR TI
+            </span>
+        </div>
+        <div class="col-md-3 d-flex align-items-center">
+            <label class="circle2 mr-2" style="background-color: #82E0AA;"></label>
+            <span style="font-weight: 700;">
+                CITAS REALIZADAS
+            </span>
+        </div>
+        <div class="col-md-3 d-flex align-items-center mt-3">
+            <label class="circle2 mr-2" style="background-color: #F1948A;"></label>
+            <span style="font-weight: 700;">
+                CITAS SIN REALIZAR
+            </span>
+        </div>
+         <div class="col-md-3 d-flex align-items-center mt-3">
+            <label class="circle2 mr-2" style="background-color: #aeb4ef;"></label>
+            <span style="font-weight: 700;">
+                TAREAS
+            </span>
+        </div>
+         <div class="col-md-3 d-flex align-items-center mt-3">
+            <label class="circle2 mr-2" style="background-color: #6BC0E0;"></label>
+            <span style="font-weight: 700;">
+                TAREAS ASIGNADAS POR TI
+            </span>
+        </div>
+        <div class="col-md-3 d-flex align-items-center mt-3">
+            <label class="circle2 mr-2" style="background-color: #008E4C"></label>
+            <span style="font-weight: 700;">
+                TAREAS REALIZADAS
+            </span>
+        </div>
+        <div class="col-md-3 d-flex align-items-center mt-3">
+            <label class="circle2 mr-2" style="background-color: #F4339A;"></label>
+            <span style="font-weight: 700;">
+                TAREAS SIN REALIZAR
+            </span>
+        </div>
+        <div class="col-md-3 d-flex align-items-center mt-3">
+            <label class="circle2 mr-2" style="background-color: #D6DBDF;"></label>
+            <span style="font-weight: 700;">
+                TAREAS CANCELADAS
+            </span>
+        </div>
+    </div>
+</div>
+<!-- /*
+|--------------------------------------------------------------------------
+| Tab1 CALENDARIO
+|--------------------------------------------------------------------------
+*/ -->
+<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    <div class="calendario" style="padding-top: 20px;">
+        <div class="bordeS">
+            <full-calendar *ngIf="calendarioinfofinal !== ''"
+            [events]="calendarioinfofinal"
+            (eventClick)="eventClicked($event)"
+            [allDaySlot]="false" [height]="600"
+            [locale]="localMx"
+            [slotLabelFormat]="{
+                hour: '2-digit',
+                minute: '2-digit',
+                hour24: true
+              }"
+              [eventTimeFormat]="{
+                hour: '2-digit',
+                minute: '2-digit',
+                hour24: true
+              }"
+            [titleFormat]="{ month:'long'}"
+            [columnHeaderFormat]="{ weekday:'long'}"
+            [header]="{ left:'prev, title, next', center: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek', right:  ' ,today'}"
+            defaultView="dayGridMonth"
+            [plugins]="calendarPlugins"
+            ></full-calendar>
+        </div>
+    </div>
+    <div class="calendario2">
+        <div class="bordeS">
+        <full-calendar *ngIf="calendarioinfofinal !== ''"
+        [events]="calendarioinfofinal"
+        (eventClick)="eventClicked($event)"
+        [allDaySlot]="false"
+        [height]="1500"
+        [locale]="localMx"
+        [slotLabelFormat]="{
+            hour: '2-digit',
+            minute: '2-digit',
+            hour24: true
+          }"
+          [eventTimeFormat]="{
+            hour: '2-digit',
+            minute: '2-digit',
+            hour24: true
+          }"
+        [titleFormat]="{ month:'long'}"
+        [columnHeaderFormat]="{ weekday:'long'}"
+        [header]="{ left:'prev, title, next', center: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek', right:  ' ,today'}"
+        defaultView="dayGridMonth"
+        [plugins]="calendarPlugins"
+        ></full-calendar>
+        </div>
+    </div>
+</div>
+
+<!--/*
+|--------------------------------------------------------------------------
+| MODAL NUEVA CITA
+|--------------------------------------------------------------------------
+*/-->
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"       aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="border-radius: 25px;">
+      <h1 class="modal-title text-center pt-3" id="exampleModalLabel">NUEVA CITA</h1>
+      <div class="modal-body" style="padding: 1rem 2rem;">
+              <div *ngFor="let empresa of empresasinfo">
+                <div class="row form-group">
+                  <div class="col-5" style="margin-right: 30px;">
+                    <h5 style="font-size: 20px !important;">Colaborador</h5>
+                  </div>
+                  <div class="col-8" style="margin-left: -100px;">
+                    <select [class]="clasecordinador" style="font-size: 15px !important; width: 100% !important;" id="inputGroupSelect01" [(ngModel)]="idcolaborador"  (ngModelChange)="obtenerempresas()" >
+                      <option disabled value="">Selecciona una opción</option>
+                      <option *ngFor="let usu of usuariosE"  value="{{usu.idUsers}}">{{usu.Nombre}}</option>
+                  </select>
+                  <div style="text-align: center;" *ngIf="clasecordinadorerror === 'invalid-feedback d-block' " [class]="claseerrorempresa">
+                      <div >Debe seleccionar a un colaborador</div>
+                  </div>
+                  </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-5" style="margin-right: 30px;">
+                        <h5 style="font-size: 20px !important;">Cliente/Empresa</h5>
+                    </div>
+                    <div class="col-8" style="margin-left: -100px;">
+                        <ngx-select-dropdown *ngIf="prospecto === true" [config]="config"  [options]="empresasid1" id="inputGroupSelect01" 
+                        [(ngModel)]="idempresa" [multiple]="false" (change)="obtenerifoempresa($event.value.idEmpresas)"></ngx-select-dropdown>
+                        <!-- <select *ngIf="prospecto === true" [class]="clasesel" style="font-size: 15px !important; width: 100% !important;" id="inputGroupSelect01" [(ngModel)]="idempresa"  (ngModelChange)="obtenerifoempresa()" >
+                            <option disabled value="">Selecciona una opción</option>
+                            <ng-container *ngFor="let emp of empresasid1">
+                                <option *ngIf="emp.Status_Empresa === '1'" value="{{emp.idEmpresas}}">{{emp.Nombre_Empresa}}</option>
+                            </ng-container>
+                        </select>
+                        <select *ngIf="prospecto === false" class="input form-control"  style="font-size: 15px !important; width: 100% !important;background-color: #f2f2f2" disabled id="inputGroupSelect01" [(ngModel)]="idempresa"  (ngModelChange)="obtenerifoempresa()" >
+                            <option disabled value="">Selecciona una opción</option>
+                            <ng-container *ngFor="let emp of empresasid1">
+                                <option *ngIf="emp.Status_Empresa === '1'" value="{{emp.idEmpresas}}">{{emp.Nombre_Empresa}}</option>
+                            </ng-container>
+                        </select> -->
+                    </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-5" style="margin-right: 30px;">
+                    <h5 style="font-size: 20px !important;">Prospecto</h5>
+                </div>
+                <div class="col-8" style="margin-left: -100px;">
+                    <ngx-select-dropdown *ngIf="cprospecto === true" [config]="config"  [options]="prospectosid" id="inputGroupSelect01" 
+                        [(ngModel)]="idprospecto" [multiple]="false" (change)="infoprospecto($event.value.idEmpresas)"></ngx-select-dropdown>
+                    <!-- <select *ngIf="cprospecto === true" [class]="clasesel" style="font-size: 15px !important; width: 100% !important;" id="inputGroupSelect01" [(ngModel)]="idprospecto"  (ngModelChange)="infoprospecto()" >
+                        <option disabled value="">Selecciona una opción</option>
+                        <ng-container *ngFor="let emp of prospectosid">
+                            <option value="{{emp.idEmpresas}}">{{emp.Nombre_Empresa}}</option>
+                        </ng-container>
+                    </select>
+                    <select *ngIf="cprospecto === false" class="input form-control"  style="font-size: 15px !important; width: 100% !important;background-color: #f2f2f2" disabled id="inputGroupSelect01" [(ngModel)]="idprospecto"  (ngModelChange)="infoprospecto()" >
+                        <option disabled value="">Selecciona una opción</option>
+                        <ng-container *ngFor="let emp of prospectosid">
+                            <option value="{{emp.idEmpresas}}">{{emp.Nombre_Empresa}}</option>
+                        </ng-container>
+                    </select> -->
+                    <div style="text-align: center;" *ngIf="claseerrorempresa === 'invalid-feedback d-block' " [class]="claseerrorempresa">
+                        <div >Debe seleccionar un cliente/empresa  o prospecto</div>
+                    </div>
+                </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-5" style="margin-right: 30px;">
+                    <h5 style="font-size: 20px !important;">Sucursal</h5>
+                </div>
+                <div class="col-8" style="margin-left: -100px;">
+                    <select *ngIf="prospecto === true && csuc === true" class="input form-control" style="font-size: 15px !important; width: 100% !important;" id="inputGroupSelect01" [(ngModel)]="idsucursal"  (ngModelChange)="infosuc()">
+                        <option disabled value="">Selecciona una opción</option>
+                        <option value="principal">Dirección principal</option>
+                        <option *ngFor="let suc of sucursales"  value="{{suc.idSO}}">{{suc.nombreSO}}</option>
+                    </select>
+                    <select *ngIf="prospecto === false || csuc === false" class="input form-control"  style="font-size: 15px !important; width: 100% !important;background-color: #f2f2f2" disabled id="inputGroupSelect01" [(ngModel)]="idsucursal"  >
+                        <option disabled value="">Selecciona una opción</option>
+                        <option *ngFor="let suc of sucursales"  value="{{suc.idSO}}">{{suc.nombreSO}}</option>
+                    </select>
+                    <!-- <div style="text-align: center;" *ngIf="claseerrorempresa === 'invalid-feedback d-block' " [class]="claseerrorempresa">
+                        <div >Debe seleccionar una sucursal</div>
+                    </div> -->
+                </div>
+                </div>
+                  <div class="row form-group">
+                      <div class="col-5 align-items-center" style="margin-right: 30px;">
+                          <h5 style="font-size: 20px !important;"> Dirección</h5>
+                      </div>
+                      <div class="col-8" style="margin-left: -100px;">
+                          <textarea style="resize: none;border:0 !important; background-color: #f2f2f2; width: 100% !important;" class="input form-control" id="exampleFormControlTextarea1" rows="1">{{direccion}}</textarea>
+                      </div>
+                  </div>
+
+              <div class="row form-group">
+                  <div class="col-5 align-items-center" style="margin-right: 30px;">
+                      <h5 style="font-size: 20px !important;">Motivo</h5>
+                  </div>
+                  <div class="col-8" style="margin-left: -100px;">
+                      <textarea (ngModelChange)="dimot($event)" [(ngModel)]="Motivo" style="resize: none;border:0;border-bottom: 2px solid black; border-radius: 0px !important; width: 100% !important;"  placeholder="Escriba el motivo" [class]="clasemotivo" id="exampleFormControlTextarea1" rows="1"></textarea>
+                      <div style="text-align: center;" *ngIf="claseerrormotivo === 'invalid-feedback d-block' " [class]="claseerrormotivo">
+                          <div >Debe escribir el motivo</div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row form-group">
+                  <div class="col-md-5  align-items-center" style="margin-right: -30px;">
+                      <h5 style="font-size: 20px !important;">Adjuntar archivo</h5>
+                  </div>
+                  <div class="col-md-8 archivos" style="margin-right: -100px;">
+                      <div class="row">
+                          <div class="col-md-2">
+                              <label for="archivo" class="circle shadow"></label>
+                              <input style="height: 0px;width: 0px;" type="file" id="archivo"
+                              (change)="onFileChanged($event)"  class="hidden" multiple="true"
+                              accept="audio/*,video/*,.zip,.rar,.7zip,.xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf">
+                          </div>
+                          <div  class="col-md-10">
+                              <div *ngFor="let archivonom of nombredearchivos; let i = index" class="row">
+                                  <div class="col-md-12 d-flex align-items-center">
+                                      <img *ngIf="tipodearchivo[i] === 'png' || tipodearchivo[i] === 'jpg'
+                                      || tipodearchivo[i] === 'jpeg' || tipodearchivo[i] === 'gif'
+                                      || tipodearchivo[i] === 'bmp' || tipodearchivo[i] === 'ico'"
+                                      src="../../../assets/img/images-outline.svg" width="20px" height="20px"
+                                      class="mr-2 imgS">
+                                      <img *ngIf="tipodearchivo[i] === 'doc' || tipodearchivo[i] === 'dot'
+                                      || tipodearchivo[i] === 'docx'"
+                                      src="../../../assets/img/word.png" width="20px" height="20px"
+                                      class="mr-2 imgS">
+                                      <img *ngIf="tipodearchivo[i] === 'xls' || tipodearchivo[i] === 'xlsx'
+                                      || tipodearchivo[i] === 'csv' || tipodearchivo[i] === 'xlk'
+                                      || tipodearchivo[i] === 'xlm' || tipodearchivo[i] === 'ctt'"
+                                      src="../../../assets/img/excel.png" width="20px" height="20px"
+                                      class="mr-2 imgS">
+                                      <img *ngIf="tipodearchivo[i] === 'pps' || tipodearchivo[i] === 'ppt'
+                                      || tipodearchivo[i] === 'pptx'"
+                                      src="../../../assets/img/power.png" width="20px" height="20px"
+                                      class="mr-2 imgS">
+                                      <img *ngIf="tipodearchivo[i] === 'pdf'"
+                                      src="../../../assets/img/pdf.png" width="20px" height="20px"
+                                      class="mr-2 imgS">
+                                      <img *ngIf="tipodearchivo[i] === 'zip' || tipodearchivo[i] === '7z'
+                                      || tipodearchivo[i] === 'rar'"
+                                      src="../../../assets/img/zip.png" width="20px" height="20px"
+                                      class="mr-2 imgS">
+                                      <img *ngIf="tipodearchivo[i] === 'mp3' || tipodearchivo[i] === 'mid'
+                                      || tipodearchivo[i] === 'wav' || tipodearchivo[i] === 'aac'"
+                                      src="../../../assets/img/musica.png" width="20px" height="20px"
+                                      class="mr-2 imgS">
+                                      <img *ngIf="tipodearchivo[i] === 'avi' || tipodearchivo[i] === 'mkv'
+                                      || tipodearchivo[i] === 'flv' || tipodearchivo[i] === 'mov'
+                                      || tipodearchivo[i] === 'wmv' || tipodearchivo[i] === 'mp4'"
+                                      src="../../../assets/img/video.png" width="20px" height="20px"
+                                      class="mr-2 imgS">
+                                      <img *ngIf="tipodearchivo[i] !== 'png' && tipodearchivo[i] !== 'jpg'
+                                      && tipodearchivo[i] !== 'jpeg' && tipodearchivo[i] !== 'gif'
+                                      && tipodearchivo[i] !== 'bmp' && tipodearchivo[i] !== 'ico' &&
+                                      tipodearchivo[i] !== 'doc' && tipodearchivo[i] !== 'dot'
+                                      && tipodearchivo[i] !== 'docx' && tipodearchivo[i] !== 'xls' && tipodearchivo[i] !== 'xlsx'
+                                      && tipodearchivo[i] !== 'csv' && tipodearchivo[i] !== 'xlk'
+                                      && tipodearchivo[i] !== 'xlm' && tipodearchivo[i] !== 'ctt' &&
+                                      tipodearchivo[i] !== 'pps' && tipodearchivo[i] !== 'ppt'
+                                      && tipodearchivo[i] !== 'pptx' && tipodearchivo[i] !== 'pdf' &&
+                                      tipodearchivo[i] !== 'zip' && tipodearchivo[i] !== '7z'
+                                      && tipodearchivo[i] !== 'rar' && tipodearchivo[i] !== 'mp3' && tipodearchivo[i] !== 'mid'
+                                      && tipodearchivo[i] !== 'wav' && tipodearchivo[i] !== 'aac' &&
+                                      tipodearchivo[i] !== 'avi' && tipodearchivo[i] !== 'mkv'
+                                      && tipodearchivo[i] !== 'flv' && tipodearchivo[i] !== 'mov'
+                                      && tipodearchivo[i] !== 'wmv' && tipodearchivo[i] !== 'mp4'"
+                                      src="../../../assets/img/archivo.png" width="20px" height="20px"
+                                      class="mr-2 imgS">
+
+                                      <label>{{archivonom.substring(0, 16)}}</label><img (click)="quitararchivo(i)" src="../../../assets/img/close-sharp.svg" class="pl-1 imgS" width="20px" height="20px">
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row form-group">
+                  <div class="col-12 align-items-center" style="margin-right: -60px;">
+                      <h5 style="font-size: 20px !important;">Fecha y Hora</h5>
+                  </div>
+                  <div class="col-6 align-items-center">
+                    <label style="font-style: italic; color: #333333">Inicia</label><br>
+                    <label>Fecha</label>
+                    <input class="input form-control" [(ngModel)]="fechainicio" type="date" (change)="fecha()"><br>
+                    <label for="">Hora</label>
+                    <input class="input form-control" [(ngModel)]="horainicial" type="time" (change)="fecha()"><br><br>
+                    <label *ngIf="fechayhorainicial !== '' && fechastatus === false">{{fechayhorainicial}}</label>
+                    <label *ngIf="fechayhorainicial === '' && fechastatus === false" class="invalid-feedback d-block">Debes escoger una fecha u hora mayor a la actual</label>
+                    <label *ngIf="fechayhorainicial === '' && fechastatus === true" class="invalid-feedback d-block">Debes escoger una fecha y hora</label>
+                  </div>
+                  <div class="col-6 align-items-center">
+                    <label style="font-style: italic; color: #333333">Termina</label><br>
+                    <label > Fecha</label>
+                    <input class="input form-control" [(ngModel)]="fechafinal" type="date" (change)="fecha1()"><br>
+                    <label for="">Hora</label>
+                    <input class="input form-control" [(ngModel)]="horafinal" type="time" (change)="fecha1()"><br><br>
+                    <label *ngIf="fechayhorafinal !== '' && fechastatus1 === false">{{fechayhorafinal}}</label>
+                    <label *ngIf="fechayhorafinal === '' && fechastatus1 === false" class="invalid-feedback d-block">Debes escoger una fecha u hora mayor a la fecha de inicio</label>
+                    <label *ngIf="fechayhorafinal === '' && fechastatus1 === true" class="invalid-feedback d-block">Debes escoger una fecha y hora</label>
+                  </div>
+              </div>
+              <div class="row form-group">
+                  <div class="col-4  align-items-center" style="margin-right: 30px;">
+                      <h5 style="font-size: 20px !important;">Recordatorio</h5>
+                  </div>
+                  <div class="col-8" style="margin-left: -100px;">
+                      <select [class]="claserecor" [(ngModel)]="idrecordatorio" style="font-size: 15px !important" id="inputGroupSelect01" (ngModelChange)="recordatorioevent()">
+                          <option disabled value="">Seleccione una opción</option>
+                          <option *ngFor="let recor of recordatorioinfO" value="{{recor.idRecordatorios}}">{{recor.Tiempo}}</option>
+                      </select>
+                      <div style="text-align: center;" *ngIf="claseerrornot === 'invalid-feedback d-block' " [class]="claseerrornot">
+                          <div >Este campo es obligatorio</div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row form-group">
+                  <div class="col-md-2 text-center">
+
+                  </div>
+                  <div class="col-md-8 pt-3 text-center d-flex justify-content-between">
+                      <button type="submit" (click)="crearcita()" class="btn btn-azul">CREAR</button>
+                      <button #cerrarmodalcrear (click)="inicializarcariables()" data-dismiss="modal" class="btn btn-rojo">CANCELAR</button>
+                  </div>
+                  <div class="col-md-2 text-center">
+
+                  </div>
+              </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<app-footer></app-footer>

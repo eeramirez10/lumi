@@ -1,0 +1,553 @@
+h1,h2,h3,h4,h5,h6{
+    color: #07138f;
+}
+.archivos{
+    overflow-y: scroll;
+    height: 150px;
+}
+.form-group h5{
+    font-weight: normal;
+}
+.circle{
+    position: absolute;
+    top:50%;
+    /* left:15%; */
+   display: inline-block;
+   border-radius: 50%;
+   width: 42px;
+   height: 42px;
+   cursor: pointer;
+   background: url("../../../assets/img/attach-outline.svg") no-repeat #f2f2f2;
+   background-size: 62%!important;
+   background-position: center;
+ }
+ .circle2{
+   display: inline-block;
+   width: 32px;
+   height: 32px;
+   margin-bottom: 0px;
+ }
+.input{
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 25px;
+}
+.bordeS{
+    border: 1px solid transparent;
+    padding: 15px;
+    border-radius: 25px;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(163,163,163,1);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(163,163,163,1);
+    box-shadow: 0px 0px 15px 0px rgba(163,163,163,1);
+}
+.divS .btn{
+    -webkit-box-shadow: 0px 10px 20px -13px rgba(7,18,143,1);
+    -moz-box-shadow: 0px 10px 20px -13px rgba(7,18,143,1);
+    box-shadow: 0px 10px 20px -13px rgba(7,18,143,1);
+	color: white;
+	width:auto;
+    border-radius: 2rem;
+	padding-top: 0.2%;
+	padding-bottom: 0.2%;
+	padding-left: 2%;
+	padding-right: 2%;
+    border: none;
+	cursor: pointer;
+	background-color: #07138f!important;
+}
+.btn{
+    -webkit-box-shadow: 0px 10px 20px -13px rgba(7,18,143,1);
+    -moz-box-shadow: 0px 10px 20px -13px rgba(7,18,143,1);
+    box-shadow: 0px 10px 20px -13px rgba(7,18,143,1);
+	color: white;
+	width:auto;
+    border-radius: 2rem;
+	padding-top: 0.2%;
+	padding-bottom: 0.2%;
+	padding-left: 2%;
+	padding-right: 2%;
+    border: none;
+	cursor: pointer;
+	background-color: #07138f!important;
+}
+.input2{
+    border: 1px solid black;
+    border-radius: 25px;
+}
+.btn-azul{
+    background-color: #07138f;
+    border-radius: 20px;
+    color: white;
+    padding: 0px 20px;
+}
+.btn-rojo{
+    background-color: #ff0000;
+    border-radius: 20px;
+    color: white;
+    padding: 0px 20px;
+}
+.clip{
+    width: 30px;
+    height: 30px;
+}
+.btnclip{
+    background-color:#f2f2f2;
+    border-radius: 50%;
+}
+input[type=file].hidden {
+    color: transparent;
+  }
+
+@media screen and (width: 1280px) {
+    .archivos{
+        overflow-y: scroll;
+        height: 100px;
+    }
+    .form-group{
+        margin-bottom:2em;
+    }
+    .modal-content
+{
+    border-radius:40px !important;
+}
+    .modal-content h5
+{
+    font-size:28px;
+}
+.modal-content .btn{
+    font-size: 25px;
+}
+    .modal-dialog-centered{
+        max-width: 800px;
+        }
+        h1{
+            font-size:40px;
+        }
+        h5{
+            font-size:20px;
+        }
+        .modal-dialog{
+            max-width:750px;
+        }
+        select{
+            font-size:25px;
+        }
+        label{
+            font-size:25px;
+        }
+        textarea{
+            font-size: 25px;
+        }
+        h6{
+            font-size: 25px;
+        }
+        .clip{
+            width: 30px;
+            height: 30px;
+        }
+        .imgS{
+            width: 30px;
+            height: 30px;
+        }
+        .btn{
+            font-size: 15px;
+        }
+        .calendario2
+        {
+            display: none;
+        }
+        .calendario{
+            margin-bottom: 80px;
+        }
+}
+@media screen and (min-width: 1366px) {
+    .modal-dialog-centered{
+        max-width: 900px;
+        }
+        h1{
+            font-size:50px;
+        }
+        h5{
+            font-size:25px;
+        }
+        .modal-dialog{
+            max-width:600px;
+        }
+        select{
+            font-size:20px;
+        }
+        label{
+            font-size:20px;
+        }
+        textarea{
+            font-size: 20px;
+        }
+        h6{
+            font-size: 20px;
+        }
+        .clip{
+            width: 25px;
+            height: 30px;
+        }
+        .imgS{
+            width: 30px;
+            height: 30px;
+        }
+        .btn{
+            font-size: 20px;
+        }
+        .calendario2
+        {
+            display: none;
+        }
+        .calendario{
+            margin-bottom: 80px;
+        }
+}
+@media screen and (min-width: 1440px) {
+
+}
+@media screen and (min-width: 1600px) {
+}
+@media screen and (min-width: 1680px) {
+
+}
+@media screen and (min-width: 1920px) {
+    .modal-dialog-centered{
+        max-width: 900px;
+        }
+        h1{
+            font-size:60px;
+        }
+        h5{
+            font-size:25px;
+        }
+        .modal-dialog{
+            max-width:600px;
+        }
+        select{
+            font-size:20px;
+        }
+        input{
+            font-size:20px;
+        }
+        label{
+            font-size:20px;
+        }
+        textarea{
+            font-size: 20px;
+        }
+        h6{
+            font-size: 20px;
+        }
+        .clip{
+            width: 25px;
+            height: 30px;
+        }
+        .imgS{
+            width: 30px;
+            height: 30px;
+        }
+        .btn{
+            font-size: 20px;
+        }
+        .calendario
+        {
+            display: none;
+        }
+        .calendario2{
+            display: block;
+            margin-bottom: 125px;
+        }
+}
+@media screen and (min-width: 2160px) {
+    .modal-dialog-centered{
+        max-width: 1000px;
+        }
+        h1{
+            font-size:75px;
+        }
+        h5{
+            font-size:35px;
+        }
+        .modal-dialog{
+            max-width:900px;
+        }
+        select{
+            font-size:30px;
+        }
+        input{
+            font-size: 30px;
+        }
+        label{
+            font-size:30px;
+        }
+        textarea{
+            font-size: 30px;
+        }
+        h6{
+            font-size: 35px;
+        }
+        .clip{
+            width: 30px;
+            height: 30px;
+        }
+        .imgS{
+            width: 30px;
+            height: 30px;
+        }
+        .btn{
+            font-size: 30px;
+        }
+        .calendario
+        {
+            display: none;
+        }
+        .calendario2{
+            display: block;
+        }
+}
+@media screen and (min-width: 2560px) {
+    .archivos{
+        overflow-y: scroll;
+        height: 183px;
+    }
+.modal-dialog-centered{
+max-width: 850px;
+}
+.modal-content
+{
+    border-radius:50px !important;
+}
+.modal-content h5
+{
+    font-size:40px;
+}
+h1{
+    font-size:60px;
+}
+h5{
+    font-size:30px;
+}
+.modal-dialog{
+    max-width:1000px;
+}
+select{
+    font-size:40px;
+}
+input{
+    font-size: 40px;
+}
+textarea{
+    font-size: 40px;
+}
+label{
+    font-size:40px;
+}
+h6{
+    font-size: 40px;
+}
+.form-group{
+    margin-bottom:2em;
+}
+.clip{
+    width: 50px;
+    height: 50px;
+}
+.imgS{
+    width: 50px;
+    height: 50px;
+}
+.btn{
+    font-size: 35px;
+}
+.calendario
+{
+    display: none;
+}
+.calendario2
+{
+    display: block;
+    margin-bottom: 125px;
+}
+}
+@media screen and (min-width: 2560px) and (max-height: 1080px){
+
+}
+@media screen and (min-width: 2736px) {
+    .form-group{
+        margin-bottom:2.5em;
+    }
+    .modal-content
+{
+    border-radius:55px !important;
+}
+    .modal-content h5
+{
+    font-size:45px;
+}
+.modal-content .btn{
+    font-size: 40px;
+}
+    .modal-dialog-centered{
+        max-width: 1000px;
+        }
+        h1{
+            font-size:80px;
+        }
+        h5{
+            font-size:35px;
+        }
+        .modal-dialog{
+            max-width:1200px;
+        }
+        select{
+            font-size:40px;
+        }
+        input{
+            font-size: 40px;
+        }
+        textarea{
+            font-size: 40px;
+        }
+        label{
+            font-size:40px;
+        }
+        h6{
+            font-size: 40px;
+        }
+        .clip{
+            width: 45px;
+            height: 45px;
+        }
+        .imgS{
+            width: 30px;
+            height: 30px;
+        }
+        .btn{
+            font-size: 30px;
+        }
+        .calendario
+        {
+            display: none;
+        }
+        .calendario2
+        {
+            display: block;
+            margin-bottom: 150px;
+        }
+}
+@media screen and (min-width: 3440px) {
+    form{
+        padding: 70px;
+    }
+    .form-group{
+        margin-bottom:3.5em;
+    }
+    .modal-content
+{
+    border-radius:65px !important;
+}
+    .modal-content h5
+{
+    font-size:60px;
+}
+    h1{
+        font-size:110px;
+    }
+    h5{
+        font-size:60px;
+    }
+    .modal-dialog{
+        max-width:1500px;
+    }
+    select{
+        font-size:50px;
+    }
+    label{
+        font-size:50px;
+    }
+    textarea{
+        font-size: 50px;
+    }
+    h6{
+        font-size: 50px;
+    }
+    .clip{
+        width: 80px;
+        height: 80px;
+    }
+    .imgS{
+        width: 70px;
+        height: 70px;
+    }
+    .btn{
+        font-size: 55px;
+    }
+    .calendario
+    {
+        display: none;
+    }
+}
+@media screen and (min-width: 3840px) {
+    .archivos{
+        overflow-y: scroll;
+        height: 300px;
+    }
+    form{
+        padding: 90px;
+    }
+    .form-group{
+        margin-bottom:3.5em;
+    }
+    .modal-content
+{
+    border-radius:65px !important;
+}
+    .modal-content h5
+{
+    font-size:70px;
+}
+    h1{
+        font-size:110px;
+    }
+    h5{
+        font-size:60px;
+    }
+    .modal-dialog{
+        max-width:1800px;
+    }
+    select{
+        font-size:70px;
+    }
+    label{
+        font-size:70px;
+    }
+    textarea{
+        font-size: 70px;
+    }
+    h6{
+        font-size: 70px;
+    }
+    .clip{
+        width: 80px;
+        height: 80px;
+    }
+    .imgS{
+        width: 70px;
+        height: 70px;
+    }
+    .modal-content .btn{
+        font-size: 65px;
+    }
+    .calendario
+    {
+        display: none;
+    }
+    .calendario2{
+        margin-bottom: 200px;
+    }
+}
+@media screen and (min-width: 3840px) and (max-height: 1080px){
+
+}

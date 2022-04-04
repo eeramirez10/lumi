@@ -1,0 +1,116 @@
+<app-header></app-header>
+<app-menua></app-menua>
+<div class="container-fluid pb-5">
+  <div class="container px-5">
+    <div class="row mb-3 mt-5 px-5">
+      <h1 class="ml-3" style="color: gray; opacity: 0.7;">
+        GRÁFICAS DE REPORTE DE EQUIPO
+      </h1>
+    </div>
+    <div class="row mb-5 px-5">
+      <div class="col-md-8 text-right" style="padding-bottom: 1%;">
+      </div>
+      <div class="col-md-4 text-center" style="padding-bottom: 1%;">
+        <span style="color: #07138f;font-weight: bold;">Filtrar por rango</span>
+      </div>
+
+      <div class="col-md-3 text-center">
+        <h1 class="ml-3">EQUIPO {{idE}}</h1>
+      </div>
+      <div class="col-md-3 text-right">
+        <select  class="input custom-select" style='width:90% !important' [(ngModel)]="usuariobuscador" (ngModelChange)="filtrarporusuario()">
+          <option disabled value="">Filtrar por asesor</option>
+          <option *ngFor="let usu of usuariosE" value="{{usu.idUsers}}">{{usu.Nombre}}</option>
+          <option value="">Sin filtro</option>
+      </select>
+      </div>
+      <div class="col-md-2 text-right">
+        <select #nommes [(ngModel)]="messelect" (ngModelChange)="valorselectmes($event)" class="input custom-select" style='width:90% !important'>
+            <option disabled value="">Filtrar por mes</option>
+            <option value="">Sin filtro</option>
+            <option value="01">Enero</option>
+            <option value="02">Febrero</option>
+            <option value="03">Marzo</option>
+            <option value="04">Abril</option>
+            <option value="05">Mayo</option>
+            <option value="06">Junio</option>
+            <option value="07">Julio</option>
+            <option value="08">Agosto</option>
+            <option value="09">Septiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
+          </select>
+      </div>
+      <div class="col-md-2 text-right">
+        <input class="input form-control" type="date"  id="fecha" #fecha [(ngModel)]="fechafiltro"  (ngModelChange)="filtroporrango()"/>
+      </div>
+      <div class="col-md-2 text-right">
+        <input class="input form-control" type="date"  id="fecha1" #fecha1 [(ngModel)]="fechafiltro1"  (ngModelChange)="filtroporrango()"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-1 d-flex justify-content-start aling-items-center pr-0">
+    <div style="transform: rotate(-90deg);margin: auto;height:fit-content;">
+      <span style="font-size: x-large;" class="noprint">TOTAL</span>
+    </div>
+  </div>
+
+    <div class="container-fluid px-0">
+        <canvas style="max-height:650px;" id="canvas" (click)="infografica($event)">{{chart}}</canvas>
+    </div>
+
+    <div class="col-md-12 text-center">
+      <span style="font-size: x-large;" class="noprint">EMPRESAS</span>
+    </div>
+</div>
+
+<button
+  style="display: none;"
+  #abrirmodal
+  data-toggle="modal"
+  data-target="#exampleModal4"
+></button>
+
+<div
+  class="modal fade"
+  id="exampleModal4"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="border-radius: 25px;">
+      <div class="modal-body mb-0 text-center">
+        <h5 class="text-center" id="exampleModalLabel">Abrir</h5>
+        <div class="row form-group">
+          <div class="col-md-6">
+            <button
+              type="submit"
+              style="width: 100%; height: 150%;"
+              class="btn-azul"
+              data-dismiss="modal"
+              [routerLink]="['/detalle_reporte/detalle_colaborador/',idE,empsel,1]"
+            >
+              Detalle citas
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button
+              style="width: 100%; height: 150%;"
+              class="btn-azul"
+              data-dismiss="modal"
+              [routerLink]="['/detalle_reporte/detalle_colaborador/',idE,empsel,0]"
+            >
+              Detalle tareas
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

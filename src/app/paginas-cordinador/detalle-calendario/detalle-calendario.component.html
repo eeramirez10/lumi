@@ -1,0 +1,134 @@
+<app-header></app-header>
+<app-menuc></app-menuc>
+
+<div *ngFor="let emp of cita" style="padding-left: 50px; padding-top: 50px; padding-right: 50px;">
+  <div class="row">
+      <div class="col-md-6">
+        <h3 class="pl-3" *ngIf="emp.Status_Empresa==0" style="font-style:italic;color:#000;">
+            PROSPECTO
+        </h3>
+        <h3 class="pl-3" *ngIf="emp.Status_Empresa==1" style="font-style:italic;color:#000;">
+            EMPRESA
+        </h3>
+      </div>
+    <div class="col-md-6 text-right">
+        <!-- <a href="" data-toggle="modal" data-target="#exampleModal1 " (click)="obtnerinfocita()">
+            <label *ngIf="(emp.FechaI | date:'y-MM-dd') >= (fecha2 | date:'y-MM-dd') && emp.Status === '1'" class="circle" style="cursor: pointer;"></label>
+        </a> -->
+    </div>
+
+
+    <div class="col-md-6 mb-5" style="padding-right: 30px;">
+      <br>
+
+        <div class="row">
+            <div class="col">
+             <h1 class="pl-3">{{emp.Nombre_Empresa}}</h1>
+            </div>
+      </div>
+
+      <br>
+      <div class="row shadow card px-2 pb-2">
+        <div class="row">
+          <div class="col-3" style="padding: 20px 0px 0px 30px;">
+            <div style="width:fit-content;">
+              <img src="http://192.168.1.61/lum/imagenes/{{emp.Foto}}" id="imagen">
+          </div>
+          </div>
+          <div class="col-9" style="padding: 20px 20px 10px 50px;">
+              <h3 style="color:#353535;">Dirección</h3>
+              <span class="spann">{{emp.Direccion}}</span>
+          </div>
+        </div>
+        <div class="row">
+
+        </div>
+        <div class="col-md-12">
+            <div class="row mt-2 d-flex align-items-center">
+            </div>
+        </div>
+        <div style="width: 100%" class="col-md-12 mt-3 p-0">
+            <main>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-warning alert-dismissible" role="alert" *ngIf="warning">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <strong>Warning!</strong> {{ message }}
+                            </div>
+
+                            <!--these properties are required: center, zoom-->
+                            <google-map [center]="center" [zoom]="zoom" [disableDefaultUI]="disableDefaultUI" [disableDoubleClickZoom]="disableDoubleClickZoom"
+                                [mapTypeId]="mapTypeId" [maxZoom]="maxZoom" [minZoom]="minZoom" [styles]="styles">
+                                <!--this property is required: position-->
+                                <div googleMapMarker [position]="position" [title]="title" [content]="content">
+                                </div>
+                            </google-map>
+
+                            <br>
+
+                            <div class="form-group">
+                                <!-- <label class="control-label" for="input-search">Address</label> -->
+                                <div class="input-group">
+                                    <input type="text" id="input-search" class="form-control" [(ngModel)]="address" (keyup.enter)="search(address)" placeholder="Address" hidden>
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-fab btn-fab-mini" title="search" (click)="search(address)" hidden>
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    </div>
+
+    <div class="col-md-6">
+
+      <div class="row">
+        <br>
+        <div class="col text-center" style="border-bottom: 1px solid black;  padding: 70px 10px 0px 10px;">
+          <h3>Fecha y Hora</h3>
+          <span class="text-center spann">{{emp.FechaI | date:'EEEE'}}</span>&nbsp;&nbsp;<span class="spann">{{emp.FechaI | date:'dd'}}</span>&nbsp;&nbsp;<span class="spann" style="text-transform:none">de</span><br><span class="spann">{{emp.FechaI | date:'MMMM'}}</span>&nbsp;&nbsp;<span class="spann" style="text-transform:none">de</span>&nbsp;&nbsp;<span class="spann">{{emp.FechaI | date:'y'}}</span><br><br>
+          <span class="text-center spann mt-3" style="text-transform:none">
+              {{emp.HoraI | slice:0:5}} Hrs - {{emp.HoraF | slice:0:5}} Hrs
+          </span><br>
+        </div>
+        <div class="col text-center" style="border-bottom: 1px solid black;  padding: 70px 10px 0px 10px;">
+          <h3>Motivo</h3>
+          <span class="spannn">
+              {{emp.Motivo}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+            <h3>Historial De Visitas</h3>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-left" scope="col"><span style="font-weight: bolder;">Fecha</span></th>
+                    <th class="text-left" scope="col"><span style="font-weight: bolder;">Asesor</span></th>
+                    <th class="text-left" scope="col"><span style="font-weight: bolder;">Motivo</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let cita of citas">
+                    <td class=""><span>{{cita.FechaI | date:'dd'}}</span><span>&nbsp;{{cita.FechaI | date:'MMMM'}}</span> </td>
+                    <td class=""><span>{{cita.Nombre}}</span></td>
+                    <td class=""><span>{{cita.Motivo}}</span></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    </div>
+
+  </div>
+</div>
+
+<app-footer></app-footer>

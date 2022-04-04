@@ -1,0 +1,55 @@
+<app-header></app-header>
+<app-menua></app-menua>
+
+<div class="container">
+
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <h1>REPORTES COLABORADORES</h1>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <input class="input px-2 py-1" type="text" name="filterTarea" placeholder="Buscar colaborador" style="font-style: italic;text-transform: capitalize;" [(ngModel)]="filterTarea">
+        </div>
+        <div class="col-md-3">
+            <select [(ngModel)]="seleccionado" (change)="capturar()" name="" id="" class="px-2 py-1">
+                <option value="0">filtrar por</option>
+                <option value="1">asesor</option>
+                <option value="2">coordinador</option>
+            </select>
+        </div>
+         <div class="col-md-6">
+           <div class="col-12 text-center">
+                <pagination-controls id="paginationp1" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                </pagination-controls>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5 ">
+        <ng-container *ngIf="( colaboradores | filter:filterTarea) as result">
+            <div class="col-md-4 px-5 mt-5" *ngFor="let col of result | paginate: { id: 'paginationp1',itemsPerPage: 9, currentPage: p};">
+                <a style="text-decoration: none;" [routerLink]="['/Rcolaboradores_Admin/Detalle_Colaboradores',col.idUsers]">
+                <div class="shadow cards row p-3" style="text-overflow:ellipsis">
+                <div class="col-lg-3 d-flex align-items-center justify-content-center">
+                        <img src="http://192.168.1.61/lumr.dyndns.org/lum/imagenes/{{col.Imagen}}" class="img"/>
+                    </div>
+                    <div class="col-lg-9">
+                        <h5 class="elipsis">{{col.Nombre}}</h5>
+                        <h6 *ngIf="col.Rol === '1'" style="font-weight: 400; font-style:italic;color: gray;">ASESOR DE VENTAS</h6>
+                        <h6 *ngIf="col.Rol === '2'" style="font-weight: 400; font-style:italic;color: gray;">COORDINADOR</h6>
+                        <h6 *ngIf="col.Rol === '4'" style="font-weight: 400; font-style:italic;color: gray;">CORDINADOR/ADMIN</h6>
+                    </div>
+                    <div class="col-md-12 text-center mt-2">
+                        <p class="elipsis">{{col.Usuario}}</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <h1 class="text-center mx-auto" style="color: red;" *ngIf="result.length === 0">no se encontraron resultados</h1>
+        </ng-container>
+    </div>
+</div>
+<app-footer></app-footer>

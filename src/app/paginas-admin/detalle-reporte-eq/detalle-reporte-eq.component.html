@@ -1,0 +1,404 @@
+<app-header></app-header>
+<app-menua></app-menua>
+
+<div class="container mb-5 pb-5">
+  <div class="row mb-3 mt-5">
+    <h1 class="ml-3" style="color: gray; opacity: 0.7;">
+      REPORTE GENERAL DE EQUIPO
+    </h1>
+  </div>
+  <div class="row mb-3 mt-5" *ngFor="let us of lider">
+    <div class="col-md-8">
+      <h1 class="ml-3">EQUIPO {{ us.Equipos_idEquipos }}</h1>
+    </div>
+    <div class="col-md-2 text-right">
+      <!-- <button class="btn btn-azul" [routerLink]="['/detalle_reporte/detalle_grafica',
+      us.Equipos_idEquipos,1]"><img class="mb-1 mr-2" src="../../../assets/img/pie-chart-sharp.svg" width="20px" height="20px">graficas</button> -->
+      <button class="btn btn-azul" [routerLink]="['/Requipos_Admin/Grafica_equipo',
+      us.Equipos_idEquipos]"><img class="mb-1 mr-2" src="../../../assets/img/pie-chart-sharp.svg" class="imagen">Graficas</button>
+    </div>
+  </div>
+
+  <div class="row my-5">
+    <div class="col-lg-5">
+      <div class="card shadow border-0 alto overflow-auto mb-4 p-2">
+              <h5 class="py-3 text-center font-weight-bold">INTEGRANTES</h5>
+              <div class="row" *ngFor="let us of lider"
+                style="border-bottom: 1px solid black;max-width:100%;">
+                <div class="col-md-3">
+                  <img src="http://192.168.1.61/lum/imagenes/{{us.Imagen}}"
+                    class="img mb-4"/>
+                </div>
+                <div class="col-md-9">
+                  <h5 class="text-left" style="cursor: pointer;"
+                  (click)="obtenerempresa(us.idUsers);obtenerprospecto(us.idUsers);
+                    obtenerusuario(us.idUsers);">
+                    {{ us.Nombre }}
+                  </h5>
+                  <span *ngIf="us.Rol === '1'" style="font-style: italic;"
+                    >ASESOR DE VENTAS</span>
+                  <span *ngIf="us.Rol === '2'" style="font-style: italic;"
+                    >COORDINADOR</span>
+                  <span *ngIf="us.Rol === '3'" style="font-style: italic;"
+                    >ADMINISTRADOR</span>
+                  <span *ngIf="us.Rol === '4'" style="font-style: italic;"
+                    >COORDINADOR/ADMIN</span>
+                  <div class="row">
+                    <!-- <button class="btn btn-azul mr-3" (click)="desactivar(us.idUsers)">
+                        desactivar
+                    </button> -->
+                    <button class="btn btn-azul" (click)="openModel(us.idUsers)">
+                        cambiar contraseña
+                    </button>
+                </div>
+                </div>
+              </div>
+              <div
+                class="row m-0 py-2"
+                style="max-width: 100%; height: 400px; height: fit-content;"
+                *ngFor="let eq of equipo">
+                <div class="col-lg-2" *ngIf="eq.Status_User === '1'" style="height: fit-content;">
+                  <img
+                    src="http://192.168.1.61/lum/imagenes/{{
+                      eq.Imagen}}" class="img2" alt=""/>
+                </div>
+
+                <div class="col-lg-2" *ngIf="eq.Status_User === '0'" style="height: fit-content;opacity:0.5;">
+                  <img
+                    src="http://192.168.1.61/lum/imagenes/{{
+                      eq.Imagen}}" class="img2" alt=""/>
+                </div>
+
+                <div class="col-lg-10" *ngIf="eq.Status_User === '1'" style="height: fit-content;">
+                  <div class="row">
+                    <h5 style="cursor: pointer;"
+                    (click)="obtenerempresa(eq.idUsers);obtenerprospecto(eq.idUsers);
+                    obtenerusuario(eq.idUsers);">
+                    {{ eq.Nombre }}
+                    </h5>
+                  </div>
+
+                    <div class="row">
+                      <span *ngIf="eq.Rol === '1'" style="font-style: italic;"
+                        >ASESOR DE VENTAS</span>
+                      <span *ngIf="eq.Rol === '2'" style="font-style: italic;"
+                        >COORDINADOR</span>
+                      <span *ngIf="eq.Rol === '3'" style="font-style: italic;"
+                        >ADMINISTRADOR</span>
+                      <span *ngIf="eq.Rol === '4'" style="font-style: italic;"
+                        >COORDINADOR/ADMIN</span>
+                    </div>
+                    <div class="row">
+                      <button class="btn btn-azul mr-3"
+                      (click)="desactivar(eq.idUsers,eq.Equipos_idEquipos)">
+                        desactivar
+                      </button>
+                      <button class="btn btn-azul" (click)="openModel(eq.idUsers)">
+                        cambiar contraseña
+                      </button>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-10" *ngIf="eq.Status_User === '0'" style="height: fit-content;">
+                  <div class="row" style="opacity:0.5;">
+                    <h5>
+                    {{ eq.Nombre }}
+                    </h5>
+                  </div>
+
+                    <div class="row" style="opacity:0.5;">
+                      <span *ngIf="eq.Rol === '1'" style="font-style: italic;"
+                        >ASESOR DE VENTAS</span>
+                      <span *ngIf="eq.Rol === '2'" style="font-style: italic;"
+                        >COORDINADOR</span>
+                      <span *ngIf="eq.Rol === '3'" style="font-style: italic;"
+                        >ADMINISTRADOR</span>
+                      <span *ngIf="eq.Rol === '4'" style="font-style: italic;"
+                        >COORDINADOR/ADMIN</span>
+                    </div>
+                    <div class="row">
+                      <button class="btn btn-azul mr-3" (click)="activar(eq.idUsers)" >
+                        activar</button>
+                      <button class="btn btn-azul" style="opacity:0.5;">
+                        cambiar contraseña
+                      </button>
+                    </div>
+
+                </div>
+
+              </div>
+      </div>
+    </div>
+
+    <div class="col-lg-7">
+      <div class="card shadow border-0 alto">
+        <nav id="tabs" class="px-5">
+          <div class="row mt-3">
+             <h5 class="mx-auto">
+              PORSPECTOS DE:
+             </h5>
+          </div>
+          <div class="row" *ngFor="let us of usuario">
+             <h4 class="mx-auto">{{us.Nombre}}</h4>
+          </div>
+          <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+            <!-- <a
+              class="nav-item nav-link active"
+              id="nav-home-tab"
+              data-toggle="tab"
+              href="#nav-home"
+              role="tab"
+              aria-controls="nav-home"
+              aria-selected="true"
+              >EMPRESAS</a> -->
+            <a
+              class="nav-item nav-link active"
+              id="nav-profile-tab"
+              data-toggle="tab"
+              href="#nav-profile"
+              role="tab"
+              aria-controls="nav-profile"
+              aria-selected="false"
+              >PROSPECTOS</a>
+          </div>
+        </nav>
+        <div class="card-body overflow-auto mb-4">
+            <div class="tab-content px-5 mb100" id="nav-tabContent">
+                <!-- <div class="tab-pane fade show active" id="nav-home" role="tabpanel"          aria-labelledby="nav-home-tab" >
+            <div  class="row m-0 py-2">
+              <div class="col-lg-4" style="height: fit-content;" *ngFor="let emp of empresas">
+                <div class="row">
+                  <a class="mx-auto" (click)="obtenerselect(emp.idEmpresas)" data-toggle="modal" data-target="#exampleModal">
+                  <img src="http://192.168.1.61/lum/imagenes/{{emp.Foto}}" class="img"/>
+                  </a>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-10 text-center">
+                        <span>{{emp.Nombre_Empresa.substring(0, 20)}}..</span>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+          </div> -->
+
+          <div class="tab-pane fade show active" id="nav-profile" role="tabpanel"           aria-labelledby="nav-profile-tab">
+            <div class="row m-0 py-2">
+              <div class="col-lg-4" style="height: fit-content;" *ngFor="let emp of prospectos">
+                <div class="row">
+                  <a class="mx-auto" (click)="obtenerselect(emp.idEmpresas)" data-toggle="modal" data-target="#exampleModal">
+                  <img src="http://192.168.1.61/lum/imagenes/{{emp.Foto}}" class="img"/>
+                  </a>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-10 text-center">
+                        <span>{{emp.Nombre_Empresa.substring(0, 20)}}..</span>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Cambiar Contrseña-->
+<div #myModal class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center">
+        <h1 class="modal-title">CAMBIAR CONTRASEÑA</h1>
+      </div>
+      <div class="modal-body">
+
+              <form #regForm="ngForm" [formGroup]="loginForm1" (ngSubmit)="onSubmit1()">
+
+                <!-- <div class="form-group">
+                    <div class="row mt-3">
+                    <div class="col-md-4">
+                        <label for="password">Contraseña actual</label>
+                    </div>
+                      <div class="col-md-8">
+                      <div class="input-group" id="show_hide_password">
+                        <div class="row" style="width: 100%;">
+                          <div class="col-lg-11 pr-0">
+                            <input id="contraseña" [type]="password_type2" formControlName="password2" (ngModelChange)="dataChanged2($event)" class="form-control shadow" [ngClass]="{ 'is-invalid': submitted1 && ff.password2.errors }"/>
+
+                            <div *ngIf="submitted1 && ff.password2.errors" class="invalid-feedback">
+                                <div *ngIf="ff.password2.errors.required">La contraseña es requerida</div>
+                            </div>
+
+                          </div>
+                          <div class="col-lg-1 pl-2 d-flex align-items-center">
+                            <div class="input-group-addon d-flex align-items-center" *ngIf="visible2 === false && vercontrasena2 === true">
+                              <a (click)="vercontra2()"><i id="ojo" class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                          </div>
+                          <div class="input-group-addon d-flex align-items-center" *ngIf="visible2 === true && vercontrasena2 === true">
+                              <a (click)="vercontra2()"><i id="ojo"  class="fa fa-eye" aria-hidden="true"></i></a>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+
+                <div class="form-group">
+                <div class="row mt-5">
+                <div class="col-md-4">
+                    <label for="password">Nueva contraseña</label>
+                </div>
+                  <div class="col-md-8">
+                  <div class="input-group" id="show_hide_password">
+                    <div class="row" style="width: 100%;">
+                      <div class="col-lg-11 pr-0">
+                        <input id="contraseña1" [type]="password_type" formControlName="password" (ngModelChange)="dataChanged($event)" class="form-control shadow" [ngClass]="{ 'is-invalid': submitted1 && ff.password.errors }"/>
+                        <div *ngIf="submitted1 && ff.password.errors" class="invalid-feedback">
+                            <div *ngIf="ff.password.errors.required">La contraseña es requerida</div>
+                            <div *ngIf="ff.password.errors.minlength">La contraseña debe ser minimo de 8 carácteres</div>
+                            <div *ngIf="ff.password.errors.maxlength">La contraseña debe ser máximo de 16 carácteres</div>
+                        </div>
+                      </div>
+                      <div class="col-lg-1 pl-2 d-flex align-items-center">
+                        <div class="input-group-addon d-flex align-items-center" *ngIf="visible === false && vercontrasena === true">
+                          <a (click)="vercontra()"><i id="ojo" class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                      </div>
+                      <div class="input-group-addon d-flex align-items-center" *ngIf="visible === true && vercontrasena === true">
+                          <a (click)="vercontra()"><i id="ojo"  class="fa fa-eye" aria-hidden="true"></i></a>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+              <div class="form-group">
+                <div class="row mt-5">
+                    <div class="col-md-4">
+                        <label for="password">Confirmar contraseña</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="input-group" id="show_hide_password">
+                            <div class="row" style="width: 100%;">
+                              <div class="col-lg-11 pr-0">
+                              <input id="contraseña" [type]="password_type1" formControlName="password1" (ngModelChange)="dataChanged1($event)" class="form-control shadow" [ngClass]="{ 'is-invalid': submitted1 && ff.password1.errors }"/>
+                              <div *ngIf="submitted1 && ff.password1.errors" class="invalid-feedback">
+                                  <div *ngIf="ff.password1.errors.required">La contraseña es requerida</div>
+                                  <div *ngIf="ff.password1.errors.minlength">La contraseña debe ser minimo de 8 carácteres</div>
+                                  <div *ngIf="ff.password1.errors.maxlength">La contraseña debe ser máximo de 16 carácteres</div>
+                              </div>
+                              </div>
+                              <div class="col-lg-1 pl-2 d-flex align-items-center">
+                              <div class="input-group-addon d-flex align-items-center" *ngIf="visible1 === false && vercontrasena1 === true">
+                                  <a (click)="vercontra1()"><i id="ojo" class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                              </div>
+                              <div class="input-group-addon d-flex align-items-center" *ngIf="visible1 === true && vercontrasena1 === true">
+                                  <a (click)="vercontra1()"><i id="ojo"  class="fa fa-eye" aria-hidden="true"></i></a>
+                              </div>
+                              </div>
+                              </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="error" class="alert alert-danger alert-dismissible fade show mt-2 mb-2">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="borrar()">
+                <span aria-hidden="true">&times;</span>
+              </button> {{error}}
+            </div>
+            <div *ngIf="error2" class="alert alert-success alert-dismissible fade show mt-2 mb-2">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="borrar2()">
+                  <span aria-hidden="true">&times;</span>
+                </button> {{error2}}
+              </div>
+
+                <div class="form-group text-center my-5">
+                    <button type="submit" name="submit1" class="btn btn-azul btn-md">GUARDAR</button>
+                </div>
+
+            </form>
+
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL VER PROSPECTO -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content" style="border-radius: 25px;">
+        <button hidden #closeModal type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-body p-5 text-center" *ngFor="let select of selectemp">
+            <form>
+            <div class="row form-group">
+                <div class="col-lg-12 text-center">
+                    <img src="http://192.168.1.61/lum/imagenes/{{select.Foto}}" class="img"/>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Cliente/Empresa</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" value="{{select.Nombre_Empresa}}" type="text" disabled style="width:100%">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Dirección</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" value="{{select.Direccion_Empresa}}" type="text" disabled style="width:100%">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Contacto</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" value="{{select.NomContacto}}" type="text" disabled style="width:100%">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Telefono</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" value="{{select.Telefono}}" type="text" disabled style="width:100%">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Correo</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" value="{{select.Correo}}" type="text" disabled style="width:100%">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 d-flex align-items-center">
+                    <h5>Comentario</h5>
+                </div>
+                <div class="col-md-9 my-3">
+                    <input class="inputS" value="{{select.Comentario}}" type="text" disabled style="width:100%">
+                </div>
+            </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>

@@ -1,0 +1,383 @@
+<app-header></app-header>
+<app-menu></app-menu>
+
+<div *ngFor="let emp of cita" style="padding-left: 50px; padding-top: 50px; padding-right: 50px;">
+  <div class="row">
+      <div class="col-md-6">
+        <h3 class="pl-3" *ngIf="emp.Status_Empresa==0" style="font-style:italic;color:#000;">
+            PROSPECTO
+        </h3>
+        <h3 class="pl-3" *ngIf="emp.Status_Empresa==1" style="font-style:italic;color:#000;">
+            EMPRESA
+        </h3>
+      </div>
+    <div class="col-md-6 text-right">
+        <a href="" data-toggle="modal" data-target="#exampleModal1 " (click)="obtnerinfocita()">
+            <label *ngIf="(emp.FechaI | date:'y-MM-dd') >= (fecha2 | date:'y-MM-dd') && emp.Status === '1'" class="circle" style="cursor: pointer;"></label>
+        </a>
+    </div>
+
+
+    <div class="col-md-6 mb-5" style="padding-right: 30px;">
+      <br>
+
+        <div class="row">
+            <div class="col">
+             <h1 class="pl-3">{{emp.Nombre_Empresa}}</h1>
+            </div>
+      </div>
+
+      <br>
+      <div class="row shadow card px-2 pb-2">
+        <div class="row">
+          <div class="col-3" style="padding: 20px 0px 0px 30px;">
+            <div style="width:fit-content;">
+              <img src="http://192.168.1.61/lum/imagenes/{{emp.Foto}}" id="imagen">
+          </div>
+          </div>
+          <div class="col-9" style="padding: 20px 20px 10px 50px;">
+              <h3 style="color:#353535;">Dirección</h3>
+              <span class="spann">{{emp.Direccion}}</span>
+          </div>
+        </div>
+        <div style="width: 100%" class="col-md-12 mt-3 p-0">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-warning alert-dismissible" role="alert" *ngIf="warning">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Warning!</strong> {{ message }}
+                    </div>
+
+                    <!--these properties are required: center, zoom-->
+                    <google-map [center]="center" [zoom]="zoom" [disableDefaultUI]="disableDefaultUI" [disableDoubleClickZoom]="disableDoubleClickZoom"
+                        [mapTypeId]="mapTypeId" [maxZoom]="maxZoom" [minZoom]="minZoom" [styles]="styles">
+                        <!--this property is required: position-->
+                        <div googleMapMarker [position]="position" [title]="title" [content]="content">
+                        </div>
+                    </google-map>
+
+                    <br>
+
+                    <div class="form-group">
+                        <!-- <label class="control-label" for="input-search">Address</label> -->
+                        <div class="input-group">
+                            <input type="text" id="input-search" class="form-control" [(ngModel)]="address" (keyup.enter)="search(address)" placeholder="Address" hidden>
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-fab btn-fab-mini" title="search" (click)="search(address)" hidden>
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="col-md-6">
+
+      <div class="row">
+        <br>
+        <div class="col text-center" style="border-bottom: 1px solid black;  padding: 70px 10px 0px 10px;">
+          <h3>Fecha y Hora</h3>
+          <span class="text-center spann">{{emp.FechaI | date:'EEEE'}}</span>&nbsp;&nbsp;
+          <span class="spann">{{emp.FechaI | date:'dd'}}</span>&nbsp;&nbsp;
+          <span class="spann" style="text-transform:none">de</span><br>
+          <span class="spann">{{emp.FechaI | date:'MMMM'}}</span>&nbsp;&nbsp;
+          <span class="spann" style="text-transform:none">de</span>&nbsp;&nbsp;
+          <span class="spann">{{emp.FechaI | date:'y'}}</span><br><br>
+          <span class="text-center spann mt-3" style="text-transform:none">
+              {{emp.HoraI | slice:0:5}} Hrs - {{emp.HoraF | slice:0:5}} Hrs
+          </span><br>
+        </div>
+        <div class="col text-center" style="border-bottom: 1px solid black;  padding: 70px 10px 0px 10px;">
+          <h3>Motivo</h3>
+          <span class="spannn">
+              {{emp.Motivo}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+            <h3>Historial De Visitas</h3>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-left" scope="col"><span style="font-weight: bolder;">Fecha</span></th>
+                    <th class="text-left" scope="col"><span style="font-weight: bolder;">Asesor</span></th>
+                    <th class="text-left" scope="col"><span style="font-weight: bolder;">Motivo</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let cita of citas">
+                    <td class=""><span>{{cita.FechaI | date:'dd'}}</span><span>&nbsp;{{cita.FechaI | date:'MMMM'}}</span> </td>
+                    <td class=""><span>{{cita.Nombre}}</span></td>
+                    <td class=""><span>{{cita.Motivo}}</span></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    </div>
+
+  </div>
+</div>
+<!-- /*
+|--------------------------------------------------------------------------
+| MODAL MODIFICAR CITA
+|--------------------------------------------------------------------------
+*/ -->
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" style="border-radius: 25px;">
+        <h1 class="modal-title text-center pt-3" id="exampleModalLabel">EDITAR CITA</h1>
+        <div class="modal-body" style="padding: 1rem 2rem;">
+            <div *ngFor="let empresa of empresasinfo">
+
+                <div class="row form-group">
+                    <div class="col-md-4">
+                        <h5 *ngIf="idSucuObraM !== '0'">Cliente/Empresa</h5>
+                        <h5 *ngIf="idSucuObraM === '0'">Prospecto</h5>
+                    </div>
+                    <div class="col-md-8">
+                        <select style="background-color: #f2f2f2;" [class]="clasesel" id="inputGroupSelect01" [(ngModel)]="idempresa"  (ngModelChange)="obtenerifoempresa()" disabled>
+                            <option disabled value="">{{empresa.Nombre_Empresa}}</option>
+                            <option *ngFor="let emp of empresasid"  value="{{emp.idEmpresas}}">{{emp.Nombre_Empresa}}</option>
+                        </select>
+                        <div style="text-align: center;" *ngIf="claseerrorempresa === 'invalid-feedback d-block' " [class]="claseerrorempresa">
+                            <div >Debe seleccionar un cliente o empresa</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row form-group">
+                        <div class="col-md-4 d-flex align-items-center">
+                            <h5>Sucursal/Obra</h5>
+                        </div>
+                        <div class="col-md-8">
+                            <select *ngIf="idSucuObraM !== '0'" class="input custom-select" id="inputGroupSelect01" [(ngModel)]="idSucuObraM">
+                                <option *ngFor="let suc of sucuO2" value="{{suc.idSO}}">{{suc.nombreSO}}</option>
+                            </select>
+                            <select style="background-color: #f2f2f2;" disabled *ngIf="idSucuObraM === '0'" class="input custom-select" id="inputGroupSelect01" [(ngModel)]="idSucuObraM">
+                                <option *ngFor="let suc of sucuO2" value="{{suc.idSO}}">{{suc.nombreSO}}</option>
+                            </select>
+                        </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <h5>Dirección</h5>
+                    </div>
+                    <div class="col-md-8">
+                        <textarea style="resize: none;border:0 !important; background-color: #f2f2f2;" class="input form-control" id="exampleFormControlTextarea1" rows="1">{{empresa.Direccion_Empresa}}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-4 d-flex align-items-center">
+                    <h5>Motivo</h5>
+                </div>
+                <div class="col-md-8">
+                    <textarea (ngModelChange)="dimot($event)" [(ngModel)]="Motivo" style="resize: none;border:0;border-bottom: 2px solid black; border-radius: 0px !important;"  placeholder="Escriba el motivo" [class]="clasemotivo" id="exampleFormControlTextarea1" rows="1"></textarea>
+                    <div style="text-align: center;" *ngIf="claseerrormotivo === 'invalid-feedback d-block' " [class]="claseerrormotivo">
+                        <div >Debe escribir el motivo</div>
+                    </div>
+                </div>
+            </div>
+                <div class="row form-group">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <h5>Adjuntar archivo</h5>
+                    </div>
+                    <div class="col-md-8 archivos">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="archivo" class="circle2" style="margin-bottom: 0px!important;"></label>
+                                <input style="height: 0px;width: 0px;" type="file" id="archivo"
+                                (change)="onFileChanged($event)"  class="hidden" multiple="true"
+                                accept="audio/*,video/*,.zip,.rar,.7zip,.xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf">
+                            </div>
+                            <div  class="col-md-10">
+                                <div *ngFor="let archivonom of nombredearchivos; let i = index" class="row">
+                                    <div class="col-md-12 d-flex align-items-center">
+                                        <img *ngIf="tipodearchivo[i] === 'png' || tipodearchivo[i] === 'jpg'
+                                        || tipodearchivo[i] === 'jpeg' || tipodearchivo[i] === 'gif'
+                                        || tipodearchivo[i] === 'bmp' || tipodearchivo[i] === 'ico'"
+                                        src="../../../assets/img/images-outline.svg" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="tipodearchivo[i] === 'doc' || tipodearchivo[i] === 'dot'
+                                        || tipodearchivo[i] === 'docx'"
+                                        src="../../../assets/img/word.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="tipodearchivo[i] === 'xls' || tipodearchivo[i] === 'xlsx'
+                                        || tipodearchivo[i] === 'csv' || tipodearchivo[i] === 'xlk'
+                                        || tipodearchivo[i] === 'xlm' || tipodearchivo[i] === 'ctt'"
+                                        src="../../../assets/img/excel.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="tipodearchivo[i] === 'pps' || tipodearchivo[i] === 'ppt'
+                                        || tipodearchivo[i] === 'pptx'"
+                                        src="../../../assets/img/power.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="tipodearchivo[i] === 'pdf'"
+                                        src="../../../assets/img/pdf.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="tipodearchivo[i] === 'zip' || tipodearchivo[i] === '7z'
+                                        || tipodearchivo[i] === 'rar'"
+                                        src="../../../assets/img/zip.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="tipodearchivo[i] === 'mp3' || tipodearchivo[i] === 'mid'
+                                        || tipodearchivo[i] === 'wav' || tipodearchivo[i] === 'aac'"
+                                        src="../../../assets/img/musica.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="tipodearchivo[i] === 'avi' || tipodearchivo[i] === 'mkv'
+                                        || tipodearchivo[i] === 'flv' || tipodearchivo[i] === 'mov'
+                                        || tipodearchivo[i] === 'wmv' || tipodearchivo[i] === 'mp4'"
+                                        src="../../../assets/img/video.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="tipodearchivo[i] !== 'png' && tipodearchivo[i] !== 'jpg'
+                                        && tipodearchivo[i] !== 'jpeg' && tipodearchivo[i] !== 'gif'
+                                        && tipodearchivo[i] !== 'bmp' && tipodearchivo[i] !== 'ico' &&
+                                        tipodearchivo[i] !== 'doc' && tipodearchivo[i] !== 'dot'
+                                        && tipodearchivo[i] !== 'docx' && tipodearchivo[i] !== 'xls' && tipodearchivo[i] !== 'xlsx'
+                                        && tipodearchivo[i] !== 'csv' && tipodearchivo[i] !== 'xlk'
+                                        && tipodearchivo[i] !== 'xlm' && tipodearchivo[i] !== 'ctt' &&
+                                        tipodearchivo[i] !== 'pps' && tipodearchivo[i] !== 'ppt'
+                                        && tipodearchivo[i] !== 'pptx' && tipodearchivo[i] !== 'pdf' &&
+                                        tipodearchivo[i] !== 'zip' && tipodearchivo[i] !== '7z'
+                                        && tipodearchivo[i] !== 'rar' && tipodearchivo[i] !== 'mp3' && tipodearchivo[i] !== 'mid'
+                                        && tipodearchivo[i] !== 'wav' && tipodearchivo[i] !== 'aac' &&
+                                        tipodearchivo[i] !== 'avi' && tipodearchivo[i] !== 'mkv'
+                                        && tipodearchivo[i] !== 'flv' && tipodearchivo[i] !== 'mov'
+                                        && tipodearchivo[i] !== 'wmv' && tipodearchivo[i] !== 'mp4'"
+                                        src="../../../assets/img/archivo.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <label>{{archivonom.substring(0, 16)}}</label><img (click)="quitararchivo(i)" src="../../../assets/img/close-sharp.svg" class="pl-1 imgS" width="20px" height="20px">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                            </div>
+                            <div  class="col-md-10">
+                                <div *ngFor="let archivobasedatos of arreglodearchivosbase" class="row">
+                                    <div class="col-md-12 d-flex align-items-center">
+                                        <img *ngIf="archivobasedatos.formato === 'png' || archivobasedatos.formato === 'jpg'
+                                        || archivobasedatos.formato === 'jpeg' || archivobasedatos.formato === 'gif'
+                                        || archivobasedatos.formato === 'bmp' || archivobasedatos.formato === 'ico'"
+                                        src="../../../assets/img/images-outline.svg" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="archivobasedatos.formato === 'doc' || archivobasedatos.formato === 'dot'
+                                        || archivobasedatos.formato === 'docx'"
+                                        src="../../../assets/img/word.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="archivobasedatos.formato === 'xls' || archivobasedatos.formato === 'xlsx'
+                                        || archivobasedatos.formato === 'csv' || archivobasedatos.formato === 'xlk'
+                                        || archivobasedatos.formato === 'xlm' || archivobasedatos.formato === 'ctt'"
+                                        src="../../../assets/img/excel.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="archivobasedatos.formato === 'pps' || archivobasedatos.formato === 'ppt'
+                                        || archivobasedatos.formato === 'pptx'"
+                                        src="../../../assets/img/power.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="archivobasedatos.formato === 'pdf'"
+                                        src="../../../assets/img/pdf.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="archivobasedatos.formato === 'zip' || archivobasedatos.formato === '7z'
+                                        || archivobasedatos.formato === 'rar'"
+                                        src="../../../assets/img/zip.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="archivobasedatos.formato === 'mp3' || archivobasedatos.formato === 'mid'
+                                        || archivobasedatos.formato === 'wav' || archivobasedatos.formato === 'aac'"
+                                        src="../../../assets/img/musica.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="archivobasedatos.formato === 'avi' || archivobasedatos.formato === 'mkv'
+                                        || archivobasedatos.formato === 'flv' || archivobasedatos.formato === 'mov'
+                                        || archivobasedatos.formato === 'wmv' || archivobasedatos.formato === 'mp4'"
+                                        src="../../../assets/img/video.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <img *ngIf="archivobasedatos.formato !== 'png' && archivobasedatos.formato !== 'jpg'
+                                        && archivobasedatos.formato !== 'jpeg' && archivobasedatos.formato !== 'gif'
+                                        && archivobasedatos.formato !== 'bmp' && archivobasedatos.formato !== 'ico' &&
+                                        archivobasedatos.formato !== 'doc' && archivobasedatos.formato !== 'dot'
+                                        && archivobasedatos.formato !== 'docx' && archivobasedatos.formato !== 'xls' && archivobasedatos.formato !== 'xlsx'
+                                        && archivobasedatos.formato !== 'csv' && archivobasedatos.formato !== 'xlk'
+                                        && archivobasedatos.formato !== 'xlm' && archivobasedatos.formato !== 'ctt' &&
+                                        archivobasedatos.formato !== 'pps' && archivobasedatos.formato !== 'ppt'
+                                        && archivobasedatos.formato !== 'pptx' && archivobasedatos.formato !== 'pdf' &&
+                                        archivobasedatos.formato !== 'zip' && archivobasedatos.formato !== '7z'
+                                        && archivobasedatos.formato !== 'rar' && archivobasedatos.formato !== 'mp3' && archivobasedatos.formato !== 'mid'
+                                        && archivobasedatos.formato !== 'wav' && archivobasedatos.formato !== 'aac' &&
+                                        archivobasedatos.formato !== 'avi' && archivobasedatos.formato !== 'mkv'
+                                        && archivobasedatos.formato !== 'flv' && archivobasedatos.formato !== 'mov'
+                                        && archivobasedatos.formato !== 'wmv' && archivobasedatos.formato !== 'mp4'"
+                                        src="../../../assets/img/archivo.png" width="20px" height="20px"
+                                        class="mr-2 imgS">
+                                        <a href="http://192.168.1.61/lum/Archivos/{{archivobasedatos.Nombre}}" target="_blank"><label style="cursor: pointer;" >{{(archivobasedatos.Nombre).substring(18, 34)}}</label></a><img (click)="eliminararchivo(archivobasedatos.idArchivos)" src="../../../assets/img/close-sharp.svg" class="pl-1 imgS" width="20px" height="20px">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <h5>Fecha y Hora</h5>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label style="font-style: italic; color: #333333">Inicia</label><br>
+                                <label>Fecha</label>
+                                <input class="input form-control" [(ngModel)]="fechainicio" type="date" (change)="fecha()"><br>
+                                <label for="">Hora</label>
+                                <input class="input form-control" [(ngModel)]="horainicial" type="time" (change)="fecha()"><br><br>
+                                <label *ngIf="fechayhorainicial !== ''">{{fechayhorainicial}}</label>
+                                <label *ngIf="fechayhorainicial === ''" class="invalid-feedback d-block">Debes escoger una fecha u hora mayor a la actual</label>
+                            </div>
+                            <div class="col-md-6">
+                                <label style="font-style: italic; color: #333333">Termina</label><br>
+                                <label > Fecha</label>
+                                <input class="input form-control" [(ngModel)]="fechafinal" type="date" (change)="fecha1()"><br>
+                                <label for="">Hora</label>
+                                <input class="input form-control" [(ngModel)]="horafinal" type="time" (change)="fecha1()"><br><br>
+                                <label *ngIf="fechayhorafinal !== ''">{{fechayhorafinal}}</label>
+                                <label *ngIf="fechayhorafinal === ''" class="invalid-feedback d-block">Debes escoger una fecha u hora mayor a la fecha de inicio</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <h5>Recordatorio</h5>
+                    </div>
+                    <div class="col-md-8">
+                        <select [class]="claserecor" [(ngModel)]="idrecordatorio" class="input2 custom-select" id="inputGroupSelect01" (ngModelChange)="recordatorioevent()">
+                            <option disabled value="">Seleccione una opción</option>
+                            <option *ngFor="let recor of recordatorioinfO" value="{{recor.idRecordatorios}}">{{recor.Tiempo}}</option>
+                        </select>
+                        <div style="text-align: center;" *ngIf="claseerrornot === 'invalid-feedback d-block' " [class]="claseerrornot">
+                            <div >Este campo es obligatorio</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-2 text-center">
+
+                    </div>
+                    <div class="col-md-8 pt-3 text-center d-flex justify-content-between">
+                        <button type="submit" (click)="editarcita()" class="btn btn-azul">Modificar</button>
+                        <button #cerrarmodalcrear1 (click)="inicializarcariables()" data-dismiss="modal" class="btn btn-azul">CANCELAR</button>
+                    </div>
+                    <div class="col-md-2 text-center">
+
+                    </div>
+                </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>

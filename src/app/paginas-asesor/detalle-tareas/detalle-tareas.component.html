@@ -1,0 +1,731 @@
+
+<app-header></app-header>
+<app-menu></app-menu>
+
+<div class="col-lg-12 px-5">
+    <form class="form-inline mt-5" name="form1">
+        <h1 class="tareas">TAREAS</h1>
+        <select [(ngModel)]="opcionSeleccionado" (change)="capturar()" name="select1" class="input custom-select ml-5" id="inputGroupSelect01">
+            <option value="0">Filtrar por Fecha</option>
+            <option value="1">Hoy</option>
+            <option value="2">Hace una semana</option>
+            <option value="3">Hace un mes</option>
+            <option value="4">Hace 60 dias</option>
+        </select>
+        <select [(ngModel)]="opcionSeleccionado2" (change)="capturar2()" class="input custom-select ml-5" id="inputGroupSelect02" name="select2">
+            <option value="0">Filtrar por Persona</option>
+            <option value="1">Asignada para mi</option>
+            <option value="2">Asignada por mi</option>
+        </select>
+
+        <select [(ngModel)]="opcionSeleccionado3" (change)="capturar3()" class="input custom-select ml-5" id="inputGroupSelect03" name="select3">
+
+        <option value="0" selected>Filtrar por Empresa</option>
+
+        <ng-container *ngFor="let emp of empresasid1">
+          <option
+            *ngIf="emp.Status_Empresa === '1'"
+            value="{{ emp.idEmpresas }}"
+            >{{ emp.Nombre_Empresa }}</option>
+        </ng-container>
+
+        <option
+          style="color: #07138f; text-align: center !important;"
+          disabled
+          value=""
+          >PROSPECTOS</option>
+
+        <ng-container *ngFor="let emp of empresasid1">
+          <option
+            *ngIf="
+              emp.Status_Empresa === '0' ||
+              emp.Status_Empresa === '2'
+            "
+            value="{{ emp.idEmpresas }}"
+            >{{ emp.Nombre_Empresa }}</option>
+        </ng-container>
+
+        </select>
+    </form>
+    <!-- <p [hidden]="opcionSeleccionado == '0'">Haz seleccionado la opción # {{ verSeleccion }}</p> -->
+</div>
+
+<nav id="tabs" class="px-5">
+    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">PENDIENTES</a>
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">FINALIZADAS</a>
+        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">CANCELADAS</a>
+    </div>
+</nav>
+
+
+<div class="tab-content pl-5 pr-4 mb100" id="nav-tabContent">
+
+<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <div class="row py-4 mr-5" style="max-width: 100%;">
+            <button [routerLink]="['/Detalle_Tareas/Crear_Tarea']" class="btn btn-azul ml-auto">+ Nueva Tarea</button>
+        </div>
+
+        <div class="row py-4" style="max-width: 100%;">
+
+                <ng-container>
+                <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of tarea | paginate: { id: 'paginationp1',itemsPerPage: 6, currentPage: p};">
+                    <div class="card shadow p-4">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                 <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                            </div>
+                            <div class="col-lg-7 fechaa">
+                               <span>Creada:</span>&nbsp;<span>{{emp.FechaSol | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaSol | date:'dd'}}</span>&nbsp;<span style="text-transform:none">de</span>&nbsp;<span>{{emp.FechaSol | date:'MMMM'}}</span>&nbsp;<span style="text-transform:none">de</span>&nbsp;<span>{{emp.FechaSol | date:'y'}}</span><br>
+                            </div>
+                            <div class="col-md-1">
+                                <a [routerLink]="['/Detalle_Tareas/Editar_Tarea',emp.idTareas]" style="cursor: pointer;">
+                                    <label *ngIf="emp.idResponsable == this.idUsuario" class="circle" style="cursor: pointer;"></label>
+                                    <label *ngIf="emp.idResponsable != this.idUsuario" class="circle2" style="cursor: pointer;"></label>
+                                    <!-- <span *ngIf="emp.comentarios!=='0'" style="color:red!important;font-weight:900;position:absolute;font-size:24px;right:5px;top:-25px">
+                                        {{emp.comentarios}}
+                                    </span> -->
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                <pagination-controls id="paginationp1" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                </pagination-controls>
+                </div>
+                </ng-container>
+
+                <!-- <ng-container *ngIf="vista === 2">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of filtrofecha1 | paginate: { id: 'paginationp2',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-7 fechaa">
+                                    <span>Creada:</span>&nbsp;<span>{{emp.FechaSol | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaSol | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'y'}}</span><br>
+                                </div>
+                                <div class="col-md-1">
+                                    <a [routerLink]="['/Detalle_Tareas/Editar_Tarea',emp.idTareas]" style="cursor: pointer;">
+                                        <label class="circle" style="cursor: pointer;"></label>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                <pagination-controls id="paginationp2" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                </pagination-controls>
+                </div>
+                </ng-container>
+
+                <ng-container *ngIf="vista === 3">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of filtrofecha2 | paginate: { id: 'paginationp3',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-7 fechaa">
+                                    <span>Creada:</span>&nbsp;<span>{{emp.FechaSol | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaSol | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'y'}}</span><br>
+                                </div>
+                                <div class="col-md-1">
+                                    <a [routerLink]="['/Detalle_Tareas/Editar_Tarea',emp.idTareas]" style="cursor: pointer;">
+                                        <label class="circle" style="cursor: pointer;"></label>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                <pagination-controls id="paginationp3" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                </pagination-controls>
+                </div>
+                </ng-container>
+
+                <ng-container *ngIf="vista === 4">
+                <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of filtrofecha3 | paginate: { id: 'paginationp4',itemsPerPage: 6, currentPage: p};">
+                    <div class="card shadow p-4">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                 <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                            </div>
+                            <div class="col-lg-7 fechaa">
+                                <span>Creada:</span>&nbsp;<span>{{emp.FechaSol | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaSol | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'y'}}</span><br>
+                            </div>
+                            <div class="col-md-1">
+                                <a [routerLink]="['/Detalle_Tareas/Editar_Tarea',emp.idTareas]" style="cursor: pointer;">
+                                    <label class="circle" style="cursor: pointer;"></label>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                <pagination-controls id="paginationp4" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                </pagination-controls>
+                </div>
+                </ng-container>
+
+                <ng-container *ngIf="vista === 5">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of filtroparami | paginate: { id: 'paginationp5',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-7 fechaa">
+                                    <span>Creada:</span>&nbsp;<span>{{emp.FechaSol | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaSol | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'y'}}</span><br>
+                                </div>
+                                <div class="col-md-1">
+                                    <a [routerLink]="['/Detalle_Tareas/Editar_Tarea',emp.idTareas]" style="cursor: pointer;">
+                                        <label class="circle" style="cursor: pointer;"></label>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                <pagination-controls id="paginationp5" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                </pagination-controls>
+                </div>
+                </ng-container>
+
+                <ng-container *ngIf="vista === 6">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of filtroparaotro | paginate: { id: 'paginationp6',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-7 fechaa">
+                                    <span>Creada:</span>&nbsp;<span>{{emp.FechaSol | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaSol | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'y'}}</span><br>
+                                </div>
+                                <div class="col-md-1">
+                                    <a [routerLink]="['/Detalle_Tareas/Editar_Tarea',emp.idTareas]" style="cursor: pointer;">
+                                        <label class="circle" style="cursor: pointer;"></label>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                <pagination-controls id="paginationp6" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                </pagination-controls>
+                </div>
+                </ng-container>
+
+                <ng-container *ngIf="vista === 7">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of tareaemp | paginate: { id: 'paginationp7',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-7 fechaa">
+                                    <span>Creada:</span>&nbsp;<span>{{emp.FechaSol | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaSol | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'y'}}</span><br>
+                                </div>
+                                <div class="col-md-1">
+                                    <a [routerLink]="['/Detalle_Tareas/Editar_Tarea',emp.idTareas]" style="cursor: pointer;">
+                                        <label class="circle" style="cursor: pointer;"></label>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                <pagination-controls id="paginationp7" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                </pagination-controls>
+                </div>
+                </ng-container>
+
+                <ng-container *ngIf="vista === 8">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of filtrofecha4 | paginate: { id: 'paginationp8',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-7 fechaa">
+                                    <span>Creada:</span>&nbsp;<span>{{emp.FechaSol | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaSol | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'y'}}</span><br>
+                                </div>
+                                <div class="col-md-1">
+                                    <a [routerLink]="['/Detalle_Tareas/Editar_Tarea',emp.idTareas]" style="cursor: pointer;">
+                                        <label class="circle" style="cursor: pointer;"></label>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                <pagination-controls id="paginationp8" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                </pagination-controls>
+                </div>
+                </ng-container> -->
+
+            </div>
+</div>
+
+<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="row p-4" style="max-width: 100%!important;">
+
+                <ng-container>
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of tarea2 | paginate: { id: 'paginationf1',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4" [routerLink]="['/Detalle_Tareas/detalleTareaCF',emp.idTareas]" style="cursor: pointer;">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-8 fechaa">
+                                   <span>Finalizada:</span>&nbsp;<span>{{emp.FechaFin | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaFin | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaFin | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaFin | date:'y'}}</span><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                <pagination-controls id="paginationf1" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                </pagination-controls>
+            </div>
+                </ng-container>
+
+                <!-- <ng-container *ngIf="vista2 === 2">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of filtrofecha1_f | paginate: { id: 'paginationf2',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4" [routerLink]="['/Detalle_Tareas/detalleTareaCF',emp.idTareas]">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-8 fechaa">
+                                    <span>Finalizada:</span>&nbsp;<span>{{emp.FechaFin | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaFin | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaFin | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaFin | date:'y'}}</span><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                <pagination-controls id="paginationf2" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                </pagination-controls>
+            </div>
+                </ng-container>
+                <ng-container *ngIf="vista2 === 3">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of filtrofecha2_f | paginate: { id: 'paginationf3',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4" [routerLink]="['/Detalle_Tareas/detalleTareaCF',emp.idTareas]">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-8 fechaa">
+                                    <span>Finalizada:</span>&nbsp;<span>{{emp.FechaFin | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaFin | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaFin | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaFin | date:'y'}}</span><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                <pagination-controls id="paginationf3" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                </pagination-controls>
+            </div>
+                </ng-container>
+                <ng-container *ngIf="vista2 === 4">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of filtrofecha3_f | paginate: { id: 'paginationf4',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4" [routerLink]="['/Detalle_Tareas/detalleTareaCF',emp.idTareas]">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-8 fechaa">
+                                    <span>Finalizada:</span>&nbsp;<span>{{emp.FechaFin | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaFin | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaFin | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaFin | date:'y'}}</span><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                <pagination-controls id="paginationf4" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                </pagination-controls>
+            </div>
+                </ng-container>
+
+                <ng-container *ngIf="vista2 === 5">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of filtroparami_f | paginate: { id: 'paginationf5',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4" [routerLink]="['/Detalle_Tareas/detalleTareaCF',emp.idTareas]">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-8 fechaa">
+                                    <span>Finalizada:</span>&nbsp;<span>{{emp.FechaFin | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaFin | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaFin | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaFin | date:'y'}}</span><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                <pagination-controls id="paginationf5" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                </pagination-controls>
+            </div>
+                </ng-container>
+                <ng-container *ngIf="vista2 === 6">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of filtroparaotro_f | paginate: { id: 'paginationf6',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4" [routerLink]="['/Detalle_Tareas/detalleTareaCF',emp.idTareas]">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-8 fechaa">
+                                    <span>Finalizada:</span>&nbsp;<span>{{emp.FechaFin | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaFin | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaFin | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaFin | date:'y'}}</span><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                <pagination-controls id="paginationf6" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                </pagination-controls>
+            </div>
+                </ng-container>
+
+                <ng-container *ngIf="vista2 === 7">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of tarea2emp | paginate: { id: 'paginationf7',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4" [routerLink]="['/Detalle_Tareas/detalleTareaCF',emp.idTareas]">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-8 fechaa">
+                                    <span>Finalizada:</span>&nbsp;<span>{{emp.FechaFin | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaFin | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaFin | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaFin | date:'y'}}</span><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                <pagination-controls id="paginationf7" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                </pagination-controls>
+            </div>
+                </ng-container>
+
+                <ng-container *ngIf="vista2 === 8">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of filtrofecha4_f | paginate: { id: 'paginationf8',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4" [routerLink]="['/Detalle_Tareas/detalleTareaCF',emp.idTareas]">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-8 fechaa">
+                                    <span>Finalizada:</span>&nbsp;<span>{{emp.FechaFin | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaFin | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaFin | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaFin | date:'y'}}</span><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                <pagination-controls id="paginationf8" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                </pagination-controls>
+            </div>
+                </ng-container> -->
+
+            </div>
+</div>
+
+<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <div class="row p-4" style="max-width: 100%!important;">
+
+                <ng-container>
+                <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of tarea3 | paginate: { id: 'paginationc1',itemsPerPage: 6, currentPage: p};">
+                    <div class="card shadow p-4" [routerLink]="['/Detalle_Tareas/detalleTareaCF',emp.idTareas]" style="cursor: pointer;">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                 <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                            </div>
+                            <div class="col-lg-8 fechaa">
+                               <span>Cancelada:</span>&nbsp;<span>{{emp.FechaSol | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaSol | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'y'}}</span><br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                    <pagination-controls  id="paginationc1" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                    </pagination-controls>
+                </div>
+                </ng-container>
+
+                <!-- <ng-container *ngIf="vista3 === 2">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of filtrofecha1_c | paginate: { id: 'paginationc2',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4" [routerLink]="['/Detalle_Tareas/detalleTareaCF',emp.idTareas]" style="cursor: pointer;">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-8 fechaa">
+                                    <span>Cancelada:</span>&nbsp;<span>{{emp.FechaSol | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaSol | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'y'}}</span><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                    <pagination-controls  id="paginationc2" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                    </pagination-controls>
+                </div>
+                </ng-container>
+
+                <ng-container *ngIf="vista3 === 3">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of filtrofecha2_c | paginate: { id: 'paginationc3',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4" [routerLink]="['/Detalle_Tareas/detalleTareaCF',emp.idTareas]" style="cursor: pointer;">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-8 fechaa">
+                                    <span>Cancelada:</span>&nbsp;<span>{{emp.FechaSol | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaSol | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'y'}}</span><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                    <pagination-controls  id="paginationc3" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                    </pagination-controls>
+                </div>
+                </ng-container>
+
+                <ng-container *ngIf="vista3 === 4">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of filtrofecha3_c | paginate: { id: 'paginationc4',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4" [routerLink]="['/Detalle_Tareas/detalleTareaCF',emp.idTareas]" style="cursor: pointer;">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-8 fechaa">
+                                    <span>Cancelada:</span>&nbsp;<span>{{emp.FechaSol | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaSol | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'y'}}</span><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                    <pagination-controls  id="paginationc4" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                    </pagination-controls>
+                </div>
+                </ng-container>
+
+                <ng-container *ngIf="vista3 === 5">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of filtroparami_c | paginate: { id: 'paginationc5',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4" [routerLink]="['/Detalle_Tareas/detalleTareaCF',emp.idTareas]" style="cursor: pointer;">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-8 fechaa">
+                                    <span>Cancelada:</span>&nbsp;<span>{{emp.FechaSol | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaSol | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'y'}}</span><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                    <pagination-controls  id="paginationc5" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                    </pagination-controls>
+                </div>
+                </ng-container>
+
+                <ng-container *ngIf="vista3 === 6">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of filtroparaotro_c | paginate: { id: 'paginationc6',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4" [routerLink]="['/Detalle_Tareas/detalleTareaCF',emp.idTareas]" style="cursor: pointer;">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-8 fechaa">
+                                    <span>Cancelada:</span>&nbsp;<span>{{emp.FechaSol | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaSol | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'y'}}</span><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                    <pagination-controls  id="paginationc6" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                    </pagination-controls>
+                </div>
+                </ng-container>
+
+                <ng-container *ngIf="vista3 === 7">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of tarea3emp | paginate: { id: 'paginationc7',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4" [routerLink]="['/Detalle_Tareas/detalleTareaCF',emp.idTareas]" style="cursor: pointer;">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-8 fechaa">
+                                    <span>Cancelada:</span>&nbsp;<span>{{emp.FechaSol | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaSol | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'y'}}</span><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                    <pagination-controls  id="paginationc7" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                    </pagination-controls>
+                </div>
+                </ng-container>
+
+
+                <ng-container *ngIf="vista3 === 8">
+                    <div class="col-lg-6 mb-4 px-3" *ngFor="let emp of filtrofecha4_c | paginate: { id: 'paginationc8',itemsPerPage: 6, currentPage: p};">
+                        <div class="card shadow p-4" [routerLink]="['/Detalle_Tareas/detalleTareaCF',emp.idTareas]" style="cursor: pointer;">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                     <span style="color:#07138f!important;">{{emp.Nombre.substring(0, 15)}}..</span>
+                                </div>
+                                <div class="col-lg-8 fechaa">
+                                    <span>Cancelada:</span>&nbsp;<span>{{emp.FechaSol | date:'EEEE'}}</span>&nbsp;<span>{{emp.FechaSol | date:'dd'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'MMMM'}}</span>&nbsp;<span>de</span>&nbsp;<span>{{emp.FechaSol | date:'y'}}</span><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="elipsis">{{emp.Nombre_Empresa}}</h3>
+                                    <h6 class="tareaa elipsis">&middot;&nbsp;{{emp.Tarea}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="text-align: center;max-width: 99%;padding-top: 70px;">
+                    <pagination-controls  id="paginationc8" nextLabel=">" previousLabel="<" (pageChange)="p = $event">
+                    </pagination-controls>
+                </div>
+                </ng-container> -->
+
+            </div>
+</div>
+
+</div>
+
+<app-footer></app-footer>
+

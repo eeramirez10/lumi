@@ -1,0 +1,74 @@
+<router-outlet></router-outlet>
+<app-header></app-header>
+<app-menu></app-menu>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- /*
+|--------------------------------------------------------------------------
+| Tab1 TAREAS
+|--------------------------------------------------------------------------
+*/ -->
+<div class="containerS2">
+
+<div class="row form-group">
+    <div class="col-md-2 d-flex align-items-center">
+        <h1 style="font-weight: 600;">TAREAS</h1>
+    </div>
+    <div class="col-md-10" style="max-width: 80.333333%;">
+        <input class="form-control input" name="filterTarea" placeholder="&#xf002;&nbsp;&nbsp; Buscar" style="font-style: italic;text-transform: capitalize;" [(ngModel)]="filterTarea">
+    </div>
+    <div class="col-12" style="text-align: right;    max-width: 99%;padding-top: 50px;">
+    <pagination-controls nextLabel=">" previousLabel="<" (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>
+
+<div class="row margen" style="max-width: 100%; margin-bottom: 100px;">
+  <ng-container *ngIf="( tarea | filter:filterTarea) as result">
+    <div id="contenedor" class="col-12 col-md-4 px-4 py-3" *ngFor="let emp of result | paginate: {itemsPerPage: 6, currentPage: p};">
+
+        <div class="our-team-main container-fluid shadow" style="min-height: 100%;">
+          <ng-container *ngFor="let tiene of tienetarea">
+            <span *ngIf="emp.idEmpresas === tiene.Empresas_idEmpresas" id="notif" class="badge badge-light float-left">&nbsp;&nbsp;&nbsp;</span>
+          </ng-container>
+          <div class="col-lg-12 float-left m-0 p-0 ">
+          <div class="col-lg-12 img-card float-center m-0 pl-2 pr-0">
+            <a [routerLink]="['/Tareas_Asesor/Detalle_Tareas',emp.idEmpresas]">
+              <div class="container-img" style="padding-top: 0%!important;">
+                <img src="http://192.168.1.61/lum/imagenes/{{emp.Foto}}" class="img-fluid" >
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-12 team-front float-left m-0 p-0 pt-3" style="text-align: left;padding-left: 5px !important;">
+            <h5 style="text-transform: uppercase;">{{emp.Nombre_Empresa}}</h5>
+            <br>
+          </div>
+          <div class="col-lg-12 team-front float-left m-0 p-0 pt-3" style="text-align: left;padding-left: 5px !important;">
+            <p>{{emp.Direccion_Empresa}}</p>
+            <br>
+              <p>Tel:{{emp.Telefono}} </p>
+          </div>
+          </div>
+        </div>
+    </div>
+
+    <h1 class="text-center mx-auto" style="color: red;" *ngIf="result.length === 0">no se encontraron resultados</h1>
+  </ng-container>
+<!-- <div class="col-lg-4" *ngFor="let emp of tarea | filter:filterTarea | paginate: {itemsPerPage: 6, currentPage: p};">
+    <div class="box-part text-center shadow card-altura" style="overflow: hidden;">
+        <span id="notif" class="badge badge-light float-left">&nbsp;</span>
+        <a [routerLink]="['/Detalle_Tareas',emp.idEmpresas]">
+    <div class="container-img">
+        <img src="http://192.168.1.61/lum/imagenes/{{emp.Foto}}" class="img-fluid" width="60px" height="60px" style="border-radius: 50%;">
+    </div>
+        </a>
+    <div class="title m-0 p-0 nombreguarida">
+        <h5 style="font-weight:900!important;">{{emp.Nombre_Empresa}}</h5>
+    </div>
+    <div class="text m-0 p-0" >
+        <h6>{{emp.Direccion_Empresa}}</h6>
+    </div>
+    <span id="usuariocorreo" style="font-size:12px;line-height: 10px;" class="ellipsis">Tel: {{emp.Telefono}}</span>
+    </div>
+</div> -->
+</div>
+</div>

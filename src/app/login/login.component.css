@@ -1,0 +1,495 @@
+h1,h2,h3,span{
+color: #07138f;
+font-weight: bolder;
+}
+#olvidaste{
+    font-size: 16px;
+    font-weight: 400;
+}
+#login-column{
+border: none;
+border-radius: 30px;
+padding: 20px 50px;
+height: fit-content;
+}
+.mbotom{
+    margin-bottom:30px;
+    }
+.btn{
+background: #07138f;
+border-color: #07138f;
+}
+.iniciar{
+margin-top: 30px;
+margin-bottom: 30px;
+}
+.btn-info{
+border-radius: 50px;
+margin-top: 45px;
+margin-bottom: 50px;
+font-size: 20px;
+font-weight: 400;
+padding-top: 5px;
+padding-bottom: 5px;
+padding-left:35px;
+padding-right:35px;
+}
+#usuario{
+border-radius: 15px;
+height: 40px;
+}
+#contraseña{
+border-radius: 15px;
+height: 40px;
+}
+label{
+color: #07138f;
+font-weight: 600;
+font-size: 34px;
+}
+.shadow1{
+-webkit-box-shadow: -2px -2px 14px -2px rgba(128,128,128,.5);
+-moz-box-shadow: -2px -2px 14px -2px rgba(128,128,128,.5);
+box-shadow: -2px -2px 14px -2px rgba(128,128,128,.5);
+height: 550px;
+}
+.fa{
+    font-size: 15px;
+}
+.largo1{
+    width: 105%;
+}
+/* ---------------------------------------------------
+    MEDIA QUERYS
+----------------------------------------------------- */
+@media screen and (width: 1280px) {
+.iniciar{
+margin-top: 40px;
+margin-bottom: 40px;
+}
+#logo{
+width: 520px;
+margin-bottom: 140px;
+}
+.largo1{
+width: 110%;
+}
+#usuario{
+border-radius: 15px;
+}
+#contraseña{
+border-radius: 15px;
+}
+}
+ @media screen and (min-width: 1366px) {
+.iniciar{
+margin-top: 40px;
+margin-bottom: 40px;
+}
+#logo{
+    width: 550px;
+}
+.largo1{
+    width: 108%;
+}
+}
+ @media screen and (min-width: 1440px) {
+#login-column{
+border: none;
+border-radius: 30px;
+padding: 20px 40px;
+}
+ }
+ @media screen and (min-width: 1600px) {
+ }
+ @media screen and (min-width: 1680px) {
+.shadow1{
+-webkit-box-shadow: -2px -2px 14px -2px rgba(128,128,128,.5);
+-moz-box-shadow: -2px -2px 14px -2px rgba(128,128,128,.5);
+box-shadow: -2px -2px 14px -2px rgba(128,128,128,.5);
+height: 670px;
+}
+#login-column{
+border-radius: 50px;
+}
+#usuario{
+border-radius: 8px;
+height: 50px;
+}
+#contraseña{
+border-radius: 8px;
+height: 50px;
+}
+label{
+color: #07138f;
+font-weight: 500;
+font-size: 44px;
+}
+.iniciar{
+font-size: 55px;
+margin-top: 50px;
+margin-bottom: 50px;
+}
+.btn-info{
+font-size: 30px;
+padding-left:45px;
+padding-right:45px;
+}
+#olvidaste{
+    font-size: 23px;
+}
+#logo{
+    width: 690px;
+}
+ }               
+ @media screen and (min-width: 1920px) {
+    .largo1{
+        width: 106%;
+    }
+    .fa{
+    font-size: 22px;
+}
+
+    .shadow1{
+-webkit-box-shadow: -2px -2px 20px -2px rgba(128,128,128,.5);
+-moz-box-shadow: -2px -2px 20px -2px rgba(128,128,128,.5);
+box-shadow: -2px -2px 20px -2px rgba(128,128,128,.5);
+height: 820px;
+}
+#login-column{
+border-radius: 70px;
+padding: 20px 70px;
+}
+.mbotom{
+    margin-bottom:70px;
+    }
+#usuario{
+border-radius: 25px;
+height: 60px;
+font-size: 25px;
+}
+#contraseña{
+border-radius: 25px;
+height: 60px;
+font-size: 25px;
+}
+label{
+color: #07138f;
+font-weight: 500;
+font-size: 44px;
+}
+.iniciar{
+font-size: 65px;
+margin-top: 80px;
+margin-bottom: 75px;
+}
+.btn-info{
+font-size: 37px;
+margin-top: 75px;
+padding-left:45px;
+padding-right:45px;
+}
+#olvidaste{
+    font-size: 27px;
+}
+#logo{
+    width: 810px;
+}
+ }     
+ @media screen and (min-width: 2160px) {
+.shadow1{
+-webkit-box-shadow: -2px -2px 20px -2px rgba(128,128,128,.5);
+-moz-box-shadow: -2px -2px 20px -2px rgba(128,128,128,.5);
+box-shadow: -2px -2px 20px -2px rgba(128,128,128,.5);
+height: 870px;
+}
+#login-column{
+border-radius: 50px;
+height: 920px;
+}
+.mbotom{
+    margin-bottom:80px;
+    }
+#usuario{
+border-radius: 25px;
+height: 70px;
+font-size: 30px;
+}
+#contraseña{
+border-radius: 25px;
+height: 70px;
+font-size: 30px;
+}
+label{
+color: #07138f;
+font-weight: 600;
+font-size: 54px;
+}
+.iniciar{
+font-size: 75px;
+margin-top: 80px;
+margin-bottom: 80px;
+}
+.btn-info{
+font-size: 40px;
+padding-left:45px;
+padding-right:45px;
+}
+#olvidaste{
+    font-size: 30px;
+}
+#logo{
+    width: 930px;
+    margin-left: 200px;
+}
+ }  
+ @media screen and (min-width: 2560px) {
+    .largo1{
+        width: 104%;
+    }
+    .fa{
+    font-size: 30px;
+}
+    .shadow1{
+-webkit-box-shadow: -2px -2px 20px -2px rgba(128,128,128,.5);
+-moz-box-shadow: -2px -2px 20px -2px rgba(128,128,128,.5);
+box-shadow: -2px -2px 20px -2px rgba(128,128,128,.5);
+height: 970px;
+}
+#login-column{
+    border-radius: 90px;
+    padding: 20px 70px;
+    height: fit-content;
+    }
+    .mbotom{
+        margin-bottom:80px;
+        }
+#usuario{
+border-radius: 30px;
+height: 80px;
+font-size: 30px;
+}
+#contraseña{
+border-radius: 30px;
+height: 80px;
+font-size: 30px;
+}
+label{
+color: #07138f;
+font-weight: 600;
+font-size: 64px;
+}
+.iniciar{
+font-size: 85px;
+margin-top: 90px;
+margin-bottom: 90px;
+}
+.btn-info{
+font-size: 50px;
+padding-left:55px;
+padding-right:55px;
+border-radius: 50px;
+}
+#olvidaste{
+    font-size: 35px;
+}
+#logo{
+    width: 1100px;
+    margin-left: 200px;
+    margin-bottom: 300px;
+}
+ } 
+ @media screen and (min-width: 2560px) and (max-height: 1080px){
+#alto{
+height: 130vh!important;
+}
+#login-column{
+max-width: 70%;
+height: 965px;
+}
+.iniciar{
+font-size: 85px;
+margin-top: 60px;
+margin-bottom: 60px;
+}
+.shadow1{
+height: 920px;
+}
+ }
+ @media screen and (min-width: 2736px) {
+    .largo1{
+        width: 106%;
+    }
+    .shadow1{
+-webkit-box-shadow: -2px -2px 20px -2px rgba(128,128,128,.5);
+-moz-box-shadow: -2px -2px 20px -2px rgba(128,128,128,.5);
+box-shadow: -2px -2px 20px -2px rgba(128,128,128,.5);
+height: 1150px;
+}
+#login-column{
+border-radius: 90px;
+padding: 20px 70px;
+height: fit-content;
+}
+.mbotom{
+    margin-bottom:100px;
+    }
+#usuario{
+border-radius: 35px;
+height: 90px;
+font-size: 40px;
+}
+#contraseña{
+border-radius: 35px;
+height: 90px;
+font-size: 40px;
+}
+label{
+color: #07138f;
+font-weight: 600;
+font-size: 74px;
+}
+.iniciar{
+font-size: 95px;
+margin-top: 110px;
+margin-bottom: 110px;
+}
+.btn-info{
+font-size: 60px;
+margin-top: 70px;
+padding-left:65px;
+padding-right:65px;
+border-radius: 50px;
+}
+#olvidaste{
+font-size: 45px;
+}
+#logo{
+width: 1200px;
+}
+ }  
+ @media screen and (min-width: 3440px) {
+    .largo1{
+        width: 104%;
+    }
+    .fa{
+    font-size: 40px;
+}
+    #alto{
+height: 120vh!important;
+}
+.shadow1{
+-webkit-box-shadow: -2px -2px 35px -2px rgba(128,128,128,.5);
+-moz-box-shadow: -2px -2px 35px -2px rgba(128,128,128,.5);
+box-shadow: -2px -2px 35px -2px rgba(128,128,128,.5);
+height: 1150px;
+max-width: 65%;
+}
+#login-column{
+border-radius: 90px;
+padding: 20px 120px;
+height: fit-content;
+}
+.mbotom{
+    margin-bottom:100px;
+    }
+#usuario{
+border-radius: 35px;
+height: 90px;
+font-size: 40px;
+}
+#contraseña{
+border-radius: 35px;
+height: 90px;
+font-size: 40px;
+}
+label{
+color: #07138f;
+font-weight: 600;
+font-size: 74px;
+}
+.iniciar{
+font-size: 95px;
+margin-top: 110px;
+margin-bottom: 110px;
+}
+.btn-info{
+font-size: 60px;
+margin-top: 70px;
+padding-left:65px;
+padding-right:65px;
+border-radius: 50px;
+}
+#olvidaste{
+font-size: 45px;
+}
+#logo{
+width: 1200px;
+margin-left: 350px;
+}
+
+ } 
+ @media screen and (min-width: 3840px) {
+.largo1{
+    width: 104%;
+}
+    .fa{
+    font-size: 45px;
+}
+    #alto{
+    height: 100vh!important;
+    }
+.shadow1{
+-webkit-box-shadow: -2px -2px 45px -2px rgba(128,128,128,.5);
+-moz-box-shadow: -2px -2px 45px -2px rgba(128,128,128,.5);
+box-shadow: -2px -2px 45px -2px rgba(128,128,128,.5);
+height: 1300px;
+}
+#login-column{
+border-radius: 90px;
+padding: 20px 150px;
+height: fit-content;
+}
+.mbotom{
+margin-bottom:160px;
+}
+#usuario{
+border-radius: 40px;
+height: 105px;
+font-size: 40px;
+}
+#contraseña{
+border-radius: 40px;
+height: 105px;
+font-size: 40px;
+}
+label{
+color: #07138f;
+font-weight: 600;
+font-size: 90px;
+}
+.iniciar{
+font-size: 115px;
+margin-top: 170px;
+margin-bottom: 120px;
+}
+.btn-info{
+font-size: 70px;
+margin-top: 70px;
+padding-left:65px;
+padding-right:65px;
+border-radius: 50px;
+}
+#olvidaste{
+margin-top: 30px;
+font-size: 50px;
+}
+#logo{
+width: 1600px;
+}
+ }
+ @media screen and (min-width: 3840px) and (max-height: 1080px){
+#alto{
+height: 180vh!important;
+}
+ }

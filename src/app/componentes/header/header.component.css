@@ -1,0 +1,162 @@
+#imagen{
+    margin-left: 120px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 300px;
+}
+#imgcerrar{
+    width: 30px;
+}
+#logout{
+    width:fit-content;
+}
+@media screen and (width: 1280px) {
+#txtcerarr{
+font-size: 17px;
+}
+#imagen{
+margin-left: 190px;
+margin-top: 25px;
+margin-bottom: 25px;
+width: 370px;
+}
+#imgcerrar{
+width: 27px;
+}
+#logout{
+width:fit-content;
+}
+}
+@media screen and (min-width: 1366px) {
+#txtcerarr{
+font-size: 18px;
+}
+#imagen{
+margin-left: 190px;
+margin-top: 25px;
+margin-bottom: 25px;
+width: 370px;
+}
+#imgcerrar{
+width: 28px;
+}
+#logout{
+width:fit-content;
+}
+}
+@media screen and (min-width: 1440px) {
+
+}
+@media screen and (min-width: 1600px) {
+}
+@media screen and (min-width: 1680px) {
+
+}               
+@media screen and (min-width: 1920px) {
+#txtcerarr{
+font-size: 27px;
+}
+#imagen{
+margin-left: 310px;
+margin-top: 30px;
+margin-bottom: 30px;
+width: 500px;
+}
+#imgcerrar{
+width: 45px;
+}
+#logout{
+width:fit-content;
+}
+}     
+@media screen and (min-width: 2160px) {
+#txtcerarr{
+font-size: 30px;
+}
+#imagen{
+margin-left: 380px;
+margin-top: 30px;
+margin-bottom: 30px;
+width: 550px;
+}
+#imgcerrar{
+width: 50px;
+}
+#logout{
+width:fit-content;
+}
+}  
+@media screen and (min-width: 2560px) {
+#txtcerarr{
+font-size: 37px;
+}
+#imagen{
+    margin-left: 425px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 700px;
+}
+#imgcerrar{
+    width: 60px;
+}
+#logout{
+    width:fit-content;
+}
+} 
+@media screen and (min-width: 2560px) and (max-height: 1080px){
+
+}
+@media screen and (min-width: 2736px) {
+#txtcerarr{
+font-size: 37px;
+}
+#imagen{
+margin-left: 450px;
+margin-top: 50px;
+margin-bottom: 50px;
+width: 750px;
+}
+#imgcerrar{
+width: 60px;
+}
+#logout{
+width:fit-content;
+}
+}  
+@media screen and (min-width: 3440px) {
+#txtcerarr{
+font-size: 50px;
+}
+#imagen{
+margin-left: 650px;
+margin-top: 60px;
+margin-bottom: 60px;
+width: 950px;
+}
+#imgcerrar{
+width: 80px;
+}
+#logout{
+width:fit-content;
+}
+} 
+@media screen and (min-width: 3840px) {
+#txtcerarr{
+font-size: 55px;
+}
+#imagen{
+    margin-left: 725px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    width: 1100px;
+}
+#imgcerrar{
+    width: 100px;
+}
+#logout{
+    width:fit-content;
+}
+}
+@media screen and (min-width: 3840px) and (max-height: 1080px){
+
+}

@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 d-flex align-items-center justify-content-center" style="margin-top: 8%;margin-bottom: 1rem;">
+        <img src="../../assets/img/lumi_logo.png" alt="">
+      </div>
+      <div class="col-md-12 d-flex align-items-center justify-content-center" style="margin-bottom: 3rem;">
+        <h1>SELECCIONA UN PERFIL</h1>
+      </div>
+      <div class="col-md-12 d-flex align-items-center justify-content-center" style="margin-bottom: 3rem;">
+        <div class="row">
+            <div class="col-md-6 text-center" [routerLink]="['/Prospectos_Admin']">
+                <img src="../../assets/img/user.png" width="60%" alt="">
+                <br><br><br>
+                <label>Administrador</label>
+            </div>
+            <div class="col-md-6 text-center" [routerLink]="['/Inicio_Coordinador']" >
+                <img src="../../assets/img/user.png" width="60%" alt="">
+                <br><br><br>
+                <label>Coordinador</label>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>

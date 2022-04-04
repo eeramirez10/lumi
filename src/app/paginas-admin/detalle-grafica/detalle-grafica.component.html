@@ -1,0 +1,246 @@
+<app-header></app-header>
+<app-menua></app-menua>
+
+<div class="container mb-5 pb-5">
+
+  <div class="row mb-3 mt-5">
+
+    <div class="col-md-8">
+     <h1 class="ml-3" style="color: gray; opacity: 0.7;">
+     REPORTE DE EQUIPO
+    </h1>
+    </div>
+  </div>
+
+  <div class="row mb-3 mt-5">
+
+    <div class="col-md-8">
+     <h1 class="ml-3" *ngFor="let emp of empresa">
+      EQUIPO {{idEq}} / {{emp.Nombre_Empresa.substring(0, 35)}}
+    </h1>
+    </div>
+
+    <div class="col-md-4 text-right">
+      <button (click)="exportToExcel()" class="btn btn-azul"><img class="mb-1 mr-2" src="../../../assets/img/open-sharp.svg" width="20px" height="20px">EXPORTAR</button>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-4">
+        <select [(ngModel)]="opcionSeleccionado" (change)="capturar()" name="select1" class="input custom-select" id="inputGroupSelect01" style='width:90% !important'>
+        <option value="0">Filtrar por mes</option>
+        <option value="1">Enero</option>
+        <option value="2">Febrero</option>
+        <option value="3">Marzo</option>
+        <option value="4">Abril</option>
+        <option value="5">Mayo</option>
+        <option value="6">Junio</option>
+        <option value="7">Julio</option>
+        <option value="8">Agosto</option>
+        <option value="9">Septiembre</option>
+        <option value="10">Octubre</option>
+        <option value="11">Noviembre</option>
+        <option value="12">Diciembre</option>
+        </select>
+    </div>
+  </div>
+
+      <!-- <div class="card shadow border-0 overflow-auto alto p-4">
+        <div class="row ml-4 mb-4" style="border-bottom:1px solid black;max-width:95%;">
+            <div class="col-md-2 text-left" *ngIf="tipo == 1">
+                <h6 >FECHA Y HORA</h6>
+            </div>
+            <div class="col-md-2 text-left" *ngIf="tipo == 0">
+                <h6 >FECHA</h6>
+            </div>
+
+            <div class="col-md-2 text-left" *ngIf="tipo == 1">
+                <h6 >MOTIVO</h6>
+            </div>
+            <div class="col-md-2 text-left" *ngIf="tipo == 0">
+                <h6>STATUS</h6>
+            </div>
+
+            <div class="col-md-2 text-left" *ngIf="tipo == 1">
+                <h6 class="ml-3">SUCURSAL</h6>
+            </div>
+            <div class="col-md-3 text-left" *ngIf="tipo == 0">
+                <h6>MOTIVO/COMENTARIO</h6>
+            </div>
+
+            <div class="col-md-2 text-left" *ngIf="tipo == 1">
+                <h6  class="ml-3">CHECK-IN</h6>
+            </div>
+            <div class="col-md-3 text-left" *ngIf="tipo == 0">
+                <h6 class="ml-3">TAREA</h6>
+            </div>
+
+            <div class="col-md-2 text-left" *ngIf="tipo == 1" >
+                <h6 class="ml-3">CHECK-OUT</h6>
+            </div>
+            <div class="col-md-2 text-left" *ngIf="tipo == 0" >
+                <h6 *ngIf="tipo == 0" class="ml-3">ASIGNADA POR</h6>
+            </div>
+            <div class="col-md-2 text-left" *ngIf="tipo == 1" >
+                <h6 class="ml-3">ASIGNO TAREA</h6>
+            </div>
+        </div>
+        <div class="row ml-4" style="height: fit-content;" *ngFor="let tar of tareas">
+            <div class="col-md-2 text-left" *ngIf="tipo == 1">
+                <span>{{tar.FechaI}} {{tar.HoraI}}</span>
+            </div>
+            <div class="col-md-2 text-left" *ngIf="tipo == 0">
+                <span >{{tar.FechaSol}}</span>
+            </div>
+
+            <div class="col-md-2 text-left" *ngIf="tipo == 0">
+                  <span *ngIf="tar.Status == 1">Pendiente</span>
+                  <span *ngIf="tar.Status == 2">Finalizada</span>
+                  <span *ngIf="tar.Status == 3">cancelada</span>
+            </div>
+            <div class="col-md-2 text-left" *ngIf="tipo == 1">
+                <span>{{tar.Motivo}}</span>
+            </div>
+
+            <div class="col-md-3 text-left">
+                <span *ngIf="tipo == 0">{{tar.MotivCancel}}</span>
+                <span *ngIf="tipo == 1">{{tar.nombreSO}}</span>
+            </div>
+            <div class="col-md-3 text-left" *ngIf="tipo == 0">
+                <span >{{tar.Tarea}}</span>
+            </div>
+             <div class="col-md-2 text-left" *ngIf="tipo == 1">
+                <span ></span>
+            </div>
+            <div class="col-md-2 text-left" *ngIf="tipo == 0">
+                <span>{{tar.Nombre.substring(0,13)}}..</span>
+            </div>
+            <div class="col-md-2 text-left" *ngIf="tipo == 1">
+                <span></span>
+            </div>
+            <div class="col-md-1 text-left" *ngIf="tipo == 1">
+                <span></span>
+            </div>
+        </div>
+      </div> -->
+
+      <body class="bg-light">
+        <div class="container">
+         <div class="row py-5 justify-content-center">
+          <div class="col-md-12">
+           <div class="col-md-12 table-responsive" #epltable>
+            <div style="padding-bottom: 10px;padding-top: 10px;">
+             <div class="row">
+              <div class="col-sm-12">
+              </div>
+             </div>
+            </div>
+            <table class="table table-bordered">
+             <thead class="thead-white">
+             <tr>
+              <th>
+                <div class="col-md-12 text-left" *ngIf="tipo == 1">
+                  <h6 >FECHA Y HORA</h6>
+              </div>
+            <!--fecha tarea-->
+              <div class="col-md-12 text-left" *ngIf="tipo == 0">
+                  <h6 >FECHA</h6>
+              </div>
+              </th>
+              <th>
+                 <!--motivo cita-->
+                  <div class="col-md-12 text-left" *ngIf="tipo == 1">
+                    <h6 >MOTIVO</h6>
+                </div>
+              <!--status tarea-->
+                <div class="col-md-12 text-left" *ngIf="tipo == 0">
+                    <h6>STATUS</h6>
+                </div>
+              </th>
+              <th>
+                <!--sucursal cita-->
+                  <div class="col-md-12 text-left" *ngIf="tipo == 1">
+                    <h6 class="ml-3">USUARIO</h6>
+                </div>
+              <!--asignada por tarea-->
+                <div class="col-md-12 text-left" *ngIf="tipo == 0">
+                    <h6>MOTIVO/COMENTARIO</h6>
+                </div>
+              </th>
+              <th>
+                 <!--check-in cita-->
+                  <div class="col-md-12 text-left" *ngIf="tipo == 1">
+                    <h6  class="ml-12">CHECK-IN</h6>
+                </div>
+              <!--tarea tarea-->
+                <div class="col-md-12 text-left" *ngIf="tipo == 0">
+                    <h6 class="ml-12">TAREA</h6>
+                </div>
+              </th>
+              <th>
+                <!--check-out citas-->
+                  <div class="col-md-12 text-left" *ngIf="tipo == 1" >
+                    <h6 class="ml-12">CHECK-OUT</h6>
+                </div>
+              <!--asignado por tareas-->
+                <div class="col-md-12 text-left" *ngIf="tipo == 0" >
+                    <h6 *ngIf="tipo == 0" class="ml-3">ASIGNADA POR</h6>
+                </div>
+              <!--check-out citas-->
+              </th>
+              <th>
+                <div class="col-md-12 text-left" *ngIf="tipo == 1" >
+                  <h6 class="ml-12">ASIGNO TAREA</h6>
+              </div>
+              </th>
+             </tr>
+            </thead>
+            <tbody>
+             <tr *ngFor="let tar of tareas">
+              <td>
+                <div class="col-md-12 text-left" *ngIf="tipo == 1">
+                  <span>{{tar.FechaI}} {{tar.HoraI}}</span>
+              </div>
+              <div class="col-md-12 text-left" *ngIf="tipo == 0">
+                  <span >{{tar.FechaSol}}</span>
+              </div>
+              </td>
+              <td *ngIf="tipo == 0">
+                <span *ngIf="tar.Status == 1">Pendiente</span>
+                <span *ngIf="tar.Status == 2">Finalizada</span>
+                <span *ngIf="tar.Status == 3">cancelada</span>
+              </td>
+              <td *ngIf="tipo == 1">
+                <span>{{tar.Motivo}}</span>
+              </td>
+              <td>
+                <span *ngIf="tipo == 0">{{tar.MotivCancel}}</span>
+                <span *ngIf="tipo == 1">{{tar.Nombre.substring(0,13)}}..</span>
+              </td>
+              <td *ngIf="tipo == 0">
+                <span >{{tar.Tarea}}</span>
+              </td>
+              <td *ngIf="tipo == 1">
+                <span ></span>
+              </td>
+              <td *ngIf="tipo == 0">
+                <span>{{tar.Nombre.substring(0,13)}}..</span>
+              </td>
+              <td *ngIf="tipo == 1">
+                <span ></span>
+              </td>
+              <td *ngIf="tipo == 1">
+                <span ></span>
+              </td>
+             </tr>
+            </tbody>
+           </table>
+          </div>
+         </div>
+        </div>
+       </div>
+      </body>
+
+</div>
+
+<app-footer></app-footer>

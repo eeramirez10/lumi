@@ -1,0 +1,223 @@
+.circle{
+position: absolute;
+top:62%;
+left:59%;
+display: inline-block;
+border-radius: 50%;
+width: 42px;
+height: 42px;
+cursor: pointer;
+background: url("../../../assets/img/camera.svg") no-repeat #07138f;
+background-size: 62%!important;
+background-position: center;
+}
+.custom-select{
+width: 270px;
+border-radius: 25px;
+border: 1px solid black;
+height: 47px;
+}
+.img{
+border-radius:50%;
+width:70px!important;
+height:70px!important;
+margin-top: auto;
+margin-bottom: auto;
+margin-right: auto;
+margin-left: auto;
+}
+#tabs .nav-tabs .nav-link {
+border: none;
+border-top-left-radius: .25rem;
+border-top-right-radius: .25rem;
+color: #343434;
+font-size: 35px;
+background-color:#fff;
+padding: 1rem 1rem;
+}
+#home-tab{
+color: black!important;
+}
+#profile-tab{
+color: black!important;
+}
+#tabs2{
+background: #ffffff;
+color: black;
+}
+#tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+position: relative;
+z-index: 1;
+text-align: center;
+padding-bottom: 10px;
+}
+#tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active::after{
+content: "";
+position: absolute;
+left: 25%;
+bottom: 0;
+width: 130px;
+border-bottom: 2px solid #07138f !important;
+font-size: 20px;
+font-weight: bold;
+}
+.nav-tabs {
+border-bottom:0px;
+}
+.img2{
+border-radius:50%;
+width:40px!important;
+height:40px!important;
+}
+h1,h2,h3,h4,h5,h6{
+color: #07138f;
+}
+.btn-azul{
+background-color: #07138f;
+border-radius: 20px;
+color: white;
+padding: 0px 12px;
+}
+input{
+border: none;
+background-color: white!important;
+}
+label{
+font-weight: 600;
+font-size: 18px;
+color: black;
+}
+.card{
+border-radius: 25px;
+}
+.alto{
+height: 480px;
+}
+/* ---------------------------------------------------
+MEDIA QUERYS
+----------------------------------------------------- */
+@media screen and (width: 1280px) {
+}
+@media screen and (min-width: 1366px) {
+}
+@media screen and (min-width: 1440px) {
+}
+@media screen and (min-width: 1600px) {
+}
+@media screen and (min-width: 1680px) {
+}
+@media screen and (min-width: 1920px) {
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+max-width: 1750px;}
+h1{ font-size: 75px; }
+h2{ font-size: 40px; }
+h3{ font-size: 35px; }
+h5{ font-size: 32px; }
+label{ font-size: 35px;}
+.mb-3, .my-3 { margin-bottom: 3rem!important;}
+.mt-3, .my-3 { margin-top: 3rem!important; }
+.card{ border-radius: 45px;}
+.circle{ top:62%; left:62%; width: 75px; height: 75px;}
+input{ height: 65px; font-size: 35px;}
+.btn-azul {   border-radius: 50px;   font-size: 33px; }
+.mb-5, .my-5 {   margin-bottom: 4.5rem!important; }
+.mt-5, .my-5 {   margin-top: 4.5rem!important; }
+.img{ width: 200px!important; height: 200px!important;}
+.alto{   height: 550px;}
+.img2{width:90px!important;  height:90px!important;}
+}
+@media screen and (min-width: 2160px) {
+}
+@media screen and (min-width: 2560px) {
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+max-width: 2340px;}
+h1{ font-size: 85px; }
+h2{ font-size: 50px; }
+h3{ font-size: 45px; }
+h5{ font-size: 36px; }
+label{ font-size: 35px;}
+.mb-3, .my-3 { margin-bottom: 3rem!important;}
+.mt-3, .my-3 { margin-top: 3rem!important; }
+.card{ border-radius: 45px;}
+.circle{ top:62%; left:62%; width: 75px; height: 75px;}
+input{ height: 65px; font-size: 35px;}
+.btn-azul {   border-radius: 50px;   font-size: 40px; }
+.mb-5, .my-5 {   margin-bottom: 4.5rem!important; }
+.mt-5, .my-5 {   margin-top: 4.5rem!important; }
+.img{ width: 250px!important; height: 250px!important;}
+.alto{   height: 700px;}
+.img2{width:90px!important;  height:90px!important;}
+}
+@media screen and (min-width: 2560px) and (max-height: 1080px){
+}
+@media screen and (min-width: 2736px) {
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+max-width: 2440px;}
+h1{ font-size: 110px; }
+h2{ font-size: 75px; }
+h3{ font-size: 45px; }
+h5{ font-size: 43px; }
+label{ font-size: 45px;}
+.pb-3, .py-3 { padding-bottom: 2rem!important;}
+.pt-3, .py-3 { padding-top: 2rem!important; }
+.pb-2, .py-2 { padding-bottom: 1rem!important;}
+.pt-2, .py-2 { padding-top: 1rem!important; }
+.card{ border-radius: 45px;}
+.circle{ top:62%; left:62%; width: 120px; height: 120px;}
+input{ height: 65px; font-size: 35px;}
+.btn-azul {   border-radius: 50px;   font-size: 43px; }
+.mb-5, .my-5 {   margin-bottom: 4.5rem!important; }
+.mt-5, .my-5 {   margin-top: 4.5rem!important; }
+.img{ width: 350px!important; height: 350px!important;}
+.alto{   height: 800px;}
+.img2{width:120px!important;  height:120px!important;}
+}
+@media screen and (min-width: 3440px) {
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+max-width: 3140px;}
+h1{ font-size: 140px; }
+h2{ font-size: 75px; }
+h3{ font-size: 45px; }
+h5{ font-size: 60px; }
+label{ font-size: 60px;}
+.pb-3, .py-3 { padding-bottom: 2.5rem!important;}
+.pt-3, .py-3 { padding-top: 2.5rem!important; }
+.pb-2, .py-2 { padding-bottom: 2rem!important;}
+.pt-2, .py-2 { padding-top: 2rem!important; }
+.card{ border-radius: 45px;}
+.circle{ top:62%; left:62%; width: 135px; height: 135px;}
+input{ height: 85px; font-size: 50px;}
+.btn-azul {   border-radius: 50px;   font-size: 55px; }
+.mb-5, .my-5 {   margin-bottom: 6.5rem!important; }
+.mt-5, .my-5 {   margin-top: 6.5rem!important; }
+.img{ width: 450px!important; height: 450px!important;}
+.alto{   height: 1020px;}
+.img2{width:160px!important;  height:160px!important;}
+span {   font-size: 50px !important;}
+.mb-4, .my-4 {   margin-bottom: 3.5rem!important;}
+}
+@media screen and (min-width: 3840px) {
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+max-width: 3640px;}
+h1{ font-size: 140px; }
+h2{ font-size: 75px; }
+h3{ font-size: 45px; }
+h5{ font-size: 70px; }
+label{ font-size: 60px;}
+.pb-3, .py-3 { padding-bottom: 3.5rem!important;}
+.pt-3, .py-3 { padding-top: 3.5rem!important; }
+.pb-2, .py-2 { padding-bottom: 3rem!important;}
+.pt-2, .py-2 { padding-top: 3rem!important; }
+.card{ border-radius: 45px;}
+.circle{ top:62%; left:62%; width: 135px; height: 135px;}
+input{ height: 85px; font-size: 50px;}
+.btn-azul {   border-radius: 50px;   font-size: 55px; }
+.mb-2, .my-5 {   margin-bottom: 4.5rem!important; }
+.mt-2, .my-5 {   margin-top: 4.5rem!important; }
+.img{ width: 450px!important; height: 450px!important;}
+.alto{   height: 1020px;}
+.img2{width:160px!important;  height:160px!important;}
+span {   font-size: 50px !important;}
+}
+@media screen and (min-width: 3840px) and (max-height: 1080px){
+}

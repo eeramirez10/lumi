@@ -1,0 +1,203 @@
+
+<app-header></app-header>
+<app-menuc></app-menuc>
+
+<div class="col-lg-12 px-5">
+    <form class="form-inline mt-5" name="form1">
+        <h1 class="tareas">ACTIVIDADES</h1>
+        <!-- <select name="select1" class="input custom-select ml-4" id="inputGroupSelect01">
+            <option value="0">selecciona una fecha</option>
+            <option value="1">Hoy</option>
+            <option value="2">Ayer</option>
+            <option value="3">Hace una semana</option>
+        </select> -->
+        <select class="input custom-select ml-4" id="inputGroupSelect02" name="select2">
+            <option value="0">selecciona un mes</option>
+            <option value="1">Enero</option>
+            <option value="2">Febrero</option>
+        </select>
+    </form>
+    <!-- <p [hidden]="opcionSeleccionado == '0'">Haz seleccionado la opción # {{ verSeleccion }}</p> -->
+</div>
+
+<nav id="tabs" class="px-5">
+    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">PENDIENTES</a>
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">FINALIZADAS</a>
+    </div>
+</nav>
+
+<div class="tab-content px-5 mb100" id="nav-tabContent">
+
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <!-- <div class="row p-4" style="max-width: 100%!important;">
+                <button class="btn btn-azul ml-auto">+ NUEVA TAREA</button>
+            </div>         -->
+            <div class="row p-4" style="max-width: 100%!important;">
+
+                <ng-container>
+                <div class="col-lg-6" style="margin-top: 30px;">
+                    <div class="card shadow p-4">
+                        <div class="row">
+                            <div class="col-lg-11">
+                                <h5>EQUIPO DE TRABAJO</h5>
+                            </div>
+                            <!-- <div class="col-lg-7 fechaa">
+                               <span>Creada:</span>&nbsp;<span>jueves</span>&nbsp;<span>03</span>&nbsp;<span>de</span>&nbsp;<span>abril</span>&nbsp;<span>de</span>&nbsp;<span>2020</span><br>
+                            </div> -->
+                            <div class="col-md-1">
+                                <a [routerLink]="['/Editar_Tarea']" style="cursor: pointer;">
+                                    <label class="circle" style="cursor: pointer;"></label>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h3>Audi s.a. de c.v.</h3>
+                                <span class="tareaa">&middot;&nbsp;Nombre de tarea</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </ng-container>
+
+                <ng-container>
+                    <div class="col-lg-6" style="margin-top: 30px;">
+                        <div class="card shadow p-4">
+                            <div class="row">
+                                <div class="col-lg-11">
+                                    <h5>EQUIPO DE TRABAJO</h5>
+                                </div>
+                                <!-- <div class="col-lg-7 fechaa">
+                                   <span>Creada:</span>&nbsp;<span>jueves</span>&nbsp;<span>03</span>&nbsp;<span>de</span>&nbsp;<span>abril</span>&nbsp;<span>de</span>&nbsp;<span>2020</span><br>
+                                </div> -->
+                                <div class="col-md-1">
+                                    <a [routerLink]="['/Editar_Tarea']" style="cursor: pointer;">
+                                        <label class="circle" style="cursor: pointer;"></label>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3>Audi s.a. de c.v.</h3>
+                                    <span class="tareaa">&middot;&nbsp;Nombre de tarea</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </ng-container>
+
+                    <ng-container>
+                        <div class="col-lg-6" style="margin-top: 30px;">
+                            <div class="card shadow p-4">
+                                <div class="row">
+                                    <div class="col-lg-11">
+                                        <h5>EQUIPO DE TRABAJO</h5>
+                                    </div>
+                                    <!-- <div class="col-lg-7 fechaa">
+                                       <span>Creada:</span>&nbsp;<span>jueves</span>&nbsp;<span>03</span>&nbsp;<span>de</span>&nbsp;<span>abril</span>&nbsp;<span>de</span>&nbsp;<span>2020</span><br>
+                                    </div> -->
+                                    <div class="col-md-1">
+                                        <a [routerLink]="['/Editar_Tarea']" style="cursor: pointer;">
+                                            <label class="circle" style="cursor: pointer;"></label>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h3>Audi s.a. de c.v.</h3>
+                                        <span class="tareaa">&middot;&nbsp;Nombre de tarea</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </ng-container>
+
+            </div>
+    </div>
+
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="row p-4" style="max-width: 100%!important;">
+
+                <ng-container>
+                        <div class="col-lg-6" style="margin-top: 30px;">
+                            <div class="card shadow p-4">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <h5>EQUIPO DE TRABAJO</h5>
+                                    </div>
+                                    <div class="col-lg-7 fechaa">
+                                       <span>Creada:</span>&nbsp;<span>jueves</span>&nbsp;<span>03</span>&nbsp;<span>de</span>&nbsp;<span>abril</span>&nbsp;<span>de</span>&nbsp;<span>2020</span><br>
+                                    </div>
+                                    <!-- <div class="col-md-1">
+                                        <a [routerLink]="['/Editar_Tarea']" style="cursor: pointer;">
+                                            <label class="circle" style="cursor: pointer;"></label>
+                                        </a>
+                                    </div> -->
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h3>Audi s.a. de c.v.</h3>
+                                        <span class="tareaa">&middot;&nbsp;Nombre de tarea</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </ng-container>
+                        <ng-container>
+                            <div class="col-lg-6" style="margin-top: 30px;">
+                                <div class="card shadow p-4">
+                                    <div class="row">
+                                        <div class="col-lg-5">
+                                            <h5>EQUIPO DE TRABAJO</h5>
+                                        </div>
+                                        <div class="col-lg-7 fechaa">
+                                           <span>Creada:</span>&nbsp;<span>jueves</span>&nbsp;<span>03</span>&nbsp;<span>de</span>&nbsp;<span>abril</span>&nbsp;<span>de</span>&nbsp;<span>2020</span><br>
+                                        </div>
+                                        <!-- <div class="col-md-1">
+                                            <a [routerLink]="['/Editar_Tarea']" style="cursor: pointer;">
+                                                <label class="circle" style="cursor: pointer;"></label>
+                                            </a>
+                                        </div> -->
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h3>Audi s.a. de c.v.</h3>
+                                            <span class="tareaa">&middot;&nbsp;Nombre de tarea</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </ng-container>
+                            <ng-container>
+                                <div class="col-lg-6" style="margin-top: 30px;">
+                                    <div class="card shadow p-4">
+                                        <div class="row">
+                                            <div class="col-lg-5">
+                                                <h5>EQUIPO DE TRABAJO</h5>
+                                            </div>
+                                            <div class="col-lg-7 fechaa">
+                                               <span>Creada:</span>&nbsp;<span>jueves</span>&nbsp;<span>03</span>&nbsp;<span>de</span>&nbsp;<span>abril</span>&nbsp;<span>de</span>&nbsp;<span>2020</span><br>
+                                            </div>
+                                            <!-- <div class="col-md-1">
+                                                <a [routerLink]="['/Editar_Tarea']" style="cursor: pointer;">
+                                                    <label class="circle" style="cursor: pointer;"></label>
+                                                </a>
+                                            </div> -->
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <h3>Audi s.a. de c.v.</h3>
+                                                <span class="tareaa">&middot;&nbsp;Nombre de tarea</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </ng-container>
+            </div>
+    </div>
+
+</div>
+
+
+

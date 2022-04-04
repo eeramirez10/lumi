@@ -1,0 +1,168 @@
+<app-header></app-header>
+<app-menuc></app-menuc>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-11 my-5">
+            <h1>Editar empresa/Agregar sucursal</h1>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 card shadow p-5 mb-5">
+            <div class="container p-5 text-center">
+                <form>
+                <div class="row form-group">
+                    <div class="col-lg-12 text-center">
+                        <div *ngIf="previewUrl">
+                            <img  [src]="previewUrl" class="img"/>
+                        </div>
+                        <img *ngIf="!previewUrl" src="http://192.168.1.61/lum/imagenes/{{foto}}" class="img"/>
+                        <label for="foto" class="circle2"></label>
+                        <input style="display: none;" type="file" id="foto"
+                        (change)="onFileChanged($event,$event.target.files,$event,idE)" multiple
+                        accept="image/*">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-3 d-flex align-items-center">
+                        <h5>Cliente/Empresa</h5>
+                    </div>
+                    <div class="col-md-9 my-3">
+                        <input [(ngModel)]="nombremp" class="inputS" name="nombremp" type="text" style="width:100%">
+                    </div>
+                </div>
+                    <div class="row form-group">
+                    <div class="col-md-3 d-flex align-items-center">
+                        <h5>Asignada para</h5>
+                    </div>
+                    <div class="col-md-9 my-3">
+                        <input [(ngModel)]="nombre" class="inputS" name="nombre" type="text" disabled style="width:100%">
+                    </div>
+                </div>
+                    <div class="row form-group">
+                    <div class="col-md-3 d-flex align-items-center">
+                        <h5>Dirección</h5>
+                    </div>
+                    <div class="col-md-9 my-3">
+                        <input #addresstext [(ngModel)]="dir" class="inputS" name="dir" type="text" style="width:100%">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-3 d-flex align-items-center">
+                        <h5>Contacto</h5>
+                    </div>
+                    <div class="col-md-9 my-3">
+                        <input [(ngModel)]="contacto" class="inputS" name="contacto" type="text" style="width:100%">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-3 d-flex align-items-center">
+                        <h5>RFC</h5>
+                    </div>
+                    <div class="col-md-9 my-3">
+                        <input [(ngModel)]="rfc" class="inputS" name="rfc" type="text" style="width:100%">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-3 d-flex align-items-center">
+                        <h5>Telefono</h5>
+                    </div>
+                    <div class="col-md-9 my-3">
+                        <input [(ngModel)]="telefono" class="inputS" name="telefono" type="text" maxlength="10" style="width:100%" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-3 d-flex align-items-center">
+                        <h5>Correo</h5>
+                    </div>
+                    <div class="col-md-9 my-3">
+                        <input [(ngModel)]="correo" class="inputS" name="correo" type="text" style="width:100%">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-3 d-flex align-items-center">
+                        <h5>Comentario</h5>
+                    </div>
+                    <div class="col-md-9 my-3">
+                        <input [(ngModel)]="comentario" class="inputS" name="comentario" type="text" style="width:100%">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-3 d-flex align-items-center">
+                        <h5>Sucursal/Obra</h5>
+                    </div>
+                    <div class="col-md-9 my-3 text-left">
+                        <table style="width:100%">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Dirección</th>
+                                <th>Acciones</th>
+                            </tr>
+                            <tr *ngFor="let suc of sucursales">
+                                <td>{{suc.nombreSO}}</td>
+                                <td>{{suc.direccion}}</td>
+                                <td>
+                                    <span class="ml-2">
+                                        <img (click)="eliminarsuc(suc.idSO);"  src="../../../assets/img/close-sharp.svg" class="imagen"/>
+                                    </span>
+                                    <span class="ml-3">
+                                        <img (click)="paraEditarSuc(suc.idSO,suc.nombreSO,suc.direccion)" src="../../../assets/img/pencil-azul.svg" class="imagen"/>
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row form-group mt-4">
+                    <div class="col-md-6 text-center p-0">
+                        <button type="button" (click)="guardar(idE)" class="btn btn-azul"><img src="../../assets/img/paper-plane.svg" width="30" height="30">Guardar</button>
+                    </div>
+                    <div class="col-md-6 text-center p-0">
+                        <button type="button" class="btn btn-rojo" data-dismiss="modal" aria-label="Close">X CANCELAR</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+
+            <div class="container mb-5">
+                <div class="row pb-3" style="border: 2px solid #07138f;">
+                        <div class="col-md-12 text-center">
+                            <h2>Agregar Sucursal/Obra</h2>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5 class="text-left">Sucursal/Obra</h5>
+                                </div>
+                                <div class="col-md-9">
+                                    <input #Nombresuc class="inputS" id="inputname" type="text" style="width:100%">
+                                </div>
+                                <div class="col-md-3">
+                                    <h5 class="text-left">Direccion</h5>
+                                </div>
+                                <div class="col-md-9">
+                                    <input #Direccionsuc class="inputS" id="inputdir" type="text" style="width:100%">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label *ngIf="editar==false" (click)="agregarsuc(idE)" class="circle3"></label>
+                            <label *ngIf="editar==true" (click)="editarSuc()" class="circle4"></label>
+                        </div>
+                    </div>
+                <div class="row form-group mt-4">
+                    <div class="col-md-4 d-flex justify-content-center p-0"  *ngFor="let ima of imagenes">
+                        <div style="height: 250px;width:auto;padding: 10px;">
+                            <a href="http://192.168.1.61/lum/Archivos/{{ima.Nombre}}" target="_blank">
+                                <img src="http://192.168.1.61/lum/Archivos/{{ima.Nombre}}" width="100%" height="100%" style="object-fit: cover;" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
